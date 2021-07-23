@@ -1,0 +1,16 @@
+gmq
+les-librairies
+les-données
+visualisation-boxplots
+vérification-des-conditions-de-lanova
+normalité
+homogénéité-des-variances-test-de-levene
+alternative-non-paramétrique-test-de-kruskal-wallis
+comparaisons-par-paires-test-de-dunn
+mg
+s1
+s2
+s3
+s4
+s5
+mesrep

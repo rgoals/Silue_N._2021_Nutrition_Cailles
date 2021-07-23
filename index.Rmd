@@ -27,7 +27,8 @@ library("rstatix")   # convert_as_factor(), friedman_test()
 ```{r}
 dgmq <- read_csv("data/gmq.csv")
 dgmq <- dgmq %>%
-  convert_as_factor(regime)
+  mutate(regime = factor(regime))
+head(dgmq)
 ```
 
 ## Visualisation, boxplots
@@ -36,7 +37,7 @@ dgmq <- dgmq %>%
 ggplot(data = dgmq, aes(x = regime, y = gmq)) +
   geom_boxplot() + 
   #theme_classic() +
-  xlab("Régimes") + ylab("Gain moyen quotidien") +
+  xlab("Régimes") + ylab("Gain moyen quotidien (g)") +
   theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
 ```
 

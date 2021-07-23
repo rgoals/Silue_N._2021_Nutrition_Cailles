@@ -1,0 +1,311 @@
+# Matières grasses {#mg}
+
+## Les librairies utiles
+
+```{r message = FALSE, warning = FALSE}
+library("tidyverse") # tidy et ggplot2
+library("ggpubr")    # ggboxplot()
+library("agricolae") # SNK.test() Student Newman-Keuls
+library("car")       # leveneTest() or levene_test()
+library("rstatix")   # convert_as_factor()
+```
+
+## Les données
+
+```{r message = FALSE, warning = FALSE}
+mg <- read_csv("data/mg.csv")
+mg <- mg %>% 
+  mutate(regime = factor(regime))
+head(mg)
+```
+
+Rassembler les colonnes mg1 à mg4 en format long et convertir l'identifiant et les seances en facteurs.
+
+```{r message = FALSE, warning = FALSE}
+mgl <- mg %>%
+  mutate(id = 1:nrow(mg)) %>% 
+  gather(key = "seance", value = "tmg", -c(regime, reference, id)) %>%
+  convert_as_factor(id, seance)
+head(mgl)
+```
+
+> Les scores renommés en `tmg` pour `taux de matière grasse`.
+
+## Sommaire des données, par séance
+
+```{r}
+mgl %>%
+  group_by(seance) %>%
+  get_summary_stats(tmg, type = "mean_sd") %>% 
+  select(-variable)
+```
+
+## Visualisation boxplots, par séance
+
+```{r message = FALSE, warning = FALSE}
+ggboxplot(mgl, x = "seance", y = "tmg") #, add = "point")
+```
+
+## Détection valeurs aberrantes
+
+(Pas pour les exclure !)
+
+```{r}
+out_mgl <- mgl %>%
+  group_by(seance) %>%
+  identify_outliers(tmg)
+out_mgl
+```
+
+## Conditions de l'ANOVA
+
+### Normalité
+
+Si les données sont normalement distribuées, la p-value de Shapiro-Wilk doit être supérieure à 0,05.
+
+```{r}
+mgl %>%
+  group_by(seance) %>%
+  shapiro_test(tmg)
+```
+
+> Toutes les valeurs p sont > 0.05 => toutes les distributions sont normales.
+
+NB. Si la taille de l'échantillon est supérieure à 50, le graphique de normalité QQ-plot est préféré parce qu’avec des échantillons de plus grande taille, le test de Shapiro-Wilk devient très sensible même à un écart mineur par rapport à la distribution normale.
+
+Le graphique QQ-plot dessine la corrélation entre une donnée définie et la distribution normale. Ce n'est pas le cas ici mais je le fais quand même.
+
+Créer des QQ-plots pour chaque point par séance
+
+```{r message = FALSE, warning = FALSE}
+ggqqplot(mgl, "tmg", facet.by = "seance")
+```
+
+Tous les points se situent approximativement le long de la ligne de référence => nous pouvons supposer une normalité.
+
+### Sphéricité (=> homoscédasticité ou homogénéité des variances)
+
+```{r}
+mgl %>%
+  select(seance, regime, tmg) %>% 
+  group_by(seance) %>%
+  levene_test(tmg ~ regime)
+```
+
+> Toutes les valeurs p sont > 0.05 => toutes les variances sont homogènes.
+
+*** 
+
+## Comparaisons des effets des régimes sur le taux de MG, par séance
+
+Les conditions de la validité d'une ANOVA étant remplies, les interprétations seront donc valides.
+
+***
+
+### Séance 1
+
+#### ANOVA, séance 1
+
+```{r}
+aovs1 <- lm(mg1 ~ regime, data = mg)
+anova(aovs1)
+```
+
+> La p-value > 0.05 => Pas de différence entre les effets des différents régimes sur le taux de matières grasses.
+
+***
+
+### Séance 2
+
+#### ANOVA, séance 2
+
+```{r}
+aovs2 <- lm(mg2 ~ regime, data = mg)
+anova(aovs2)
+```
+
+> La p-value est < 0.01 => Différence très significative entre les effetes d'au moins 2 régimes.
+
+#### Visualisation boxplots, séance 2
+
+```{r message = FALSE, warning = FALSE}
+ggplot(data = mg, aes(x = regime, y = mg2)) +
+  geom_boxplot() + 
+  #theme_classic() +
+  xlab("Régimes") + ylab("Taux de matières grasses (g)") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
+```
+
+#### Comparaisons par paires, séance 2
+
+```{r}
+phs2 <- (SNK.test(aovs2, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, mg2, groups) %>% 
+  as_tibble()
+phs2
+```
+
+#### Visualisation des groupes, séance 2
+
+```{r message = FALSE, warning = FALSE}
+ggplot(data = phs2, mapping = aes(x = regime, y = mg2)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  #ylim(0, 2) +
+  geom_text(data = phs2, aes(label = groups), vjust = -0.5, size = 4) +
+  theme_classic() +
+  xlab("Régimes") + ylab("Taux de matières grasses") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
+```
+
+***
+
+### Séance 3
+
+#### ANOVA, séance 3
+
+```{r}
+aovs3 <- lm(mg3 ~ regime, data = mg)
+anova(aovs3)
+```
+
+> p-value < 0.05 => Différence significative entre les effetes d'au moins 2 régimes.
+
+#### Visualisation boxplots, séance 3
+
+```{r message = FALSE, warning = FALSE}
+ggplot(data = mg, aes(x = regime, y = mg3)) +
+  geom_boxplot() + 
+  #theme_classic() +
+  xlab("Régimes") + ylab("Taux de matières grasses") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
+```
+
+#### Comparaisons par paires, séance 3
+
+```{r}
+phs3 <- (SNK.test(aovs3, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, mg3, groups) %>% 
+  as_tibble()
+phs3
+```
+
+#### Visualisation des groupes, séance 3
+
+```{r message = FALSE, warning = FALSE}
+ggplot(data = phs3, mapping = aes(x = regime, y = mg3)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  #ylim(0, 2) +
+  geom_text(data = phs3, aes(label = groups), vjust = -0.5, size = 4) +
+  theme_classic() +
+  xlab("Régimes") + ylab("Taux de matières grasses") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
+```
+
+***
+
+### Séance 4
+
+#### ANOVA, séance 4
+
+```{r}
+aovs4 <- lm(mg4 ~ regime, data = mg)
+anova(aovs4)
+```
+
+> p-value < 0.01 => différence très significative entre les effetes d'au moins 2 régimes.
+
+#### Visualisation boxplots, séance 4
+
+```{r message = FALSE, warning = FALSE}
+ggplot(data = mg, aes(x = regime, y = mg4)) +
+  geom_boxplot() + 
+  #theme_classic() +
+  xlab("Régimes") + ylab("Taux de matières grasses") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
+```
+
+#### Comparaisons par paires, séance 4
+
+```{r}
+phs4 <- (SNK.test(aovs4, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, mg4, groups) %>% 
+  as_tibble()
+phs4
+```
+
+#### Visualisation des groupes, séance 4
+
+```{r message = FALSE, warning = FALSE}
+ggplot(data = phs4, mapping = aes(x = regime, y = mg4)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  #ylim(0, 2) +
+  geom_text(data = phs4, aes(label = groups), vjust = -0.5, size = 4) +
+  theme_classic() +
+  xlab("Régimes") + ylab("Taux de matières grasses") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
+```
+
+***
+
+## MESURES REPÉTÉES
+
+## Sphéricité et ANOVA, mesures repétées
+
+La fonction `anova_test()` réalise également le test de sphéricité de Mauchly. Données utilisées : Tableau modélé en format long `mgl`.
+
+```{r message = FALSE, warning = FALSE}
+mg_anova <- anova_test(data = mgl,      #
+                        dv = tmg,        # dependant variable, num
+                        wid = id,        # identificateur de cas/échantillon (facteur)
+                        within = seance) # facteur de groupement intra-sujets
+get_anova_table(mg_anova)
+```
+
+> C'est la p-value qui nous intéresse et elle est < 0.000 => Différence statistiquement significative entre au moins 2 séances.
+
+## Comparaisons par paires, mesures repétées
+
+```{r}
+tph <- mgl %>%
+  pairwise_t_test(tmg ~ seance, 
+                  paired = TRUE,
+                  p.adjust.method = "bonferroni")
+
+tph %>% 
+  select(group1, group2, p, p.adj, p.adj.signif)
+```
+
+```{r}
+mgl %>%
+  group_by(seance) %>%
+  get_summary_stats(tmg, type = "mean_sd") %>% 
+  select(-variable)
+```
+
+> séance 1 ≠ séance 2
+> séance 1 ≠ séance 3
+> séance 1 ≠ séance 4
+> séance 2 ≠ séance 4
+> séance 2 ≈ séance 3
+> séance 3 ≈ séance 4.
+
+#### Visualisation : Boxplots avec p-values
+
+```{r message = FALSE, warning = FALSE}
+tph <- tph %>% add_xy_position(x = "seance")
+ggboxplot(mgl, x = "seance", y = "tmg") + 
+  stat_pvalue_manual(tph) +
+  labs(
+    subtitle = get_test_label(mg_anova, detailed = TRUE),
+    caption = get_pwc_label(tph)
+  )
+```
+
+
+
+
+
+

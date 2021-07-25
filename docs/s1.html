@@ -168,21 +168,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="s1.html"><a href="s1.html"><i class="fa fa-check"></i><b>3</b> Séance 1</a><ul>
 <li class="chapter" data-level="3.1" data-path="s1.html"><a href="s1.html#librairies"><i class="fa fa-check"></i><b>3.1</b> Librairies</a></li>
 <li class="chapter" data-level="3.2" data-path="s1.html"><a href="s1.html#les-données-2"><i class="fa fa-check"></i><b>3.2</b> Les données</a></li>
-<li class="chapter" data-level="3.3" data-path="s1.html"><a href="s1.html#les-différentes-variables"><i class="fa fa-check"></i><b>3.3</b> Les différentes variables</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="s1.html"><a href="s1.html#masse-des-oeufs-masse_oeuf"><i class="fa fa-check"></i><b>3.3.1</b> Masse des oeufs : <code>masse_oeuf</code></a></li>
-<li class="chapter" data-level="3.3.2" data-path="s1.html"><a href="s1.html#masse-de-la-coquille-masse_coq"><i class="fa fa-check"></i><b>3.3.2</b> Masse de la coquille : <code>masse_coq</code></a></li>
-<li class="chapter" data-level="3.3.3" data-path="s1.html"><a href="s1.html#épaisseur-de-la-coquille-epaisseur_coq"><i class="fa fa-check"></i><b>3.3.3</b> Épaisseur de la coquille : <code>epaisseur_coq</code></a></li>
-<li class="chapter" data-level="3.3.4" data-path="s1.html"><a href="s1.html#masse-du-jaune-doeuf-masse_du_jaune"><i class="fa fa-check"></i><b>3.3.4</b> Masse du jaune d’oeuf : <code>masse_du_jaune</code></a></li>
-<li class="chapter" data-level="3.3.5" data-path="s1.html"><a href="s1.html#masse-du-blanc-doeuf-masse_du_blanc"><i class="fa fa-check"></i><b>3.3.5</b> Masse du blanc d’oeuf : <code>masse_du_blanc</code></a></li>
-<li class="chapter" data-level="3.3.6" data-path="s1.html"><a href="s1.html#indice-l-de-lintérieur-de-la-coquille-l_int_coq"><i class="fa fa-check"></i><b>3.3.6</b> Indice <code>l</code> de l’intérieur de la coquille : <code>l_int_coq</code></a></li>
-<li class="chapter" data-level="3.3.7" data-path="s1.html"><a href="s1.html#indice-a-de-lintérieur-de-la-coquille-a_int_coq"><i class="fa fa-check"></i><b>3.3.7</b> Indice <code>a</code> de l’intérieur de la coquille : <code>a_int_coq</code></a></li>
-<li class="chapter" data-level="3.3.8" data-path="s1.html"><a href="s1.html#indice-b-de-lintérieur-de-la-coquille-b_int_coq"><i class="fa fa-check"></i><b>3.3.8</b> Indice <code>b</code> de l’intérieur de la coquille : <code>b_int_coq</code></a></li>
-<li class="chapter" data-level="3.3.9" data-path="s1.html"><a href="s1.html#indice-l-du-jaune-doeuf-l_jaune"><i class="fa fa-check"></i><b>3.3.9</b> Indice <code>l</code> du jaune d’oeuf : <code>l_jaune</code></a></li>
-<li class="chapter" data-level="3.3.10" data-path="s1.html"><a href="s1.html#indice-a-du-jaune-doeuf-a_jaune"><i class="fa fa-check"></i><b>3.3.10</b> Indice <code>a</code> du jaune d’oeuf : <code>a_jaune</code></a></li>
-<li class="chapter" data-level="3.3.11" data-path="s1.html"><a href="s1.html#indice-b-du-jaune-doeuf-b_jaune"><i class="fa fa-check"></i><b>3.3.11</b> Indice <code>b</code> du jaune d’oeuf : <code>b_jaune</code></a></li>
-<li class="chapter" data-level="3.3.12" data-path="s1.html"><a href="s1.html#teneur-en-protéines-totales-prot_tot"><i class="fa fa-check"></i><b>3.3.12</b> Teneur en protéines totales : <code>prot_tot</code></a></li>
-<li class="chapter" data-level="3.3.13" data-path="s1.html"><a href="s1.html#teneur-en-cholestérol-total-chol_tot"><i class="fa fa-check"></i><b>3.3.13</b> Teneur en cholestérol total : <code>chol_tot</code></a></li>
-<li class="chapter" data-level="3.3.14" data-path="s1.html"><a href="s1.html#teneur-en-lipides-totales-lip_tot"><i class="fa fa-check"></i><b>3.3.14</b> Teneur en lipides totales : <code>lip_tot</code></a></li>
+<li class="chapter" data-level="3.3" data-path="s1.html"><a href="s1.html#masse-des-oeufs-masse_oeuf"><i class="fa fa-check"></i><b>3.3</b> Masse des oeufs : <code>masse_oeuf</code></a><ul>
+<li class="chapter" data-level="3.3.1" data-path="s1.html"><a href="s1.html#test-de-normalité-masse-des-oeufs"><i class="fa fa-check"></i><b>3.3.1</b> Test de normalité, masse des oeufs</a></li>
+<li class="chapter" data-level="3.3.2" data-path="s1.html"><a href="s1.html#test-dhomogénéité-des-variances-masse-des-oeufs"><i class="fa fa-check"></i><b>3.3.2</b> Test d’homogénéité des variances, masse des oeufs</a></li>
+<li class="chapter" data-level="3.3.3" data-path="s1.html"><a href="s1.html#anova-masse-des-oeufs"><i class="fa fa-check"></i><b>3.3.3</b> ANOVA, masse des oeufs</a></li>
+<li class="chapter" data-level="3.3.4" data-path="s1.html"><a href="s1.html#visualisation-boxplots-masse-des-oeufs"><i class="fa fa-check"></i><b>3.3.4</b> Visualisation boxplots, masse des oeufs</a></li>
+<li class="chapter" data-level="3.3.5" data-path="s1.html"><a href="s1.html#visualisation-des-groupes-masse-des-oeufs"><i class="fa fa-check"></i><b>3.3.5</b> Visualisation des groupes, masse des oeufs</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="s1.html"><a href="s1.html#masse-de-la-coquille-masse_coq"><i class="fa fa-check"></i><b>3.4</b> Masse de la coquille : <code>masse_coq</code></a><ul>
+<li class="chapter" data-level="3.4.1" data-path="s1.html"><a href="s1.html#test-de-normalité-masse-de-la-coquille"><i class="fa fa-check"></i><b>3.4.1</b> Test de normalité, masse de la coquille</a></li>
+<li class="chapter" data-level="3.4.2" data-path="s1.html"><a href="s1.html#test-de-sphéricité-homogénéité-des-variances-masse-de-la-coquille"><i class="fa fa-check"></i><b>3.4.2</b> Test de sphéricité (homogénéité des variances), masse de la coquille</a></li>
+<li class="chapter" data-level="3.4.3" data-path="s1.html"><a href="s1.html#anova-masse-de-la-coquille"><i class="fa fa-check"></i><b>3.4.3</b> ANOVA, masse de la coquille</a></li>
+<li class="chapter" data-level="3.4.4" data-path="s1.html"><a href="s1.html#visualisation-boxplots-masse-de-la-coquille"><i class="fa fa-check"></i><b>3.4.4</b> Visualisation boxplots, masse de la coquille</a></li>
+<li class="chapter" data-level="3.4.5" data-path="s1.html"><a href="s1.html#comparaisons-par-paires-masse-de-la-coquille"><i class="fa fa-check"></i><b>3.4.5</b> Comparaisons par paires, masse de la coquille</a></li>
+<li class="chapter" data-level="3.4.6" data-path="s1.html"><a href="s1.html#visualisation-des-groupes-masse-de-la-coquille"><i class="fa fa-check"></i><b>3.4.6</b> Visualisation des groupes, masse de la coquille</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="s1.html"><a href="s1.html#épaisseur-de-la-coquille-epaisseur_coq"><i class="fa fa-check"></i><b>3.5</b> Épaisseur de la coquille : <code>epaisseur_coq</code></a><ul>
+<li class="chapter" data-level="3.5.1" data-path="s1.html"><a href="s1.html#test-de-normalité-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>3.5.1</b> Test de normalité, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="3.5.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>3.5.2</b> Test de Kruskal-Walli, épaisseur de la coquille</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="s1.html"><a href="s1.html#masse-du-jaune-doeuf-masse_du_jaune"><i class="fa fa-check"></i><b>3.6</b> Masse du jaune d’oeuf : <code>masse_du_jaune</code></a><ul>
+<li class="chapter" data-level="3.6.1" data-path="s1.html"><a href="s1.html#test-de-normalité-masse-du-jaune"><i class="fa fa-check"></i><b>3.6.1</b> Test de normalité, masse du jaune</a></li>
+<li class="chapter" data-level="3.6.2" data-path="s1.html"><a href="s1.html#test-de-sphéricité-masse-du-jaune"><i class="fa fa-check"></i><b>3.6.2</b> Test de sphéricité, masse du jaune</a></li>
+<li class="chapter" data-level="3.6.3" data-path="s1.html"><a href="s1.html#anova-masse-du-jaune"><i class="fa fa-check"></i><b>3.6.3</b> ANOVA, masse du jaune</a></li>
+<li class="chapter" data-level="3.6.4" data-path="s1.html"><a href="s1.html#visualisation-boxplots-masse-du-jaune"><i class="fa fa-check"></i><b>3.6.4</b> Visualisation boxplots masse du jaune</a></li>
+<li class="chapter" data-level="3.6.5" data-path="s1.html"><a href="s1.html#comparaisons-par-paires-masse-du-jaune"><i class="fa fa-check"></i><b>3.6.5</b> Comparaisons par paires, masse du jaune</a></li>
+<li class="chapter" data-level="3.6.6" data-path="s1.html"><a href="s1.html#visualisation-des-groupes-bareplots-avec-labels-masse-du-jaune"><i class="fa fa-check"></i><b>3.6.6</b> Visualisation des groupes, bareplots avec labels, masse du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="s1.html"><a href="s1.html#masse-du-blanc-doeuf-masse_du_blanc"><i class="fa fa-check"></i><b>3.7</b> Masse du blanc d’oeuf : <code>masse_du_blanc</code></a><ul>
+<li class="chapter" data-level="3.7.1" data-path="s1.html"><a href="s1.html#test-de-normalité-masse-du-blanc"><i class="fa fa-check"></i><b>3.7.1</b> Test de normalité, masse du blanc</a></li>
+<li class="chapter" data-level="3.7.2" data-path="s1.html"><a href="s1.html#test-de-sphéricité-masse-du-blanc"><i class="fa fa-check"></i><b>3.7.2</b> Test de sphéricité, masse du blanc</a></li>
+<li class="chapter" data-level="3.7.3" data-path="s1.html"><a href="s1.html#anova-masse-du-blanc"><i class="fa fa-check"></i><b>3.7.3</b> ANOVA, masse du blanc</a></li>
+<li class="chapter" data-level="3.7.4" data-path="s1.html"><a href="s1.html#visualisation-boxplots-masse-du-blanc"><i class="fa fa-check"></i><b>3.7.4</b> Visualisation boxplots masse du blanc</a></li>
+<li class="chapter" data-level="3.7.5" data-path="s1.html"><a href="s1.html#comparaisons-par-paires-masse-du-jaune-1"><i class="fa fa-check"></i><b>3.7.5</b> Comparaisons par paires, masse du jaune</a></li>
+<li class="chapter" data-level="3.7.6" data-path="s1.html"><a href="s1.html#visualisation-des-groupes-bareplots-avec-labels"><i class="fa fa-check"></i><b>3.7.6</b> Visualisation des groupes, bareplots avec labels</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="s1.html"><a href="s1.html#indice-l-de-lintérieur-de-la-coquille-l_int_coq"><i class="fa fa-check"></i><b>3.8</b> Indice <code>l</code> de l’intérieur de la coquille : <code>l_int_coq</code></a><ul>
+<li class="chapter" data-level="3.8.1" data-path="s1.html"><a href="s1.html#test-de-normalité-indice-l"><i class="fa fa-check"></i><b>3.8.1</b> Test de normalité, Indice <code>l</code></a></li>
+<li class="chapter" data-level="3.8.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-indice-l"><i class="fa fa-check"></i><b>3.8.2</b> Test de Kruskal-Walli, indice <code>l</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="s1.html"><a href="s1.html#indice-a-de-lintérieur-de-la-coquille-a_int_coq"><i class="fa fa-check"></i><b>3.9</b> Indice <code>a</code> de l’intérieur de la coquille : <code>a_int_coq</code></a><ul>
+<li class="chapter" data-level="3.9.1" data-path="s1.html"><a href="s1.html#test-de-normalité-indice-a"><i class="fa fa-check"></i><b>3.9.1</b> Test de normalité, Indice <code>a</code></a></li>
+<li class="chapter" data-level="3.9.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-indice-a"><i class="fa fa-check"></i><b>3.9.2</b> Test de Kruskal-Walli, indice <code>a</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="s1.html"><a href="s1.html#indice-b-de-lintérieur-de-la-coquille-b_int_coq"><i class="fa fa-check"></i><b>3.10</b> Indice <code>b</code> de l’intérieur de la coquille : <code>b_int_coq</code></a><ul>
+<li class="chapter" data-level="3.10.1" data-path="s1.html"><a href="s1.html#test-de-normalité-indice-b"><i class="fa fa-check"></i><b>3.10.1</b> Test de normalité, Indice <code>b</code></a></li>
+<li class="chapter" data-level="3.10.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-indice-b"><i class="fa fa-check"></i><b>3.10.2</b> Test de Kruskal-Walli, indice <code>b</code></a></li>
+<li class="chapter" data-level="3.10.3" data-path="s1.html"><a href="s1.html#test-de-dunn-indice-b"><i class="fa fa-check"></i><b>3.10.3</b> Test de Dunn, indice <code>b</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="s1.html"><a href="s1.html#indice-l-du-jaune-doeuf-l_jaune"><i class="fa fa-check"></i><b>3.11</b> Indice <code>l</code> du jaune d’oeuf : <code>l_jaune</code></a><ul>
+<li class="chapter" data-level="3.11.1" data-path="s1.html"><a href="s1.html#test-de-normalité-indice-l-du-jaune"><i class="fa fa-check"></i><b>3.11.1</b> Test de normalité, Indice <code>l</code> du jaune</a></li>
+<li class="chapter" data-level="3.11.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-l-du-jaune"><i class="fa fa-check"></i><b>3.11.2</b> Test de Kruskal-Walli, <code>l</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="3.12" data-path="s1.html"><a href="s1.html#indice-a-du-jaune-doeuf-a_jaune"><i class="fa fa-check"></i><b>3.12</b> Indice <code>a</code> du jaune d’oeuf : <code>a_jaune</code></a><ul>
+<li class="chapter" data-level="3.12.1" data-path="s1.html"><a href="s1.html#test-de-normalité-indice-a-du-jaune"><i class="fa fa-check"></i><b>3.12.1</b> Test de normalité, Indice <code>a</code> du jaune</a></li>
+<li class="chapter" data-level="3.12.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-a-du-jaune"><i class="fa fa-check"></i><b>3.12.2</b> Test de Kruskal-Walli, <code>a</code> du jaune</a></li>
+<li class="chapter" data-level="3.12.3" data-path="s1.html"><a href="s1.html#test-de-dunn-a-du-jaune"><i class="fa fa-check"></i><b>3.12.3</b> Test de Dunn, <code>a</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="s1.html"><a href="s1.html#indice-b-du-jaune-doeuf-b_jaune"><i class="fa fa-check"></i><b>3.13</b> Indice <code>b</code> du jaune d’oeuf : <code>b_jaune</code></a><ul>
+<li class="chapter" data-level="3.13.1" data-path="s1.html"><a href="s1.html#test-de-normalité-indice-b-du-jaune"><i class="fa fa-check"></i><b>3.13.1</b> Test de normalité, Indice <code>b</code> du jaune</a></li>
+<li class="chapter" data-level="3.13.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-b-du-jaune"><i class="fa fa-check"></i><b>3.13.2</b> Test de Kruskal-Walli, <code>b</code> du jaune</a></li>
+<li class="chapter" data-level="3.13.3" data-path="s1.html"><a href="s1.html#test-de-dunn-b-du-jaune"><i class="fa fa-check"></i><b>3.13.3</b> Test de Dunn, <code>b</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="3.14" data-path="s1.html"><a href="s1.html#teneur-en-protéines-totales-prot_tot"><i class="fa fa-check"></i><b>3.14</b> Teneur en protéines totales : <code>prot_tot</code></a><ul>
+<li class="chapter" data-level="3.14.1" data-path="s1.html"><a href="s1.html#test-de-normalité-protéines"><i class="fa fa-check"></i><b>3.14.1</b> Test de normalité, protéines</a></li>
+<li class="chapter" data-level="3.14.2" data-path="s1.html"><a href="s1.html#test-de-sphéricité-protéines"><i class="fa fa-check"></i><b>3.14.2</b> Test de sphéricité, protéines</a></li>
+<li class="chapter" data-level="3.14.3" data-path="s1.html"><a href="s1.html#anova-protéines"><i class="fa fa-check"></i><b>3.14.3</b> ANOVA, protéines</a></li>
+<li class="chapter" data-level="3.14.4" data-path="s1.html"><a href="s1.html#visualisation-boxplots-protéines"><i class="fa fa-check"></i><b>3.14.4</b> Visualisation boxplots, protéines</a></li>
+<li class="chapter" data-level="3.14.5" data-path="s1.html"><a href="s1.html#comparaisons-par-paires-protéines"><i class="fa fa-check"></i><b>3.14.5</b> Comparaisons par paires, protéines</a></li>
+<li class="chapter" data-level="3.14.6" data-path="s1.html"><a href="s1.html#visualisation-des-groupes-bareplots-avec-labels-protéines"><i class="fa fa-check"></i><b>3.14.6</b> Visualisation des groupes, bareplots avec labels, protéines</a></li>
+</ul></li>
+<li class="chapter" data-level="3.15" data-path="s1.html"><a href="s1.html#teneur-en-cholestérol-total-chol_tot"><i class="fa fa-check"></i><b>3.15</b> Teneur en cholestérol total : <code>chol_tot</code></a><ul>
+<li class="chapter" data-level="3.15.1" data-path="s1.html"><a href="s1.html#test-de-normalité-cholestérol"><i class="fa fa-check"></i><b>3.15.1</b> Test de normalité, cholestérol</a></li>
+<li class="chapter" data-level="3.15.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-chol_tot"><i class="fa fa-check"></i><b>3.15.2</b> Test de Kruskal-Walli, <code>chol_tot</code></a></li>
+<li class="chapter" data-level="3.15.3" data-path="s1.html"><a href="s1.html#test-de-dunn-chol_tot"><i class="fa fa-check"></i><b>3.15.3</b> Test de Dunn, <code>chol_tot</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.16" data-path="s1.html"><a href="s1.html#teneur-en-lipides-totales-lip_tot"><i class="fa fa-check"></i><b>3.16</b> Teneur en lipides totales : <code>lip_tot</code></a><ul>
+<li class="chapter" data-level="3.16.1" data-path="s1.html"><a href="s1.html#test-de-normalité-lipides"><i class="fa fa-check"></i><b>3.16.1</b> Test de normalité, lipides</a></li>
+<li class="chapter" data-level="3.16.2" data-path="s1.html"><a href="s1.html#test-de-sphéricité-lipides"><i class="fa fa-check"></i><b>3.16.2</b> Test de sphéricité, lipides</a></li>
+<li class="chapter" data-level="3.16.3" data-path="s1.html"><a href="s1.html#anova-lipides"><i class="fa fa-check"></i><b>3.16.3</b> ANOVA, lipides</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="s2.html"><a href="s2.html"><i class="fa fa-check"></i><b>4</b> Séance 2</a><ul>
@@ -609,14 +673,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">factor</span>(regime))</a></code></pre></div>
 <hr />
 </div>
-<div id="les-différentes-variables" class="section level2">
-<h2><span class="header-section-number">3.3</span> Les différentes variables</h2>
-<div id="masse-des-oeufs-masse_oeuf" class="section level3">
-<h3><span class="header-section-number">3.3.1</span> Masse des oeufs : <code>masse_oeuf</code></h3>
+<div id="masse-des-oeufs-masse_oeuf" class="section level2">
+<h2><span class="header-section-number">3.3</span> Masse des oeufs : <code>masse_oeuf</code></h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">s1 &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="st">  </span><span class="kw">filter</span>(seance <span class="op">==</span><span class="st"> &quot;seance 1&quot;</span>)</a></code></pre></div>
-<div id="test-de-normalité-masse-des-oeufs" class="section level4">
-<h4><span class="header-section-number">3.3.1.1</span> Test de normalité, masse des oeufs</h4>
+<div id="test-de-normalité-masse-des-oeufs" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Test de normalité, masse des oeufs</h3>
 <ul>
 <li><p>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</p></li>
 <li><p>Si <strong>p-value &gt; 0,05</strong> alors la distribution des données n’est pas significativement différente de la distribution normale =&gt; On accepte Ho.</p></li>
@@ -631,8 +693,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &gt; 0.05, alors la distribution des données suit une loi normale.</p>
 </blockquote>
 </div>
-<div id="test-dhomogénéité-des-variances-masse-des-oeufs" class="section level4">
-<h4><span class="header-section-number">3.3.1.2</span> Test d’homogénéité des variances, masse des oeufs</h4>
+<div id="test-dhomogénéité-des-variances-masse-des-oeufs" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Test d’homogénéité des variances, masse des oeufs</h3>
 <ul>
 <li><code>Ho</code>. Toutes les variances des populations (traitements) sont égales.</li>
 <li><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</li>
@@ -646,8 +708,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &gt; 0.05 =&gt; variances homogènes.</p>
 </blockquote>
 </div>
-<div id="anova-masse-des-oeufs" class="section level4">
-<h4><span class="header-section-number">3.3.1.3</span> ANOVA, masse des oeufs</h4>
+<div id="anova-masse-des-oeufs" class="section level3">
+<h3><span class="header-section-number">3.3.3</span> ANOVA, masse des oeufs</h3>
 <p>Si la valeur p est inférieure au seuil de signification 0,05, on conclut qu’il existe des différences significatives entre les groupes (entre au moins deux groupes).</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">lm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(masse_oeuf <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s1)</a>
 <a class="sourceLine" id="cb10-2" title="2"><span class="kw">anova</span>(lm1)</a></code></pre></div>
@@ -663,17 +725,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.01, les effets d’au moins deux régimes diffèrent très significativement.</p>
 </blockquote>
 </div>
-<div id="visualisation-boxplots-masse-des-oeufs" class="section level4">
-<h4><span class="header-section-number">3.3.1.4</span> Visualisation boxplots, masse des oeufs</h4>
+<div id="visualisation-boxplots-masse-des-oeufs" class="section level3">
+<h3><span class="header-section-number">3.3.4</span> Visualisation boxplots, masse des oeufs</h3>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> s1, <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_oeuf)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="co">#theme_classic() +</span></a>
 <a class="sourceLine" id="cb12-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Régimes&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Masse de l&#39;oeuf&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb12-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
 <p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-</div>
 <div id="comparaisons-par-paires-masse-des-oeufs" class="section level4">
-<h4><span class="header-section-number">3.3.1.5</span> Comparaisons par paires, masse des oeufs</h4>
+<h4><span class="header-section-number">3.3.4.1</span> Comparaisons par paires, masse des oeufs</h4>
 <p>Les comparaisons des moyennes par paires :</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">tb_m1 &lt;-<span class="st"> </span>(<span class="kw">SNK.test</span>(lm1, <span class="st">&quot;regime&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>))<span class="op">$</span>groups <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb13-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -694,8 +755,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 Ba 5         10.0  bc    
 ## 10 Ba 7,5        9.03 c</code></pre>
 </div>
-<div id="visualisation-des-groupes-masse-des-oeufs" class="section level4">
-<h4><span class="header-section-number">3.3.1.6</span> Visualisation des groupes, masse des oeufs</h4>
+</div>
+<div id="visualisation-des-groupes-masse-des-oeufs" class="section level3">
+<h3><span class="header-section-number">3.3.5</span> Visualisation des groupes, masse des oeufs</h3>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tb_m1, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_oeuf)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb15-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">width =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb15-3" title="3"><span class="st">  </span><span class="co">#ylim(0, 2) +</span></a>
@@ -707,10 +769,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="masse-de-la-coquille-masse_coq" class="section level3">
-<h3><span class="header-section-number">3.3.2</span> Masse de la coquille : <code>masse_coq</code></h3>
-<div id="test-de-normalité-masse-de-la-coquille" class="section level4">
-<h4><span class="header-section-number">3.3.2.1</span> Test de normalité, masse de la coquille</h4>
+<div id="masse-de-la-coquille-masse_coq" class="section level2">
+<h2><span class="header-section-number">3.4</span> Masse de la coquille : <code>masse_coq</code></h2>
+<div id="test-de-normalité-masse-de-la-coquille" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Test de normalité, masse de la coquille</h3>
 <ul>
 <li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
 </ul>
@@ -724,8 +786,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &gt; 0.05 =&gt; distribution normale.</p>
 </blockquote>
 </div>
-<div id="test-de-sphéricité-homogénéité-des-variances-masse-de-la-coquille" class="section level4">
-<h4><span class="header-section-number">3.3.2.2</span> Test de sphéricité (homogénéité des variances), masse de la coquille</h4>
+<div id="test-de-sphéricité-homogénéité-des-variances-masse-de-la-coquille" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Test de sphéricité (homogénéité des variances), masse de la coquille</h3>
 <ul>
 <li><code>Ho</code>. Toutes les variances des populations sont égales.</li>
 <li><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</li>
@@ -739,8 +801,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &gt; 0.05 =&gt; variances homogènes.</p>
 </blockquote>
 </div>
-<div id="anova-masse-de-la-coquille" class="section level4">
-<h4><span class="header-section-number">3.3.2.3</span> ANOVA, masse de la coquille</h4>
+<div id="anova-masse-de-la-coquille" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> ANOVA, masse de la coquille</h3>
 <p>Si la p-value est inférieure au seuil de signification 0.05, on conclut qu’il existe des différences significatives entre les groupes (entre au moins deux groupes).</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">lmc1 &lt;-<span class="st"> </span><span class="kw">lm</span>(masse_coq <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s1)</a>
 <a class="sourceLine" id="cb20-2" title="2"><span class="kw">anova</span>(lmc1)</a></code></pre></div>
@@ -756,8 +818,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.01 -&gt; au moins deux régimes ont des effets très différents.</p>
 </blockquote>
 </div>
-<div id="visualisation-boxplots-masse-de-la-coquille" class="section level4">
-<h4><span class="header-section-number">3.3.2.4</span> Visualisation boxplots, masse de la coquille</h4>
+<div id="visualisation-boxplots-masse-de-la-coquille" class="section level3">
+<h3><span class="header-section-number">3.4.4</span> Visualisation boxplots, masse de la coquille</h3>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> s1, <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_coq)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb22-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb22-3" title="3"><span class="st">  </span><span class="co">#theme_classic() +</span></a>
@@ -765,8 +827,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb22-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
 <p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 </div>
-<div id="comparaisons-par-paires-masse-de-la-coquille" class="section level4">
-<h4><span class="header-section-number">3.3.2.5</span> Comparaisons par paires, masse de la coquille</h4>
+<div id="comparaisons-par-paires-masse-de-la-coquille" class="section level3">
+<h3><span class="header-section-number">3.4.5</span> Comparaisons par paires, masse de la coquille</h3>
 <p>Comparaisons des moyennes par paires</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">tb_mc1 &lt;-<span class="st"> </span>(<span class="kw">SNK.test</span>(lmc1, <span class="st">&quot;regime&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>))<span class="op">$</span>groups <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb23-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -787,8 +849,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 Ba 7,5       1.12 bc    
 ## 10 Ba 0,75      1.08 c</code></pre>
 </div>
-<div id="visualisation-des-groupes-masse-de-la-coquille" class="section level4">
-<h4><span class="header-section-number">3.3.2.6</span> Visualisation des groupes, masse de la coquille</h4>
+<div id="visualisation-des-groupes-masse-de-la-coquille" class="section level3">
+<h3><span class="header-section-number">3.4.6</span> Visualisation des groupes, masse de la coquille</h3>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tb_mc1, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_coq)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb25-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">width =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb25-3" title="3"><span class="st">  </span><span class="co">#ylim(0, 2) +</span></a>
@@ -800,10 +862,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="épaisseur-de-la-coquille-epaisseur_coq" class="section level3">
-<h3><span class="header-section-number">3.3.3</span> Épaisseur de la coquille : <code>epaisseur_coq</code></h3>
-<div id="test-de-normalité-épaisseur-de-la-coquille" class="section level4">
-<h4><span class="header-section-number">3.3.3.1</span> Test de normalité, épaisseur de la coquille</h4>
+<div id="épaisseur-de-la-coquille-epaisseur_coq" class="section level2">
+<h2><span class="header-section-number">3.5</span> Épaisseur de la coquille : <code>epaisseur_coq</code></h2>
+<div id="test-de-normalité-épaisseur-de-la-coquille" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Test de normalité, épaisseur de la coquille</h3>
 <ul>
 <li>Ho. la distribution de l’échantillon est normale (n’est pas différente d’une distribution normale).</li>
 </ul>
@@ -817,8 +879,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.05 =&gt; distribution non-normale =&gt; Test de Kruskal-Wallis, alternative non paramétrique au test ANOVA à un facteur. Recommandé lorsque les hypothèses du test ANOVA à un facteur ne sont pas respectées.</p>
 </blockquote>
 </div>
-<div id="test-de-kruskal-walli-épaisseur-de-la-coquille" class="section level4">
-<h4><span class="header-section-number">3.3.3.2</span> Test de Kruskal-Walli, épaisseur de la coquille</h4>
+<div id="test-de-kruskal-walli-épaisseur-de-la-coquille" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Test de Kruskal-Walli, épaisseur de la coquille</h3>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">s1 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb28-2" title="2"><span class="st">  </span><span class="kw">kruskal_test</span>(epaisseur_coq <span class="op">~</span><span class="st"> </span>regime)</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 6
@@ -831,10 +893,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="masse-du-jaune-doeuf-masse_du_jaune" class="section level3">
-<h3><span class="header-section-number">3.3.4</span> Masse du jaune d’oeuf : <code>masse_du_jaune</code></h3>
-<div id="test-de-normalité-masse-du-jaune" class="section level4">
-<h4><span class="header-section-number">3.3.4.1</span> Test de normalité, masse du jaune</h4>
+<div id="masse-du-jaune-doeuf-masse_du_jaune" class="section level2">
+<h2><span class="header-section-number">3.6</span> Masse du jaune d’oeuf : <code>masse_du_jaune</code></h2>
+<div id="test-de-normalité-masse-du-jaune" class="section level3">
+<h3><span class="header-section-number">3.6.1</span> Test de normalité, masse du jaune</h3>
 <ul>
 <li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
 </ul>
@@ -848,8 +910,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &gt; 0.05 =&gt; distribution normale.</p>
 </blockquote>
 </div>
-<div id="test-de-sphéricité-masse-du-jaune" class="section level4">
-<h4><span class="header-section-number">3.3.4.2</span> Test de sphéricité, masse du jaune</h4>
+<div id="test-de-sphéricité-masse-du-jaune" class="section level3">
+<h3><span class="header-section-number">3.6.2</span> Test de sphéricité, masse du jaune</h3>
 <ul>
 <li><code>Ho</code>. Toutes les variances des populations sont égales.</li>
 <li><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</li>
@@ -863,8 +925,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &gt; 0.05, =&gt; variances homogènes.</p>
 </blockquote>
 </div>
-<div id="anova-masse-du-jaune" class="section level4">
-<h4><span class="header-section-number">3.3.4.3</span> ANOVA, masse du jaune</h4>
+<div id="anova-masse-du-jaune" class="section level3">
+<h3><span class="header-section-number">3.6.3</span> ANOVA, masse du jaune</h3>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">lmj1 &lt;-<span class="st"> </span><span class="kw">lm</span>(masse_du_jaune <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s1)</a>
 <a class="sourceLine" id="cb34-2" title="2"><span class="kw">anova</span>(lmj1)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
@@ -879,8 +941,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.05 =&gt; au moins deux régimes ont des effets différents.</p>
 </blockquote>
 </div>
-<div id="visualisation-boxplots-masse-du-jaune" class="section level4">
-<h4><span class="header-section-number">3.3.4.4</span> Visualisation boxplots masse du jaune</h4>
+<div id="visualisation-boxplots-masse-du-jaune" class="section level3">
+<h3><span class="header-section-number">3.6.4</span> Visualisation boxplots masse du jaune</h3>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> s1, <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_du_jaune)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb36-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb36-3" title="3"><span class="st">  </span><span class="co">#theme_classic() +</span></a>
@@ -888,8 +950,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb36-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
 <p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 </div>
-<div id="comparaisons-par-paires-masse-du-jaune" class="section level4">
-<h4><span class="header-section-number">3.3.4.5</span> Comparaisons par paires, masse du jaune</h4>
+<div id="comparaisons-par-paires-masse-du-jaune" class="section level3">
+<h3><span class="header-section-number">3.6.5</span> Comparaisons par paires, masse du jaune</h3>
 <p>Comparaisons des moyennes par paires :</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">tb_mj1 &lt;-<span class="st"> </span>(<span class="kw">SNK.test</span>(lmj1, <span class="st">&quot;regime&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>))<span class="op">$</span>groups <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -910,8 +972,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 Ba 5              3.31 ab    
 ## 10 Ba 7,5            3.01 b</code></pre>
 </div>
-<div id="visualisation-des-groupes-bareplots-avec-labels-masse-du-jaune" class="section level4">
-<h4><span class="header-section-number">3.3.4.6</span> Visualisation des groupes, bareplots avec labels, masse du jaune</h4>
+<div id="visualisation-des-groupes-bareplots-avec-labels-masse-du-jaune" class="section level3">
+<h3><span class="header-section-number">3.6.6</span> Visualisation des groupes, bareplots avec labels, masse du jaune</h3>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tb_mj1, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_du_jaune)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb39-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">width =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb39-3" title="3"><span class="st">  </span><span class="co">#ylim(0, 2) +</span></a>
@@ -923,10 +985,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="masse-du-blanc-doeuf-masse_du_blanc" class="section level3">
-<h3><span class="header-section-number">3.3.5</span> Masse du blanc d’oeuf : <code>masse_du_blanc</code></h3>
-<div id="test-de-normalité-masse-du-blanc" class="section level4">
-<h4><span class="header-section-number">3.3.5.1</span> Test de normalité, masse du blanc</h4>
+<div id="masse-du-blanc-doeuf-masse_du_blanc" class="section level2">
+<h2><span class="header-section-number">3.7</span> Masse du blanc d’oeuf : <code>masse_du_blanc</code></h2>
+<div id="test-de-normalité-masse-du-blanc" class="section level3">
+<h3><span class="header-section-number">3.7.1</span> Test de normalité, masse du blanc</h3>
 <ul>
 <li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
 </ul>
@@ -940,8 +1002,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &gt; 0.05 =&gt; distribution normale.</p>
 </blockquote>
 </div>
-<div id="test-de-sphéricité-masse-du-blanc" class="section level4">
-<h4><span class="header-section-number">3.3.5.2</span> Test de sphéricité, masse du blanc</h4>
+<div id="test-de-sphéricité-masse-du-blanc" class="section level3">
+<h3><span class="header-section-number">3.7.2</span> Test de sphéricité, masse du blanc</h3>
 <ul>
 <li><code>Ho</code>. Toutes les variances des populations sont égales.</li>
 <li><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</li>
@@ -955,8 +1017,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &gt; 0.05 =&gt; variances homogènes.</p>
 </blockquote>
 </div>
-<div id="anova-masse-du-blanc" class="section level4">
-<h4><span class="header-section-number">3.3.5.3</span> ANOVA, masse du blanc</h4>
+<div id="anova-masse-du-blanc" class="section level3">
+<h3><span class="header-section-number">3.7.3</span> ANOVA, masse du blanc</h3>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">lmb1 &lt;-<span class="st"> </span><span class="kw">lm</span>(masse_du_blanc <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s1)</a>
 <a class="sourceLine" id="cb44-2" title="2"><span class="kw">anova</span>(lmb1)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
@@ -971,8 +1033,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.01 =&gt; au moins deux régimes ont des effets significativement très différents.</p>
 </blockquote>
 </div>
-<div id="visualisation-boxplots-masse-du-blanc" class="section level4">
-<h4><span class="header-section-number">3.3.5.4</span> Visualisation boxplots masse du blanc</h4>
+<div id="visualisation-boxplots-masse-du-blanc" class="section level3">
+<h3><span class="header-section-number">3.7.4</span> Visualisation boxplots masse du blanc</h3>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> s1, <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_du_blanc)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb46-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb46-3" title="3"><span class="st">  </span><span class="co">#theme_classic() +</span></a>
@@ -980,8 +1042,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb46-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
 <p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 </div>
-<div id="comparaisons-par-paires-masse-du-jaune-1" class="section level4">
-<h4><span class="header-section-number">3.3.5.5</span> Comparaisons par paires, masse du jaune</h4>
+<div id="comparaisons-par-paires-masse-du-jaune-1" class="section level3">
+<h3><span class="header-section-number">3.7.5</span> Comparaisons par paires, masse du jaune</h3>
 <p>Comparaisons des moyennes par paires :</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">tb_mb1 &lt;-<span class="st"> </span>(<span class="kw">SNK.test</span>(lmb1, <span class="st">&quot;regime&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>))<span class="op">$</span>groups <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb47-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -1002,8 +1064,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 Ba 5              5.47 cd    
 ## 10 Ba 7,5            4.90 d</code></pre>
 </div>
-<div id="visualisation-des-groupes-bareplots-avec-labels" class="section level4">
-<h4><span class="header-section-number">3.3.5.6</span> Visualisation des groupes, bareplots avec labels</h4>
+<div id="visualisation-des-groupes-bareplots-avec-labels" class="section level3">
+<h3><span class="header-section-number">3.7.6</span> Visualisation des groupes, bareplots avec labels</h3>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tb_mb1, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_du_blanc)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb49-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">width =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb49-3" title="3"><span class="st">  </span><span class="co">#ylim(0, 2) +</span></a>
@@ -1015,10 +1077,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="indice-l-de-lintérieur-de-la-coquille-l_int_coq" class="section level3">
-<h3><span class="header-section-number">3.3.6</span> Indice <code>l</code> de l’intérieur de la coquille : <code>l_int_coq</code></h3>
-<div id="test-de-normalité-indice-l" class="section level4">
-<h4><span class="header-section-number">3.3.6.1</span> Test de normalité, Indice <code>l</code></h4>
+<div id="indice-l-de-lintérieur-de-la-coquille-l_int_coq" class="section level2">
+<h2><span class="header-section-number">3.8</span> Indice <code>l</code> de l’intérieur de la coquille : <code>l_int_coq</code></h2>
+<div id="test-de-normalité-indice-l" class="section level3">
+<h3><span class="header-section-number">3.8.1</span> Test de normalité, Indice <code>l</code></h3>
 <ul>
 <li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
 </ul>
@@ -1032,8 +1094,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt;- 0.01 =&gt; distribution non normale =&gt; Alternative non-paramétrique : test de Kruskal-Wallis.</p>
 </blockquote>
 </div>
-<div id="test-de-kruskal-walli-indice-l" class="section level4">
-<h4><span class="header-section-number">3.3.6.2</span> Test de Kruskal-Walli, indice <code>l</code></h4>
+<div id="test-de-kruskal-walli-indice-l" class="section level3">
+<h3><span class="header-section-number">3.8.2</span> Test de Kruskal-Walli, indice <code>l</code></h3>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">s1 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb52-2" title="2"><span class="st">  </span><span class="kw">kruskal_test</span>(l_int_coq <span class="op">~</span><span class="st"> </span>regime)</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 6
@@ -1046,10 +1108,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="indice-a-de-lintérieur-de-la-coquille-a_int_coq" class="section level3">
-<h3><span class="header-section-number">3.3.7</span> Indice <code>a</code> de l’intérieur de la coquille : <code>a_int_coq</code></h3>
-<div id="test-de-normalité-indice-a" class="section level4">
-<h4><span class="header-section-number">3.3.7.1</span> Test de normalité, Indice <code>a</code></h4>
+<div id="indice-a-de-lintérieur-de-la-coquille-a_int_coq" class="section level2">
+<h2><span class="header-section-number">3.9</span> Indice <code>a</code> de l’intérieur de la coquille : <code>a_int_coq</code></h2>
+<div id="test-de-normalité-indice-a" class="section level3">
+<h3><span class="header-section-number">3.9.1</span> Test de normalité, Indice <code>a</code></h3>
 <ul>
 <li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
 </ul>
@@ -1063,8 +1125,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.05 =&gt; distribution non normale. Alternative non-paramétrique : test de Kruskal-Wallis.</p>
 </blockquote>
 </div>
-<div id="test-de-kruskal-walli-indice-a" class="section level4">
-<h4><span class="header-section-number">3.3.7.2</span> Test de Kruskal-Walli, indice <code>a</code></h4>
+<div id="test-de-kruskal-walli-indice-a" class="section level3">
+<h3><span class="header-section-number">3.9.2</span> Test de Kruskal-Walli, indice <code>a</code></h3>
 <div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">s1 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb56-2" title="2"><span class="st">  </span><span class="kw">kruskal_test</span>(a_int_coq <span class="op">~</span><span class="st"> </span>regime)</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 6
@@ -1077,10 +1139,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="indice-b-de-lintérieur-de-la-coquille-b_int_coq" class="section level3">
-<h3><span class="header-section-number">3.3.8</span> Indice <code>b</code> de l’intérieur de la coquille : <code>b_int_coq</code></h3>
-<div id="test-de-normalité-indice-b" class="section level4">
-<h4><span class="header-section-number">3.3.8.1</span> Test de normalité, Indice <code>b</code></h4>
+<div id="indice-b-de-lintérieur-de-la-coquille-b_int_coq" class="section level2">
+<h2><span class="header-section-number">3.10</span> Indice <code>b</code> de l’intérieur de la coquille : <code>b_int_coq</code></h2>
+<div id="test-de-normalité-indice-b" class="section level3">
+<h3><span class="header-section-number">3.10.1</span> Test de normalité, Indice <code>b</code></h3>
 <ul>
 <li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
 </ul>
@@ -1094,8 +1156,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.05 =&gt; distribution non-normale. Alternative non-paramétrique : test de Kruskal-Wallis.</p>
 </blockquote>
 </div>
-<div id="test-de-kruskal-walli-indice-b" class="section level4">
-<h4><span class="header-section-number">3.3.8.2</span> Test de Kruskal-Walli, indice <code>b</code></h4>
+<div id="test-de-kruskal-walli-indice-b" class="section level3">
+<h3><span class="header-section-number">3.10.2</span> Test de Kruskal-Walli, indice <code>b</code></h3>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">s1 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb60-2" title="2"><span class="st">  </span><span class="kw">kruskal_test</span>(b_int_coq <span class="op">~</span><span class="st"> </span>regime)</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 6
@@ -1106,8 +1168,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.05 =&gt; il y a une différence entre au moins deux effets de régimes au seuil de 5%.</p>
 </blockquote>
 </div>
-<div id="test-de-dunn-indice-b" class="section level4">
-<h4><span class="header-section-number">3.3.8.3</span> Test de Dunn, indice <code>b</code></h4>
+<div id="test-de-dunn-indice-b" class="section level3">
+<h3><span class="header-section-number">3.10.3</span> Test de Dunn, indice <code>b</code></h3>
 <p>Pour identifier les groupes différents. Il y a 45 paires à comparer, je choisi d’afficher seulement les groupes différents :</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">s1 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb62-2" title="2"><span class="st">  </span><span class="kw">dunn_test</span>(b_int_coq <span class="op">~</span><span class="st"> </span>regime, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -1142,10 +1204,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="indice-l-du-jaune-doeuf-l_jaune" class="section level3">
-<h3><span class="header-section-number">3.3.9</span> Indice <code>l</code> du jaune d’oeuf : <code>l_jaune</code></h3>
-<div id="test-de-normalité-indice-l-du-jaune" class="section level4">
-<h4><span class="header-section-number">3.3.9.1</span> Test de normalité, Indice <code>l</code> du jaune</h4>
+<div id="indice-l-du-jaune-doeuf-l_jaune" class="section level2">
+<h2><span class="header-section-number">3.11</span> Indice <code>l</code> du jaune d’oeuf : <code>l_jaune</code></h2>
+<div id="test-de-normalité-indice-l-du-jaune" class="section level3">
+<h3><span class="header-section-number">3.11.1</span> Test de normalité, Indice <code>l</code> du jaune</h3>
 <ul>
 <li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
 </ul>
@@ -1159,8 +1221,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.05 =&gt; distribution non normale =&gt; Alternative non-paramétrique : test de Kruskal-Wallis recommandé lorsque les hypothèses du test ANOVA à un facteur ne sont pas respectées.</p>
 </blockquote>
 </div>
-<div id="test-de-kruskal-walli-l-du-jaune" class="section level4">
-<h4><span class="header-section-number">3.3.9.2</span> Test de Kruskal-Walli, <code>l</code> du jaune</h4>
+<div id="test-de-kruskal-walli-l-du-jaune" class="section level3">
+<h3><span class="header-section-number">3.11.2</span> Test de Kruskal-Walli, <code>l</code> du jaune</h3>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1">s1 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb68-2" title="2"><span class="st">  </span><span class="kw">kruskal_test</span>(l_jaune <span class="op">~</span><span class="st"> </span>regime)</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 6
@@ -1173,10 +1235,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="indice-a-du-jaune-doeuf-a_jaune" class="section level3">
-<h3><span class="header-section-number">3.3.10</span> Indice <code>a</code> du jaune d’oeuf : <code>a_jaune</code></h3>
-<div id="test-de-normalité-indice-a-du-jaune" class="section level4">
-<h4><span class="header-section-number">3.3.10.1</span> Test de normalité, Indice <code>a</code> du jaune</h4>
+<div id="indice-a-du-jaune-doeuf-a_jaune" class="section level2">
+<h2><span class="header-section-number">3.12</span> Indice <code>a</code> du jaune d’oeuf : <code>a_jaune</code></h2>
+<div id="test-de-normalité-indice-a-du-jaune" class="section level3">
+<h3><span class="header-section-number">3.12.1</span> Test de normalité, Indice <code>a</code> du jaune</h3>
 <ul>
 <li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
 </ul>
@@ -1190,8 +1252,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.05 =&gt; distribution non normale. Alternative non-paramétrique : test de Kruskal-Wallis.</p>
 </blockquote>
 </div>
-<div id="test-de-kruskal-walli-a-du-jaune" class="section level4">
-<h4><span class="header-section-number">3.3.10.2</span> Test de Kruskal-Walli, <code>a</code> du jaune</h4>
+<div id="test-de-kruskal-walli-a-du-jaune" class="section level3">
+<h3><span class="header-section-number">3.12.2</span> Test de Kruskal-Walli, <code>a</code> du jaune</h3>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1">s1 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb72-2" title="2"><span class="st">  </span><span class="kw">kruskal_test</span>(a_jaune <span class="op">~</span><span class="st"> </span>regime)</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 6
@@ -1202,8 +1264,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.05 =&gt; il y a une différence entre au moins deux effets de régimes au seuil de 5%.</p>
 </blockquote>
 </div>
-<div id="test-de-dunn-a-du-jaune" class="section level4">
-<h4><span class="header-section-number">3.3.10.3</span> Test de Dunn, <code>a</code> du jaune</h4>
+<div id="test-de-dunn-a-du-jaune" class="section level3">
+<h3><span class="header-section-number">3.12.3</span> Test de Dunn, <code>a</code> du jaune</h3>
 <p>Pour identifier les groupes différents.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1">s1 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb74-2" title="2"><span class="st">  </span><span class="kw">dunn_test</span>(a_jaune <span class="op">~</span><span class="st"> </span>regime, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -1218,10 +1280,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="indice-b-du-jaune-doeuf-b_jaune" class="section level3">
-<h3><span class="header-section-number">3.3.11</span> Indice <code>b</code> du jaune d’oeuf : <code>b_jaune</code></h3>
-<div id="test-de-normalité-indice-b-du-jaune" class="section level4">
-<h4><span class="header-section-number">3.3.11.1</span> Test de normalité, Indice <code>b</code> du jaune</h4>
+<div id="indice-b-du-jaune-doeuf-b_jaune" class="section level2">
+<h2><span class="header-section-number">3.13</span> Indice <code>b</code> du jaune d’oeuf : <code>b_jaune</code></h2>
+<div id="test-de-normalité-indice-b-du-jaune" class="section level3">
+<h3><span class="header-section-number">3.13.1</span> Test de normalité, Indice <code>b</code> du jaune</h3>
 <ul>
 <li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
 </ul>
@@ -1235,8 +1297,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.05 =&gt; distribution non normale. Alternative non-paramétrique : test de Kruskal-Wallis.</p>
 </blockquote>
 </div>
-<div id="test-de-kruskal-walli-b-du-jaune" class="section level4">
-<h4><span class="header-section-number">3.3.11.2</span> Test de Kruskal-Walli, <code>b</code> du jaune</h4>
+<div id="test-de-kruskal-walli-b-du-jaune" class="section level3">
+<h3><span class="header-section-number">3.13.2</span> Test de Kruskal-Walli, <code>b</code> du jaune</h3>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1">s1 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb78-2" title="2"><span class="st">  </span><span class="kw">kruskal_test</span>(b_jaune <span class="op">~</span><span class="st"> </span>regime)</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 6
@@ -1247,8 +1309,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.05 =&gt; il y a une différence entre au moins deux effets de régimes au seuil de 5%.</p>
 </blockquote>
 </div>
-<div id="test-de-dunn-b-du-jaune" class="section level4">
-<h4><span class="header-section-number">3.3.11.3</span> Test de Dunn, <code>b</code> du jaune</h4>
+<div id="test-de-dunn-b-du-jaune" class="section level3">
+<h3><span class="header-section-number">3.13.3</span> Test de Dunn, <code>b</code> du jaune</h3>
 <p>Pour identifier les groupes différents.</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1">s1 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb80-2" title="2"><span class="st">  </span><span class="kw">dunn_test</span>(b_jaune <span class="op">~</span><span class="st"> </span>regime, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -1263,10 +1325,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="teneur-en-protéines-totales-prot_tot" class="section level3">
-<h3><span class="header-section-number">3.3.12</span> Teneur en protéines totales : <code>prot_tot</code></h3>
-<div id="test-de-normalité-protéines" class="section level4">
-<h4><span class="header-section-number">3.3.12.1</span> Test de normalité, protéines</h4>
+<div id="teneur-en-protéines-totales-prot_tot" class="section level2">
+<h2><span class="header-section-number">3.14</span> Teneur en protéines totales : <code>prot_tot</code></h2>
+<div id="test-de-normalité-protéines" class="section level3">
+<h3><span class="header-section-number">3.14.1</span> Test de normalité, protéines</h3>
 <ul>
 <li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
 </ul>
@@ -1280,8 +1342,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &gt; 0.05 =&gt; distribution normale.</p>
 </blockquote>
 </div>
-<div id="test-de-sphéricité-protéines" class="section level4">
-<h4><span class="header-section-number">3.3.12.2</span> Test de sphéricité, protéines</h4>
+<div id="test-de-sphéricité-protéines" class="section level3">
+<h3><span class="header-section-number">3.14.2</span> Test de sphéricité, protéines</h3>
 <ul>
 <li><code>Ho</code>. Toutes les variances des populations sont égales.</li>
 <li><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</li>
@@ -1295,8 +1357,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &gt; 0.05, =&gt; variances homogènes.</p>
 </blockquote>
 </div>
-<div id="anova-protéines" class="section level4">
-<h4><span class="header-section-number">3.3.12.3</span> ANOVA, protéines</h4>
+<div id="anova-protéines" class="section level3">
+<h3><span class="header-section-number">3.14.3</span> ANOVA, protéines</h3>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1">lp1 &lt;-<span class="st"> </span><span class="kw">lm</span>(prot_tot <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s1)</a>
 <a class="sourceLine" id="cb86-2" title="2"><span class="kw">anova</span>(lp1)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
@@ -1311,8 +1373,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.01 =&gt; au moins deux régimes ont des effets significativement très différents.</p>
 </blockquote>
 </div>
-<div id="visualisation-boxplots-protéines" class="section level4">
-<h4><span class="header-section-number">3.3.12.4</span> Visualisation boxplots, protéines</h4>
+<div id="visualisation-boxplots-protéines" class="section level3">
+<h3><span class="header-section-number">3.14.4</span> Visualisation boxplots, protéines</h3>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> s1, <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> prot_tot)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb88-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb88-3" title="3"><span class="st">  </span><span class="co">#theme_classic() +</span></a>
@@ -1320,8 +1382,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb88-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
 <p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 </div>
-<div id="comparaisons-par-paires-protéines" class="section level4">
-<h4><span class="header-section-number">3.3.12.5</span> Comparaisons par paires, protéines</h4>
+<div id="comparaisons-par-paires-protéines" class="section level3">
+<h3><span class="header-section-number">3.14.5</span> Comparaisons par paires, protéines</h3>
 <p>Comparaisons des moyennes par paires :</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1">tb_p1 &lt;-<span class="st"> </span>(<span class="kw">SNK.test</span>(lp1, <span class="st">&quot;regime&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>))<span class="op">$</span>groups <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb89-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -1342,8 +1404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 WC         0.74  bc    
 ## 10 YC         0.453 c</code></pre>
 </div>
-<div id="visualisation-des-groupes-bareplots-avec-labels-protéines" class="section level4">
-<h4><span class="header-section-number">3.3.12.6</span> Visualisation des groupes, bareplots avec labels, protéines</h4>
+<div id="visualisation-des-groupes-bareplots-avec-labels-protéines" class="section level3">
+<h3><span class="header-section-number">3.14.6</span> Visualisation des groupes, bareplots avec labels, protéines</h3>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tb_p1, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> prot_tot)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb91-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">width =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb91-3" title="3"><span class="st">  </span><span class="co">#ylim(0, 2) +</span></a>
@@ -1355,10 +1417,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="teneur-en-cholestérol-total-chol_tot" class="section level3">
-<h3><span class="header-section-number">3.3.13</span> Teneur en cholestérol total : <code>chol_tot</code></h3>
-<div id="test-de-normalité-cholestérol" class="section level4">
-<h4><span class="header-section-number">3.3.13.1</span> Test de normalité, cholestérol</h4>
+<div id="teneur-en-cholestérol-total-chol_tot" class="section level2">
+<h2><span class="header-section-number">3.15</span> Teneur en cholestérol total : <code>chol_tot</code></h2>
+<div id="test-de-normalité-cholestérol" class="section level3">
+<h3><span class="header-section-number">3.15.1</span> Test de normalité, cholestérol</h3>
 <ul>
 <li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
 </ul>
@@ -1372,8 +1434,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.05 =&gt; distribution non normale. Alternative non-paramétrique : test de Kruskal-Wallis.</p>
 </blockquote>
 </div>
-<div id="test-de-kruskal-walli-chol_tot" class="section level4">
-<h4><span class="header-section-number">3.3.13.2</span> Test de Kruskal-Walli, <code>chol_tot</code></h4>
+<div id="test-de-kruskal-walli-chol_tot" class="section level3">
+<h3><span class="header-section-number">3.15.2</span> Test de Kruskal-Walli, <code>chol_tot</code></h3>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1">s1 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb94-2" title="2"><span class="st">  </span><span class="kw">kruskal_test</span>(chol_tot <span class="op">~</span><span class="st"> </span>regime)</a></code></pre></div>
 <pre><code>## # A tibble: 1 x 6
@@ -1384,8 +1446,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &lt; 0.05 =&gt; il y a une différence entre au moins deux effets de régimes au seuil de 5%.</p>
 </blockquote>
 </div>
-<div id="test-de-dunn-chol_tot" class="section level4">
-<h4><span class="header-section-number">3.3.13.3</span> Test de Dunn, <code>chol_tot</code></h4>
+<div id="test-de-dunn-chol_tot" class="section level3">
+<h3><span class="header-section-number">3.15.3</span> Test de Dunn, <code>chol_tot</code></h3>
 <p>Pour identifier les groupes différents.</p>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1">s1 <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb96-2" title="2"><span class="st">  </span><span class="kw">dunn_test</span>(chol_tot <span class="op">~</span><span class="st"> </span>regime, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -1400,10 +1462,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 </div>
 </div>
-<div id="teneur-en-lipides-totales-lip_tot" class="section level3">
-<h3><span class="header-section-number">3.3.14</span> Teneur en lipides totales : <code>lip_tot</code></h3>
-<div id="test-de-normalité-lipides" class="section level4">
-<h4><span class="header-section-number">3.3.14.1</span> Test de normalité, lipides</h4>
+<div id="teneur-en-lipides-totales-lip_tot" class="section level2">
+<h2><span class="header-section-number">3.16</span> Teneur en lipides totales : <code>lip_tot</code></h2>
+<div id="test-de-normalité-lipides" class="section level3">
+<h3><span class="header-section-number">3.16.1</span> Test de normalité, lipides</h3>
 <ul>
 <li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
 </ul>
@@ -1417,8 +1479,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &gt; 0.05 =&gt; distribution normale.</p>
 </blockquote>
 </div>
-<div id="test-de-sphéricité-lipides" class="section level4">
-<h4><span class="header-section-number">3.3.14.2</span> Test de sphéricité, lipides</h4>
+<div id="test-de-sphéricité-lipides" class="section level3">
+<h3><span class="header-section-number">3.16.2</span> Test de sphéricité, lipides</h3>
 <ul>
 <li><code>Ho</code>. Toutes les variances des populations sont égales.</li>
 <li><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</li>
@@ -1432,8 +1494,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &gt; 0.05 =&gt; variances homogènes.</p>
 </blockquote>
 </div>
-<div id="anova-lipides" class="section level4">
-<h4><span class="header-section-number">3.3.14.3</span> ANOVA, lipides</h4>
+<div id="anova-lipides" class="section level3">
+<h3><span class="header-section-number">3.16.3</span> ANOVA, lipides</h3>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" title="1">ll1 &lt;-<span class="st"> </span><span class="kw">lm</span>(lip_tot <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s1)</a>
 <a class="sourceLine" id="cb102-2" title="2"><span class="kw">anova</span>(ll1)</a></code></pre></div>
 <pre><code>## Analysis of Variance Table
@@ -1446,7 +1508,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>p-value &gt; 0.05 =&gt; Pas de différence entre les effets des régimes.</p>
 </blockquote>
 
-</div>
 </div>
 </div>
 </div>

@@ -1,5 +1,5 @@
 --- 
-title: "Exploration de données, nutrition de cailles"
+title: "Exploration des données, nutrition de cailles"
 author: "Silué Nahoulé"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site

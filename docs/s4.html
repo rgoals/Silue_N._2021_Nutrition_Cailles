@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapitre 6 Séance 4 | Exploration des données, nutrition de cailles</title>
+  <meta name="description" content="Analyses exploratoires" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapitre 6 Séance 4 | Exploration des données, nutrition de cailles" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Analyses exploratoires" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapitre 6 Séance 4 | Exploration des données, nutrition de cailles" />
+  
+  <meta name="twitter:description" content="Analyses exploratoires" />
+  
+
+<meta name="author" content="Silué Nahoulé" />
+
+
+<meta name="date" content="2021-07-25" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="s3.html"/>
+<link rel="next" href="s5.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Gain moyen quotidien</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#les-librairies"><i class="fa fa-check"></i><b>1.1</b> Les librairies</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#les-données"><i class="fa fa-check"></i><b>1.2</b> Les données</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#visualisation-boxplots"><i class="fa fa-check"></i><b>1.3</b> Visualisation, boxplots</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#vérification-des-conditions-de-lanova"><i class="fa fa-check"></i><b>1.4</b> Vérification des conditions de l’ANOVA</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="index.html"><a href="index.html#normalité"><i class="fa fa-check"></i><b>1.4.1</b> Normalité</a></li>
+<li class="chapter" data-level="1.4.2" data-path="index.html"><a href="index.html#homogénéité-des-variances-test-de-levene"><i class="fa fa-check"></i><b>1.4.2</b> Homogénéité des variances, test de Levene</a></li>
+<li class="chapter" data-level="1.4.3" data-path="index.html"><a href="index.html#alternative-non-paramétrique-test-de-kruskal-wallis"><i class="fa fa-check"></i><b>1.4.3</b> Alternative non paramétrique, test de Kruskal-Wallis</a></li>
+<li class="chapter" data-level="1.4.4" data-path="index.html"><a href="index.html#comparaisons-par-paires-test-de-dunn"><i class="fa fa-check"></i><b>1.4.4</b> Comparaisons par paires, test de Dunn</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="mg.html"><a href="mg.html"><i class="fa fa-check"></i><b>2</b> Matières grasses</a><ul>
+<li class="chapter" data-level="2.1" data-path="mg.html"><a href="mg.html#les-librairies-utiles"><i class="fa fa-check"></i><b>2.1</b> Les librairies utiles</a></li>
+<li class="chapter" data-level="2.2" data-path="mg.html"><a href="mg.html#les-données-1"><i class="fa fa-check"></i><b>2.2</b> Les données</a></li>
+<li class="chapter" data-level="2.3" data-path="mg.html"><a href="mg.html#sommaire-des-données-par-séance"><i class="fa fa-check"></i><b>2.3</b> Sommaire des données, par séance</a></li>
+<li class="chapter" data-level="2.4" data-path="mg.html"><a href="mg.html#visualisation-boxplots-par-séance"><i class="fa fa-check"></i><b>2.4</b> Visualisation boxplots, par séance</a></li>
+<li class="chapter" data-level="2.5" data-path="mg.html"><a href="mg.html#détection-valeurs-aberrantes"><i class="fa fa-check"></i><b>2.5</b> Détection valeurs aberrantes</a></li>
+<li class="chapter" data-level="2.6" data-path="mg.html"><a href="mg.html#conditions-de-lanova"><i class="fa fa-check"></i><b>2.6</b> Conditions de l’ANOVA</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="mg.html"><a href="mg.html#normalité-1"><i class="fa fa-check"></i><b>2.6.1</b> Normalité</a></li>
+<li class="chapter" data-level="2.6.2" data-path="mg.html"><a href="mg.html#sphéricité-homoscédasticité-ou-homogénéité-des-variances"><i class="fa fa-check"></i><b>2.6.2</b> Sphéricité (=&gt; homoscédasticité ou homogénéité des variances)</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="mg.html"><a href="mg.html#comparaisons-des-effets-des-régimes-sur-le-taux-de-mg-par-séance"><i class="fa fa-check"></i><b>2.7</b> Comparaisons des effets des régimes sur le taux de MG, par séance</a><ul>
+<li class="chapter" data-level="2.7.1" data-path="mg.html"><a href="mg.html#séance-1"><i class="fa fa-check"></i><b>2.7.1</b> Séance 1</a></li>
+<li class="chapter" data-level="2.7.2" data-path="mg.html"><a href="mg.html#séance-2"><i class="fa fa-check"></i><b>2.7.2</b> Séance 2</a></li>
+<li class="chapter" data-level="2.7.3" data-path="mg.html"><a href="mg.html#séance-3"><i class="fa fa-check"></i><b>2.7.3</b> Séance 3</a></li>
+<li class="chapter" data-level="2.7.4" data-path="mg.html"><a href="mg.html#séance-4"><i class="fa fa-check"></i><b>2.7.4</b> Séance 4</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="mg.html"><a href="mg.html#mesures-repétées"><i class="fa fa-check"></i><b>2.8</b> MESURES REPÉTÉES</a></li>
+<li class="chapter" data-level="2.9" data-path="mg.html"><a href="mg.html#sphéricité-et-anova-mesures-repétées"><i class="fa fa-check"></i><b>2.9</b> Sphéricité et ANOVA, mesures repétées</a></li>
+<li class="chapter" data-level="2.10" data-path="mg.html"><a href="mg.html#comparaisons-par-paires-mesures-repétées"><i class="fa fa-check"></i><b>2.10</b> Comparaisons par paires, mesures repétées</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="s1.html"><a href="s1.html"><i class="fa fa-check"></i><b>3</b> Séance 1</a><ul>
+<li class="chapter" data-level="3.1" data-path="s1.html"><a href="s1.html#librairies"><i class="fa fa-check"></i><b>3.1</b> Librairies</a></li>
+<li class="chapter" data-level="3.2" data-path="s1.html"><a href="s1.html#les-données-2"><i class="fa fa-check"></i><b>3.2</b> Les données</a></li>
+<li class="chapter" data-level="3.3" data-path="s1.html"><a href="s1.html#les-différentes-variables"><i class="fa fa-check"></i><b>3.3</b> Les différentes variables</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="s1.html"><a href="s1.html#masse-des-oeufs-masse_oeuf"><i class="fa fa-check"></i><b>3.3.1</b> Masse des oeufs : <code>masse_oeuf</code></a></li>
+<li class="chapter" data-level="3.3.2" data-path="s1.html"><a href="s1.html#masse-de-la-coquille-masse_coq"><i class="fa fa-check"></i><b>3.3.2</b> Masse de la coquille : <code>masse_coq</code></a></li>
+<li class="chapter" data-level="3.3.3" data-path="s1.html"><a href="s1.html#épaisseur-de-la-coquille-epaisseur_coq"><i class="fa fa-check"></i><b>3.3.3</b> Épaisseur de la coquille : <code>epaisseur_coq</code></a></li>
+<li class="chapter" data-level="3.3.4" data-path="s1.html"><a href="s1.html#masse-du-jaune-doeuf-masse_du_jaune"><i class="fa fa-check"></i><b>3.3.4</b> Masse du jaune d’oeuf : <code>masse_du_jaune</code></a></li>
+<li class="chapter" data-level="3.3.5" data-path="s1.html"><a href="s1.html#masse-du-blanc-doeuf-masse_du_blanc"><i class="fa fa-check"></i><b>3.3.5</b> Masse du blanc d’oeuf : <code>masse_du_blanc</code></a></li>
+<li class="chapter" data-level="3.3.6" data-path="s1.html"><a href="s1.html#indice-l-de-lintérieur-de-la-coquille-l_int_coq"><i class="fa fa-check"></i><b>3.3.6</b> Indice <code>l</code> de l’intérieur de la coquille : <code>l_int_coq</code></a></li>
+<li class="chapter" data-level="3.3.7" data-path="s1.html"><a href="s1.html#indice-a-de-lintérieur-de-la-coquille-a_int_coq"><i class="fa fa-check"></i><b>3.3.7</b> Indice <code>a</code> de l’intérieur de la coquille : <code>a_int_coq</code></a></li>
+<li class="chapter" data-level="3.3.8" data-path="s1.html"><a href="s1.html#indice-b-de-lintérieur-de-la-coquille-b_int_coq"><i class="fa fa-check"></i><b>3.3.8</b> Indice <code>b</code> de l’intérieur de la coquille : <code>b_int_coq</code></a></li>
+<li class="chapter" data-level="3.3.9" data-path="s1.html"><a href="s1.html#indice-l-du-jaune-doeuf-l_jaune"><i class="fa fa-check"></i><b>3.3.9</b> Indice <code>l</code> du jaune d’oeuf : <code>l_jaune</code></a></li>
+<li class="chapter" data-level="3.3.10" data-path="s1.html"><a href="s1.html#indice-a-du-jaune-doeuf-a_jaune"><i class="fa fa-check"></i><b>3.3.10</b> Indice <code>a</code> du jaune d’oeuf : <code>a_jaune</code></a></li>
+<li class="chapter" data-level="3.3.11" data-path="s1.html"><a href="s1.html#indice-b-du-jaune-doeuf-b_jaune"><i class="fa fa-check"></i><b>3.3.11</b> Indice <code>b</code> du jaune d’oeuf : <code>b_jaune</code></a></li>
+<li class="chapter" data-level="3.3.12" data-path="s1.html"><a href="s1.html#teneur-en-protéines-totales-prot_tot"><i class="fa fa-check"></i><b>3.3.12</b> Teneur en protéines totales : <code>prot_tot</code></a></li>
+<li class="chapter" data-level="3.3.13" data-path="s1.html"><a href="s1.html#teneur-en-cholestérol-total-chol_tot"><i class="fa fa-check"></i><b>3.3.13</b> Teneur en cholestérol total : <code>chol_tot</code></a></li>
+<li class="chapter" data-level="3.3.14" data-path="s1.html"><a href="s1.html#teneur-en-lipides-totales-lip_tot"><i class="fa fa-check"></i><b>3.3.14</b> Teneur en lipides totales : <code>lip_tot</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="s2.html"><a href="s2.html"><i class="fa fa-check"></i><b>4</b> Séance 2</a><ul>
+<li class="chapter" data-level="4.1" data-path="s2.html"><a href="s2.html#masse-des-oeufs-masse_oeuf-1"><i class="fa fa-check"></i><b>4.1</b> Masse des oeufs <code>masse_oeuf</code></a><ul>
+<li class="chapter" data-level="4.1.1" data-path="s2.html"><a href="s2.html#test-de-normalité-de-shapiro-wilk-masse-des-oeufs"><i class="fa fa-check"></i><b>4.1.1</b> Test de normalité de Shapiro-Wilk, masse des oeufs</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="s2.html"><a href="s2.html#masse-de-la-coquille-masse_coq-1"><i class="fa fa-check"></i><b>4.2</b> Masse de la coquille <code>masse_coq</code></a><ul>
+<li class="chapter" data-level="4.2.1" data-path="s2.html"><a href="s2.html#test-de-normalité-de-shapiro-wilk-masse-de-la-coquille"><i class="fa fa-check"></i><b>4.2.1</b> Test de normalité de Shapiro-Wilk, masse de la coquille</a></li>
+<li class="chapter" data-level="4.2.2" data-path="s2.html"><a href="s2.html#test-de-sphéricité-homogénéité-des-variances-masse-de-la-coquille-1"><i class="fa fa-check"></i><b>4.2.2</b> Test de sphéricité (homogénéité des variances), masse de la coquille</a></li>
+<li class="chapter" data-level="4.2.3" data-path="s2.html"><a href="s2.html#anova-masse-de-la-coquille-1"><i class="fa fa-check"></i><b>4.2.3</b> ANOVA, masse de la coquille</a></li>
+<li class="chapter" data-level="4.2.4" data-path="s2.html"><a href="s2.html#visualisation-boxplots-masse-de-la-coquille-1"><i class="fa fa-check"></i><b>4.2.4</b> Visualisation boxplots, masse de la coquille</a></li>
+<li class="chapter" data-level="4.2.5" data-path="s2.html"><a href="s2.html#test-post-hoc-student-newman-keuls-masse-de-la-coquille"><i class="fa fa-check"></i><b>4.2.5</b> Test post-hoc, Student-Newman Keuls, masse de la coquille</a></li>
+<li class="chapter" data-level="4.2.6" data-path="s2.html"><a href="s2.html#visualisation-des-groupes-bareplots-avec-labels-masse-de-la-coquille"><i class="fa fa-check"></i><b>4.2.6</b> Visualisation des groupes, bareplots avec labels, masse de la coquille</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="s2.html"><a href="s2.html#épaisseur-de-la-coquille-epaisseur_coq-1"><i class="fa fa-check"></i><b>4.3</b> Épaisseur de la coquille <code>epaisseur_coq</code></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="s2.html"><a href="s2.html#test-de-normalité-de-shapiro-wilk-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>4.3.1</b> Test de normalité de Shapiro-Wilk, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="4.3.2" data-path="s2.html"><a href="s2.html#test-de-sphéricité-homogénéité-des-variances-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>4.3.2</b> Test de sphéricité (homogénéité des variances), épaisseur de la coquille</a></li>
+<li class="chapter" data-level="4.3.3" data-path="s2.html"><a href="s2.html#anova-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>4.3.3</b> ANOVA, épaisseur de la coquille</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="s2.html"><a href="s2.html#masse-du-jaune-doeuf-masse_du_jaune-1"><i class="fa fa-check"></i><b>4.4</b> Masse du jaune d’oeuf <code>masse_du_jaune</code></a><ul>
+<li class="chapter" data-level="4.4.1" data-path="s2.html"><a href="s2.html#test-de-normalité-de-shapiro-wilk-masse-du-jaune"><i class="fa fa-check"></i><b>4.4.1</b> Test de normalité de Shapiro-Wilk, masse du jaune</a></li>
+<li class="chapter" data-level="4.4.2" data-path="s2.html"><a href="s2.html#test-de-sphéricité-homogénéité-des-variances-masse-du-jaune"><i class="fa fa-check"></i><b>4.4.2</b> Test de sphéricité (homogénéité des variances), masse du jaune</a></li>
+<li class="chapter" data-level="4.4.3" data-path="s2.html"><a href="s2.html#anova-masse-du-jaune-1"><i class="fa fa-check"></i><b>4.4.3</b> ANOVA masse du jaune</a></li>
+<li class="chapter" data-level="4.4.4" data-path="s2.html"><a href="s2.html#visualisation-boxplots-masse-du-jaune-1"><i class="fa fa-check"></i><b>4.4.4</b> Visualisation boxplots masse du jaune</a></li>
+<li class="chapter" data-level="4.4.5" data-path="s2.html"><a href="s2.html#test-post-hoc-student-newman-keuls-masse-du-jaune"><i class="fa fa-check"></i><b>4.4.5</b> Test post-hoc, Student-Newman Keuls, masse du jaune</a></li>
+<li class="chapter" data-level="4.4.6" data-path="s2.html"><a href="s2.html#visualisation-des-groupes-bareplots-avec-labels-1"><i class="fa fa-check"></i><b>4.4.6</b> Visualisation des groupes, bareplots avec labels</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="s2.html"><a href="s2.html#masse-du-blanc-doeuf-masse_du_blanc-1"><i class="fa fa-check"></i><b>4.5</b> Masse du blanc d’oeuf <code>masse_du_blanc</code></a><ul>
+<li class="chapter" data-level="4.5.1" data-path="s2.html"><a href="s2.html#test-de-normalité-de-shapiro-wilk-masse-du-blanc"><i class="fa fa-check"></i><b>4.5.1</b> Test de normalité de Shapiro-Wilk, masse du blanc</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="s2.html"><a href="s2.html#indice-l-de-lintérieur-de-la-coquille-l_int_coq-1"><i class="fa fa-check"></i><b>4.6</b> Indice <code>l</code> de l’intérieur de la coquille <code>l_int_coq</code></a><ul>
+<li class="chapter" data-level="4.6.1" data-path="s2.html"><a href="s2.html#test-de-normalité-de-shapiro-wilk-indice-l"><i class="fa fa-check"></i><b>4.6.1</b> Test de normalité de Shapiro-Wilk, Indice <code>l</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="s2.html"><a href="s2.html#indice-a-de-lintérieur-de-la-coquille-a_int_coq-1"><i class="fa fa-check"></i><b>4.7</b> Indice <code>a</code> de l’intérieur de la coquille <code>a_int_coq</code></a><ul>
+<li class="chapter" data-level="4.7.1" data-path="s2.html"><a href="s2.html#test-de-normalité-de-shapiro-wilk-indice-a"><i class="fa fa-check"></i><b>4.7.1</b> Test de normalité de Shapiro-Wilk, Indice <code>a</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="s2.html"><a href="s2.html#indice-b-de-lintérieur-de-la-coquille-b_int_coq-1"><i class="fa fa-check"></i><b>4.8</b> Indice <code>b</code> de l’intérieur de la coquille <code>b_int_coq</code></a><ul>
+<li class="chapter" data-level="4.8.1" data-path="s2.html"><a href="s2.html#test-de-normalité-de-shapiro-wilk-indice-b"><i class="fa fa-check"></i><b>4.8.1</b> Test de normalité de Shapiro-Wilk, Indice <code>b</code></a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="s2.html"><a href="s2.html#indice-l-du-jaune-doeuf-l_jaune-1"><i class="fa fa-check"></i><b>4.9</b> Indice <code>l</code> du jaune d’oeuf <code>l_jaune</code></a><ul>
+<li class="chapter" data-level="4.9.1" data-path="s2.html"><a href="s2.html#test-de-normalité-de-shapiro-wilk-indice-l-du-jaune"><i class="fa fa-check"></i><b>4.9.1</b> Test de normalité de Shapiro-Wilk, Indice <code>l</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="s2.html"><a href="s2.html#indice-a-du-jaune-doeuf-a_jaune-1"><i class="fa fa-check"></i><b>4.10</b> Indice <code>a</code> du jaune d’oeuf <code>a_jaune</code></a><ul>
+<li class="chapter" data-level="4.10.1" data-path="s2.html"><a href="s2.html#test-de-normalité-de-shapiro-wilk-indice-a-du-jaune"><i class="fa fa-check"></i><b>4.10.1</b> Test de normalité de Shapiro-Wilk, Indice <code>a</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="4.11" data-path="s2.html"><a href="s2.html#indice-b-du-jaune-doeuf-b_jaune-1"><i class="fa fa-check"></i><b>4.11</b> Indice <code>b</code> du jaune d’oeuf <code>b_jaune</code></a><ul>
+<li class="chapter" data-level="4.11.1" data-path="s2.html"><a href="s2.html#test-de-normalité-de-shapiro-wilk-indice-b-du-jaune"><i class="fa fa-check"></i><b>4.11.1</b> Test de normalité de Shapiro-Wilk, Indice <code>b</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="4.12" data-path="s2.html"><a href="s2.html#teneur-en-protéines-totales-prot_tot-1"><i class="fa fa-check"></i><b>4.12</b> Teneur en protéines totales <code>prot_tot</code></a><ul>
+<li class="chapter" data-level="4.12.1" data-path="s2.html"><a href="s2.html#test-de-normalité-de-shapiro-wilk-protéines"><i class="fa fa-check"></i><b>4.12.1</b> Test de normalité de Shapiro-Wilk, protéines</a></li>
+</ul></li>
+<li class="chapter" data-level="4.13" data-path="s2.html"><a href="s2.html#teneur-en-cholestérol-total-chol_tot-1"><i class="fa fa-check"></i><b>4.13</b> Teneur en cholestérol total <code>chol_tot</code></a><ul>
+<li class="chapter" data-level="4.13.1" data-path="s2.html"><a href="s2.html#test-de-normalité-de-shapiro-wilk-cholestérol"><i class="fa fa-check"></i><b>4.13.1</b> Test de normalité de Shapiro-Wilk, cholestérol</a></li>
+<li class="chapter" data-level="4.13.2" data-path="s2.html"><a href="s2.html#test-de-sphéricité-homogénéité-des-variances-cholestérol"><i class="fa fa-check"></i><b>4.13.2</b> Test de sphéricité (homogénéité des variances), cholestérol</a></li>
+<li class="chapter" data-level="4.13.3" data-path="s2.html"><a href="s2.html#anova-cholestérol"><i class="fa fa-check"></i><b>4.13.3</b> ANOVA, cholestérol</a></li>
+<li class="chapter" data-level="4.13.4" data-path="s2.html"><a href="s2.html#visualisation-boxplots-cholestérol"><i class="fa fa-check"></i><b>4.13.4</b> Visualisation boxplots, cholestérol</a></li>
+<li class="chapter" data-level="4.13.5" data-path="s2.html"><a href="s2.html#test-post-hoc-student-newman-keuls-cholestérol"><i class="fa fa-check"></i><b>4.13.5</b> Test post-hoc, Student-Newman Keuls, cholestérol</a></li>
+<li class="chapter" data-level="4.13.6" data-path="s2.html"><a href="s2.html#visualisation-des-groupes-bareplots-avec-labels-cholestérol"><i class="fa fa-check"></i><b>4.13.6</b> Visualisation des groupes, bareplots avec labels, cholestérol</a></li>
+</ul></li>
+<li class="chapter" data-level="4.14" data-path="s2.html"><a href="s2.html#teneur-en-lipides-totales-lip_tot-1"><i class="fa fa-check"></i><b>4.14</b> Teneur en lipides totales <code>lip_tot</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="s3.html"><a href="s3.html"><i class="fa fa-check"></i><b>5</b> Séance 3</a><ul>
+<li class="chapter" data-level="5.1" data-path="s3.html"><a href="s3.html#masse-des-oeufs-masse_oeuf-2"><i class="fa fa-check"></i><b>5.1</b> Masse des oeufs <code>masse_oeuf</code></a><ul>
+<li class="chapter" data-level="5.1.1" data-path="s3.html"><a href="s3.html#test-de-normalité-de-shapiro-wilk-masse-des-oeufs-1"><i class="fa fa-check"></i><b>5.1.1</b> Test de normalité de Shapiro-Wilk, masse des oeufs</a></li>
+<li class="chapter" data-level="5.1.2" data-path="s3.html"><a href="s3.html#test-de-sphéricité-homogénéité-des-variances-masse-des-oeufs"><i class="fa fa-check"></i><b>5.1.2</b> Test de sphéricité (homogénéité des variances), masse des oeufs</a></li>
+<li class="chapter" data-level="5.1.3" data-path="s3.html"><a href="s3.html#anova-masse-des-oeufs-1"><i class="fa fa-check"></i><b>5.1.3</b> ANOVA, masse des oeufs</a></li>
+<li class="chapter" data-level="5.1.4" data-path="s3.html"><a href="s3.html#visualisation-boxplots-masse-des-oeufs-1"><i class="fa fa-check"></i><b>5.1.4</b> Visualisation boxplots, masse des oeufs</a></li>
+<li class="chapter" data-level="5.1.5" data-path="s3.html"><a href="s3.html#test-post-hoc-student-newman-keuls-masse-des-oeufs"><i class="fa fa-check"></i><b>5.1.5</b> Test post-hoc, Student-Newman Keuls, masse des oeufs</a></li>
+<li class="chapter" data-level="5.1.6" data-path="s3.html"><a href="s3.html#visualisation-des-groupes-bareplots-avec-labels-masse-des-oeufs"><i class="fa fa-check"></i><b>5.1.6</b> Visualisation des groupes, bareplots avec labels, masse des oeufs</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="s3.html"><a href="s3.html#masse-de-la-coquille-masse_coq-2"><i class="fa fa-check"></i><b>5.2</b> Masse de la coquille <code>masse_coq</code></a><ul>
+<li class="chapter" data-level="5.2.1" data-path="s3.html"><a href="s3.html#test-de-normalité-de-shapiro-wilk-masse-de-la-coquille-1"><i class="fa fa-check"></i><b>5.2.1</b> Test de normalité de Shapiro-Wilk, masse de la coquille</a></li>
+<li class="chapter" data-level="5.2.2" data-path="s3.html"><a href="s3.html#test-de-sphéricité-homogénéité-des-variances-masse-de-la-coquille-2"><i class="fa fa-check"></i><b>5.2.2</b> Test de sphéricité (homogénéité des variances), masse de la coquille</a></li>
+<li class="chapter" data-level="5.2.3" data-path="s3.html"><a href="s3.html#anova-masse-de-la-coquille-2"><i class="fa fa-check"></i><b>5.2.3</b> ANOVA, masse de la coquille</a></li>
+<li class="chapter" data-level="5.2.4" data-path="s3.html"><a href="s3.html#visualisation-boxplots-masse-de-la-coquille-2"><i class="fa fa-check"></i><b>5.2.4</b> Visualisation boxplots, masse de la coquille</a></li>
+<li class="chapter" data-level="5.2.5" data-path="s3.html"><a href="s3.html#test-post-hoc-student-newman-keuls-masse-de-la-coquille-1"><i class="fa fa-check"></i><b>5.2.5</b> Test post-hoc, Student-Newman Keuls, masse de la coquille</a></li>
+<li class="chapter" data-level="5.2.6" data-path="s3.html"><a href="s3.html#visualisation-des-groupes-bareplots-avec-labels-masse-de-la-coquille-1"><i class="fa fa-check"></i><b>5.2.6</b> Visualisation des groupes, bareplots avec labels, masse de la coquille</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="s3.html"><a href="s3.html#épaisseur-de-la-coquille-epaisseur_coq-2"><i class="fa fa-check"></i><b>5.3</b> Épaisseur de la coquille <code>epaisseur_coq</code></a><ul>
+<li class="chapter" data-level="5.3.1" data-path="s3.html"><a href="s3.html#test-de-normalité-de-shapiro-wilk-épaisseur-de-la-coquille-1"><i class="fa fa-check"></i><b>5.3.1</b> Test de normalité de Shapiro-Wilk, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="5.3.2" data-path="s3.html"><a href="s3.html#test-de-sphéricité-homogénéité-des-variances-épaisseur-de-la-coquille-1"><i class="fa fa-check"></i><b>5.3.2</b> Test de sphéricité (homogénéité des variances), épaisseur de la coquille</a></li>
+<li class="chapter" data-level="5.3.3" data-path="s3.html"><a href="s3.html#anova-épaisseur-de-la-coquille-1"><i class="fa fa-check"></i><b>5.3.3</b> ANOVA, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="5.3.4" data-path="s3.html"><a href="s3.html#visualisation-boxplots-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>5.3.4</b> Visualisation boxplots, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="5.3.5" data-path="s3.html"><a href="s3.html#test-post-hoc-student-newman-keuls-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>5.3.5</b> Test post-hoc, Student-Newman Keuls, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="5.3.6" data-path="s3.html"><a href="s3.html#visualisation-des-groupes-bareplots-avec-labels-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>5.3.6</b> Visualisation des groupes, bareplots avec labels, épaisseur de la coquille</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="s3.html"><a href="s3.html#masse-du-jaune-doeuf-masse_du_jaune-2"><i class="fa fa-check"></i><b>5.4</b> Masse du jaune d’oeuf <code>masse_du_jaune</code></a><ul>
+<li class="chapter" data-level="5.4.1" data-path="s3.html"><a href="s3.html#test-de-normalité-de-shapiro-wilk-masse-du-jaune-1"><i class="fa fa-check"></i><b>5.4.1</b> Test de normalité de Shapiro-Wilk, masse du jaune</a></li>
+<li class="chapter" data-level="5.4.2" data-path="s3.html"><a href="s3.html#test-de-sphéricité-homogénéité-des-variances-masse-du-jaune-1"><i class="fa fa-check"></i><b>5.4.2</b> Test de sphéricité (homogénéité des variances), masse du jaune</a></li>
+<li class="chapter" data-level="5.4.3" data-path="s3.html"><a href="s3.html#anova-masse-du-jaune-2"><i class="fa fa-check"></i><b>5.4.3</b> ANOVA, masse du jaune</a></li>
+<li class="chapter" data-level="5.4.4" data-path="s3.html"><a href="s3.html#visualisation-boxplots-masse-du-jaune-2"><i class="fa fa-check"></i><b>5.4.4</b> Visualisation boxplots, masse du jaune</a></li>
+<li class="chapter" data-level="5.4.5" data-path="s3.html"><a href="s3.html#test-post-hoc-student-newman-keuls-masse-du-jaune-1"><i class="fa fa-check"></i><b>5.4.5</b> Test post-hoc, Student-Newman Keuls, masse du jaune</a></li>
+<li class="chapter" data-level="5.4.6" data-path="s3.html"><a href="s3.html#visualisation-des-groupes-bareplots-avec-labels-2"><i class="fa fa-check"></i><b>5.4.6</b> Visualisation des groupes, bareplots avec labels</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="s3.html"><a href="s3.html#masse-du-blanc-doeuf-masse_du_blanc-2"><i class="fa fa-check"></i><b>5.5</b> Masse du blanc d’oeuf <code>masse_du_blanc</code></a><ul>
+<li class="chapter" data-level="5.5.1" data-path="s3.html"><a href="s3.html#test-de-normalité-de-shapiro-wilk-masse-du-blanc-1"><i class="fa fa-check"></i><b>5.5.1</b> Test de normalité de Shapiro-Wilk, masse du blanc</a></li>
+<li class="chapter" data-level="5.5.2" data-path="s3.html"><a href="s3.html#test-de-sphéricité-homogénéité-des-variances-masse-du-blanc"><i class="fa fa-check"></i><b>5.5.2</b> Test de sphéricité (homogénéité des variances), masse du blanc</a></li>
+<li class="chapter" data-level="5.5.3" data-path="s3.html"><a href="s3.html#anova-masse-du-blanc-1"><i class="fa fa-check"></i><b>5.5.3</b> ANOVA masse du blanc</a></li>
+<li class="chapter" data-level="5.5.4" data-path="s3.html"><a href="s3.html#visualisation-boxplots-masse-du-blanc-1"><i class="fa fa-check"></i><b>5.5.4</b> Visualisation boxplots masse du blanc</a></li>
+<li class="chapter" data-level="5.5.5" data-path="s3.html"><a href="s3.html#test-post-hoc-student-newman-keuls-masse-du-jaune-2"><i class="fa fa-check"></i><b>5.5.5</b> Test post-hoc, Student-Newman Keuls, masse du jaune</a></li>
+<li class="chapter" data-level="5.5.6" data-path="s3.html"><a href="s3.html#visualisation-des-groupes-bareplots-avec-labels-3"><i class="fa fa-check"></i><b>5.5.6</b> Visualisation des groupes, bareplots avec labels</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="s3.html"><a href="s3.html#indice-l-de-lintérieur-de-la-coquille-l_int_coq-2"><i class="fa fa-check"></i><b>5.6</b> Indice <code>l</code> de l’intérieur de la coquille <code>l_int_coq</code></a><ul>
+<li class="chapter" data-level="5.6.1" data-path="s3.html"><a href="s3.html#test-de-normalité-de-shapiro-wilk-indice-l-1"><i class="fa fa-check"></i><b>5.6.1</b> Test de normalité de Shapiro-Wilk, Indice <code>l</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="s3.html"><a href="s3.html#indice-a-de-lintérieur-de-la-coquille-a_int_coq-2"><i class="fa fa-check"></i><b>5.7</b> Indice <code>a</code> de l’intérieur de la coquille <code>a_int_coq</code></a><ul>
+<li class="chapter" data-level="5.7.1" data-path="s3.html"><a href="s3.html#test-de-normalité-de-shapiro-wilk-indice-a-1"><i class="fa fa-check"></i><b>5.7.1</b> Test de normalité de Shapiro-Wilk, Indice <code>a</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="s3.html"><a href="s3.html#indice-b-de-lintérieur-de-la-coquille-b_int_coq-2"><i class="fa fa-check"></i><b>5.8</b> Indice <code>b</code> de l’intérieur de la coquille <code>b_int_coq</code></a><ul>
+<li class="chapter" data-level="5.8.1" data-path="s3.html"><a href="s3.html#test-de-normalité-de-shapiro-wilk-indice-b-1"><i class="fa fa-check"></i><b>5.8.1</b> Test de normalité de Shapiro-Wilk, Indice <code>b</code></a></li>
+<li class="chapter" data-level="5.8.2" data-path="s3.html"><a href="s3.html#test-de-sphéricité-homogénéité-des-variances-indice-b"><i class="fa fa-check"></i><b>5.8.2</b> Test de sphéricité (homogénéité des variances), Indice <code>b</code></a></li>
+<li class="chapter" data-level="5.8.3" data-path="s3.html"><a href="s3.html#anova-indice-b"><i class="fa fa-check"></i><b>5.8.3</b> ANOVA, Indice <code>b</code></a></li>
+<li class="chapter" data-level="5.8.4" data-path="s3.html"><a href="s3.html#visualisation-boxplots-indice-b"><i class="fa fa-check"></i><b>5.8.4</b> Visualisation boxplots, Indice <code>b</code></a></li>
+<li class="chapter" data-level="5.8.5" data-path="s3.html"><a href="s3.html#test-post-hoc-student-newman-keuls-indice-b"><i class="fa fa-check"></i><b>5.8.5</b> Test post-hoc, Student-Newman Keuls, Indice <code>b</code></a></li>
+<li class="chapter" data-level="5.8.6" data-path="s3.html"><a href="s3.html#visualisation-des-groupes-bareplots-avec-labels-indice-b"><i class="fa fa-check"></i><b>5.8.6</b> Visualisation des groupes, bareplots avec labels, Indice <code>b</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="s3.html"><a href="s3.html#indice-l-du-jaune-doeuf-l_jaune-2"><i class="fa fa-check"></i><b>5.9</b> Indice <code>l</code> du jaune d’oeuf <code>l_jaune</code></a><ul>
+<li class="chapter" data-level="5.9.1" data-path="s3.html"><a href="s3.html#test-de-normalité-de-shapiro-wilk-indice-l-du-jaune-1"><i class="fa fa-check"></i><b>5.9.1</b> Test de normalité de Shapiro-Wilk, Indice <code>l</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="5.10" data-path="s3.html"><a href="s3.html#indice-a-du-jaune-doeuf-a_jaune-2"><i class="fa fa-check"></i><b>5.10</b> Indice <code>a</code> du jaune d’oeuf <code>a_jaune</code></a><ul>
+<li class="chapter" data-level="5.10.1" data-path="s3.html"><a href="s3.html#test-de-normalité-de-shapiro-wilk-indice-a-du-jaune-1"><i class="fa fa-check"></i><b>5.10.1</b> Test de normalité de Shapiro-Wilk, Indice <code>a</code> du jaune</a></li>
+<li class="chapter" data-level="5.10.2" data-path="s3.html"><a href="s3.html#test-de-sphéricité-homogénéité-des-variances-indice-a-du-jaune"><i class="fa fa-check"></i><b>5.10.2</b> Test de sphéricité (homogénéité des variances), Indice <code>a</code> du jaune</a></li>
+<li class="chapter" data-level="5.10.3" data-path="s3.html"><a href="s3.html#anova-indice-a-du-jaune"><i class="fa fa-check"></i><b>5.10.3</b> ANOVA, Indice <code>a</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="5.11" data-path="s3.html"><a href="s3.html#indice-b-du-jaune-doeuf-b_jaune-2"><i class="fa fa-check"></i><b>5.11</b> Indice <code>b</code> du jaune d’oeuf <code>b_jaune</code></a><ul>
+<li class="chapter" data-level="5.11.1" data-path="s3.html"><a href="s3.html#test-de-normalité-de-shapiro-wilk-indice-b-du-jaune-1"><i class="fa fa-check"></i><b>5.11.1</b> Test de normalité de Shapiro-Wilk, Indice <code>b</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="5.12" data-path="s3.html"><a href="s3.html#teneur-en-protéines-totales-prot_tot-2"><i class="fa fa-check"></i><b>5.12</b> Teneur en protéines totales <code>prot_tot</code></a><ul>
+<li class="chapter" data-level="5.12.1" data-path="s3.html"><a href="s3.html#test-de-normalité-de-shapiro-wilk-protéines-1"><i class="fa fa-check"></i><b>5.12.1</b> Test de normalité de Shapiro-Wilk, protéines</a></li>
+</ul></li>
+<li class="chapter" data-level="5.13" data-path="s3.html"><a href="s3.html#teneur-en-cholestérol-total-chol_tot-2"><i class="fa fa-check"></i><b>5.13</b> Teneur en cholestérol total <code>chol_tot</code></a><ul>
+<li class="chapter" data-level="5.13.1" data-path="s3.html"><a href="s3.html#test-de-normalité-de-shapiro-wilk-cholestérol-1"><i class="fa fa-check"></i><b>5.13.1</b> Test de normalité de Shapiro-Wilk, cholestérol</a></li>
+</ul></li>
+<li class="chapter" data-level="5.14" data-path="s3.html"><a href="s3.html#teneur-en-lipides-totales-lip_tot-2"><i class="fa fa-check"></i><b>5.14</b> Teneur en lipides totales <code>lip_tot</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="s4.html"><a href="s4.html"><i class="fa fa-check"></i><b>6</b> Séance 4</a><ul>
+<li class="chapter" data-level="6.1" data-path="s4.html"><a href="s4.html#masse-des-oeufs-masse_oeuf-3"><i class="fa fa-check"></i><b>6.1</b> Masse des oeufs <code>masse_oeuf</code></a><ul>
+<li class="chapter" data-level="6.1.1" data-path="s4.html"><a href="s4.html#test-de-normalité-de-shapiro-wilk-masse-des-oeufs-2"><i class="fa fa-check"></i><b>6.1.1</b> Test de normalité de Shapiro-Wilk, masse des oeufs</a></li>
+<li class="chapter" data-level="6.1.2" data-path="s4.html"><a href="s4.html#test-de-sphéricité-homogénéité-des-variances-masse-des-oeufs-1"><i class="fa fa-check"></i><b>6.1.2</b> Test de sphéricité (homogénéité des variances), masse des oeufs</a></li>
+<li class="chapter" data-level="6.1.3" data-path="s4.html"><a href="s4.html#anova-masse-des-oeufs-2"><i class="fa fa-check"></i><b>6.1.3</b> ANOVA, masse des oeufs</a></li>
+<li class="chapter" data-level="6.1.4" data-path="s4.html"><a href="s4.html#visualisation-boxplots-masse-des-oeufs-2"><i class="fa fa-check"></i><b>6.1.4</b> Visualisation boxplots, masse des oeufs</a></li>
+<li class="chapter" data-level="6.1.5" data-path="s4.html"><a href="s4.html#test-post-hoc-student-newman-keuls-masse-des-oeufs-1"><i class="fa fa-check"></i><b>6.1.5</b> Test post-hoc, Student-Newman Keuls, masse des oeufs</a></li>
+<li class="chapter" data-level="6.1.6" data-path="s4.html"><a href="s4.html#visualisation-des-groupes-bareplots-avec-labels-masse-des-oeufs-1"><i class="fa fa-check"></i><b>6.1.6</b> Visualisation des groupes, bareplots avec labels, masse des oeufs</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="s4.html"><a href="s4.html#masse-de-la-coquille-masse_coq-3"><i class="fa fa-check"></i><b>6.2</b> Masse de la coquille <code>masse_coq</code></a><ul>
+<li class="chapter" data-level="6.2.1" data-path="s4.html"><a href="s4.html#test-de-normalité-de-shapiro-wilk-masse-de-la-coquille-2"><i class="fa fa-check"></i><b>6.2.1</b> Test de normalité de Shapiro-Wilk, masse de la coquille</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="s4.html"><a href="s4.html#épaisseur-de-la-coquille-epaisseur_coq-3"><i class="fa fa-check"></i><b>6.3</b> Épaisseur de la coquille <code>epaisseur_coq</code></a><ul>
+<li class="chapter" data-level="6.3.1" data-path="s4.html"><a href="s4.html#test-de-normalité-de-shapiro-wilk-épaisseur-de-la-coquille-2"><i class="fa fa-check"></i><b>6.3.1</b> Test de normalité de Shapiro-Wilk, épaisseur de la coquille</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="s4.html"><a href="s4.html#masse-du-jaune-doeuf-masse_du_jaune-3"><i class="fa fa-check"></i><b>6.4</b> Masse du jaune d’oeuf <code>masse_du_jaune</code></a><ul>
+<li class="chapter" data-level="6.4.1" data-path="s4.html"><a href="s4.html#test-de-normalité-de-shapiro-wilk-masse-du-jaune-2"><i class="fa fa-check"></i><b>6.4.1</b> Test de normalité de Shapiro-Wilk, masse du jaune</a></li>
+<li class="chapter" data-level="6.4.2" data-path="s4.html"><a href="s4.html#test-de-sphéricité-homogénéité-des-variances-masse-du-jaune-2"><i class="fa fa-check"></i><b>6.4.2</b> Test de sphéricité (homogénéité des variances), masse du jaune</a></li>
+<li class="chapter" data-level="6.4.3" data-path="s4.html"><a href="s4.html#anova-masse-du-jaune-3"><i class="fa fa-check"></i><b>6.4.3</b> ANOVA, masse du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="s4.html"><a href="s4.html#masse-du-blanc-doeuf-masse_du_blanc-3"><i class="fa fa-check"></i><b>6.5</b> Masse du blanc d’oeuf <code>masse_du_blanc</code></a><ul>
+<li class="chapter" data-level="6.5.1" data-path="s4.html"><a href="s4.html#test-de-normalité-de-shapiro-wilk-masse-du-blanc-2"><i class="fa fa-check"></i><b>6.5.1</b> Test de normalité de Shapiro-Wilk, masse du blanc</a></li>
+<li class="chapter" data-level="6.5.2" data-path="s4.html"><a href="s4.html#test-de-sphéricité-homogénéité-des-variances-masse-du-blanc-1"><i class="fa fa-check"></i><b>6.5.2</b> Test de sphéricité (homogénéité des variances), masse du blanc</a></li>
+<li class="chapter" data-level="6.5.3" data-path="s4.html"><a href="s4.html#anova-masse-du-blanc-2"><i class="fa fa-check"></i><b>6.5.3</b> ANOVA masse du blanc</a></li>
+<li class="chapter" data-level="6.5.4" data-path="s4.html"><a href="s4.html#visualisation-boxplots-masse-du-blanc-2"><i class="fa fa-check"></i><b>6.5.4</b> Visualisation boxplots masse du blanc</a></li>
+<li class="chapter" data-level="6.5.5" data-path="s4.html"><a href="s4.html#test-post-hoc-student-newman-keuls-masse-du-jaune-3"><i class="fa fa-check"></i><b>6.5.5</b> Test post-hoc, Student-Newman Keuls, masse du jaune</a></li>
+<li class="chapter" data-level="6.5.6" data-path="s4.html"><a href="s4.html#visualisation-des-groupes-bareplots-avec-labels-4"><i class="fa fa-check"></i><b>6.5.6</b> Visualisation des groupes, bareplots avec labels</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="s4.html"><a href="s4.html#indice-l-de-lintérieur-de-la-coquille-l_int_coq-3"><i class="fa fa-check"></i><b>6.6</b> Indice <code>l</code> de l’intérieur de la coquille <code>l_int_coq</code></a><ul>
+<li class="chapter" data-level="6.6.1" data-path="s4.html"><a href="s4.html#test-de-normalité-de-shapiro-wilk-indice-l-2"><i class="fa fa-check"></i><b>6.6.1</b> Test de normalité de Shapiro-Wilk, Indice <code>l</code></a></li>
+<li class="chapter" data-level="6.6.2" data-path="s4.html"><a href="s4.html#test-de-sphéricité-homogénéité-des-variances-indice-l"><i class="fa fa-check"></i><b>6.6.2</b> Test de sphéricité (homogénéité des variances), Indice <code>l</code></a></li>
+<li class="chapter" data-level="6.6.3" data-path="s4.html"><a href="s4.html#anova-indice-l"><i class="fa fa-check"></i><b>6.6.3</b> ANOVA, Indice <code>l</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="s4.html"><a href="s4.html#indice-a-de-lintérieur-de-la-coquille-a_int_coq-3"><i class="fa fa-check"></i><b>6.7</b> Indice <code>a</code> de l’intérieur de la coquille <code>a_int_coq</code></a><ul>
+<li class="chapter" data-level="6.7.1" data-path="s4.html"><a href="s4.html#test-de-normalité-de-shapiro-wilk-indice-a-2"><i class="fa fa-check"></i><b>6.7.1</b> Test de normalité de Shapiro-Wilk, Indice <code>a</code></a></li>
+<li class="chapter" data-level="6.7.2" data-path="s4.html"><a href="s4.html#test-de-sphéricité-homogénéité-des-variances-indice-a"><i class="fa fa-check"></i><b>6.7.2</b> Test de sphéricité (homogénéité des variances), Indice <code>a</code></a></li>
+<li class="chapter" data-level="6.7.3" data-path="s4.html"><a href="s4.html#anova-indice-a"><i class="fa fa-check"></i><b>6.7.3</b> ANOVA, Indice <code>a</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="s4.html"><a href="s4.html#indice-b-de-lintérieur-de-la-coquille-b_int_coq-3"><i class="fa fa-check"></i><b>6.8</b> Indice <code>b</code> de l’intérieur de la coquille <code>b_int_coq</code></a><ul>
+<li class="chapter" data-level="6.8.1" data-path="s4.html"><a href="s4.html#test-de-normalité-de-shapiro-wilk-indice-b-2"><i class="fa fa-check"></i><b>6.8.1</b> Test de normalité de Shapiro-Wilk, Indice <code>b</code></a></li>
+<li class="chapter" data-level="6.8.2" data-path="s4.html"><a href="s4.html#test-de-sphéricité-homogénéité-des-variances-indice-b-1"><i class="fa fa-check"></i><b>6.8.2</b> Test de sphéricité (homogénéité des variances), Indice <code>b</code></a></li>
+<li class="chapter" data-level="6.8.3" data-path="s4.html"><a href="s4.html#anova-indice-b-1"><i class="fa fa-check"></i><b>6.8.3</b> ANOVA, Indice <code>b</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="s4.html"><a href="s4.html#indice-l-du-jaune-doeuf-l_jaune-3"><i class="fa fa-check"></i><b>6.9</b> Indice <code>l</code> du jaune d’oeuf <code>l_jaune</code></a><ul>
+<li class="chapter" data-level="6.9.1" data-path="s4.html"><a href="s4.html#test-de-normalité-de-shapiro-wilk-indice-l-du-jaune-2"><i class="fa fa-check"></i><b>6.9.1</b> Test de normalité de Shapiro-Wilk, Indice <code>l</code> du jaune</a></li>
+<li class="chapter" data-level="6.9.2" data-path="s4.html"><a href="s4.html#test-de-sphéricité-homogénéité-des-variances-indice-l-du-jaune"><i class="fa fa-check"></i><b>6.9.2</b> Test de sphéricité (homogénéité des variances), Indice <code>l</code> du jaune</a></li>
+<li class="chapter" data-level="6.9.3" data-path="s4.html"><a href="s4.html#anova-indice-l-du-jaune"><i class="fa fa-check"></i><b>6.9.3</b> ANOVA, Indice <code>l</code> du jaune</a></li>
+<li class="chapter" data-level="6.9.4" data-path="s4.html"><a href="s4.html#visualisation-boxplots-indice-l-du-jaune"><i class="fa fa-check"></i><b>6.9.4</b> Visualisation boxplots, Indice <code>l</code> du jaune</a></li>
+<li class="chapter" data-level="6.9.5" data-path="s4.html"><a href="s4.html#test-post-hoc-student-newman-keuls-indice-l-du-jaune"><i class="fa fa-check"></i><b>6.9.5</b> Test post-hoc, Student-Newman Keuls, Indice <code>l</code> du jaune</a></li>
+<li class="chapter" data-level="6.9.6" data-path="s4.html"><a href="s4.html#visualisation-des-groupes-bareplots-avec-labels-indice-l-du-jaune"><i class="fa fa-check"></i><b>6.9.6</b> Visualisation des groupes, bareplots avec labels, Indice <code>l</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="s4.html"><a href="s4.html#indice-a-du-jaune-doeuf-a_jaune-3"><i class="fa fa-check"></i><b>6.10</b> Indice <code>a</code> du jaune d’oeuf <code>a_jaune</code></a><ul>
+<li class="chapter" data-level="6.10.1" data-path="s4.html"><a href="s4.html#test-de-normalité-de-shapiro-wilk-indice-a-du-jaune-2"><i class="fa fa-check"></i><b>6.10.1</b> Test de normalité de Shapiro-Wilk, Indice <code>a</code> du jaune</a></li>
+<li class="chapter" data-level="6.10.2" data-path="s4.html"><a href="s4.html#test-de-sphéricité-homogénéité-des-variances-indice-a-du-jaune-1"><i class="fa fa-check"></i><b>6.10.2</b> Test de sphéricité (homogénéité des variances), Indice <code>a</code> du jaune</a></li>
+<li class="chapter" data-level="6.10.3" data-path="s4.html"><a href="s4.html#anova-indice-a-du-jaune-1"><i class="fa fa-check"></i><b>6.10.3</b> ANOVA, Indice <code>a</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="6.11" data-path="s4.html"><a href="s4.html#indice-b-du-jaune-doeuf-b_jaune-3"><i class="fa fa-check"></i><b>6.11</b> Indice <code>b</code> du jaune d’oeuf <code>b_jaune</code></a><ul>
+<li class="chapter" data-level="6.11.1" data-path="s4.html"><a href="s4.html#test-de-normalité-de-shapiro-wilk-indice-b-du-jaune-2"><i class="fa fa-check"></i><b>6.11.1</b> Test de normalité de Shapiro-Wilk, Indice <code>b</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="6.12" data-path="s4.html"><a href="s4.html#teneur-en-protéines-totales-prot_tot-3"><i class="fa fa-check"></i><b>6.12</b> Teneur en protéines totales <code>prot_tot</code></a><ul>
+<li class="chapter" data-level="6.12.1" data-path="s4.html"><a href="s4.html#test-de-normalité-de-shapiro-wilk-protéines-2"><i class="fa fa-check"></i><b>6.12.1</b> Test de normalité de Shapiro-Wilk, protéines</a></li>
+</ul></li>
+<li class="chapter" data-level="6.13" data-path="s4.html"><a href="s4.html#teneur-en-cholestérol-total-chol_tot-3"><i class="fa fa-check"></i><b>6.13</b> Teneur en cholestérol total <code>chol_tot</code></a><ul>
+<li class="chapter" data-level="6.13.1" data-path="s4.html"><a href="s4.html#test-de-normalité-de-shapiro-wilk-cholestérol-2"><i class="fa fa-check"></i><b>6.13.1</b> Test de normalité de Shapiro-Wilk, cholestérol</a></li>
+<li class="chapter" data-level="6.13.2" data-path="s4.html"><a href="s4.html#test-de-sphéricité-homogénéité-des-variances-cholestérol-1"><i class="fa fa-check"></i><b>6.13.2</b> Test de sphéricité (homogénéité des variances), cholestérol</a></li>
+<li class="chapter" data-level="6.13.3" data-path="s4.html"><a href="s4.html#anova-cholestérol-1"><i class="fa fa-check"></i><b>6.13.3</b> ANOVA, cholestérol</a></li>
+<li class="chapter" data-level="6.13.4" data-path="s4.html"><a href="s4.html#visualisation-boxplots-cholestérol-1"><i class="fa fa-check"></i><b>6.13.4</b> Visualisation boxplots, cholestérol</a></li>
+<li class="chapter" data-level="6.13.5" data-path="s4.html"><a href="s4.html#test-post-hoc-student-newman-keuls-cholestérol-1"><i class="fa fa-check"></i><b>6.13.5</b> Test post-hoc, Student-Newman Keuls, cholestérol</a></li>
+<li class="chapter" data-level="6.13.6" data-path="s4.html"><a href="s4.html#visualisation-des-groupes-bareplots-avec-labels-cholestérol-1"><i class="fa fa-check"></i><b>6.13.6</b> Visualisation des groupes, bareplots avec labels, cholestérol</a></li>
+</ul></li>
+<li class="chapter" data-level="6.14" data-path="s4.html"><a href="s4.html#teneur-en-lipides-totales-lip_tot-3"><i class="fa fa-check"></i><b>6.14</b> Teneur en lipides totales <code>lip_tot</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="s5.html"><a href="s5.html"><i class="fa fa-check"></i><b>7</b> Séance 5</a><ul>
+<li class="chapter" data-level="7.1" data-path="s5.html"><a href="s5.html#masse-des-oeufs-masse_oeuf-4"><i class="fa fa-check"></i><b>7.1</b> Masse des oeufs <code>masse_oeuf</code></a><ul>
+<li class="chapter" data-level="7.1.1" data-path="s5.html"><a href="s5.html#test-de-normalité-de-shapiro-wilk-masse-des-oeufs-3"><i class="fa fa-check"></i><b>7.1.1</b> Test de normalité de Shapiro-Wilk, masse des oeufs</a></li>
+<li class="chapter" data-level="7.1.2" data-path="s5.html"><a href="s5.html#test-de-sphéricité-homogénéité-des-variances-masse-des-oeufs-2"><i class="fa fa-check"></i><b>7.1.2</b> Test de sphéricité (homogénéité des variances), masse des oeufs</a></li>
+<li class="chapter" data-level="7.1.3" data-path="s5.html"><a href="s5.html#anova-masse-des-oeufs-3"><i class="fa fa-check"></i><b>7.1.3</b> ANOVA, masse des oeufs</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="s5.html"><a href="s5.html#masse-de-la-coquille-masse_coq-4"><i class="fa fa-check"></i><b>7.2</b> Masse de la coquille <code>masse_coq</code></a><ul>
+<li class="chapter" data-level="7.2.1" data-path="s5.html"><a href="s5.html#test-de-normalité-de-shapiro-wilk-masse-de-la-coquille-3"><i class="fa fa-check"></i><b>7.2.1</b> Test de normalité de Shapiro-Wilk, masse de la coquille</a></li>
+<li class="chapter" data-level="7.2.2" data-path="s5.html"><a href="s5.html#test-de-sphéricité-homogénéité-des-variances-masse-de-la-coquille-3"><i class="fa fa-check"></i><b>7.2.2</b> Test de sphéricité (homogénéité des variances), masse de la coquille</a></li>
+<li class="chapter" data-level="7.2.3" data-path="s5.html"><a href="s5.html#anova-masse-de-la-coquille-3"><i class="fa fa-check"></i><b>7.2.3</b> ANOVA, masse de la coquille</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="s5.html"><a href="s5.html#épaisseur-de-la-coquille-epaisseur_coq-4"><i class="fa fa-check"></i><b>7.3</b> Épaisseur de la coquille <code>epaisseur_coq</code></a><ul>
+<li class="chapter" data-level="7.3.1" data-path="s5.html"><a href="s5.html#test-de-normalité-de-shapiro-wilk-épaisseur-de-la-coquille-3"><i class="fa fa-check"></i><b>7.3.1</b> Test de normalité de Shapiro-Wilk, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="7.3.2" data-path="s5.html"><a href="s5.html#test-de-sphéricité-homogénéité-des-variances-épaisseur-de-la-coquille-2"><i class="fa fa-check"></i><b>7.3.2</b> Test de sphéricité (homogénéité des variances), épaisseur de la coquille</a></li>
+<li class="chapter" data-level="7.3.3" data-path="s5.html"><a href="s5.html#anova-épaisseur-de-la-coquille-2"><i class="fa fa-check"></i><b>7.3.3</b> ANOVA, épaisseur de la coquille</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="s5.html"><a href="s5.html#masse-du-jaune-doeuf-masse_du_jaune-4"><i class="fa fa-check"></i><b>7.4</b> Masse du jaune d’oeuf <code>masse_du_jaune</code></a><ul>
+<li class="chapter" data-level="7.4.1" data-path="s5.html"><a href="s5.html#test-de-normalité-de-shapiro-wilk-masse-du-jaune-3"><i class="fa fa-check"></i><b>7.4.1</b> Test de normalité de Shapiro-Wilk, masse du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="s5.html"><a href="s5.html#masse-du-blanc-doeuf-masse_du_blanc-4"><i class="fa fa-check"></i><b>7.5</b> Masse du blanc d’oeuf <code>masse_du_blanc</code></a><ul>
+<li class="chapter" data-level="7.5.1" data-path="s5.html"><a href="s5.html#test-de-normalité-de-shapiro-wilk-masse-du-blanc-3"><i class="fa fa-check"></i><b>7.5.1</b> Test de normalité de Shapiro-Wilk, masse du blanc</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="s5.html"><a href="s5.html#indice-l-de-lintérieur-de-la-coquille-l_int_coq-4"><i class="fa fa-check"></i><b>7.6</b> Indice <code>l</code> de l’intérieur de la coquille <code>l_int_coq</code></a><ul>
+<li class="chapter" data-level="7.6.1" data-path="s5.html"><a href="s5.html#test-de-normalité-de-shapiro-wilk-indice-l-3"><i class="fa fa-check"></i><b>7.6.1</b> Test de normalité de Shapiro-Wilk, Indice <code>l</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="s5.html"><a href="s5.html#indice-a-de-lintérieur-de-la-coquille-a_int_coq-4"><i class="fa fa-check"></i><b>7.7</b> Indice <code>a</code> de l’intérieur de la coquille <code>a_int_coq</code></a><ul>
+<li class="chapter" data-level="7.7.1" data-path="s5.html"><a href="s5.html#test-de-normalité-de-shapiro-wilk-indice-a-3"><i class="fa fa-check"></i><b>7.7.1</b> Test de normalité de Shapiro-Wilk, Indice <code>a</code></a></li>
+<li class="chapter" data-level="7.7.2" data-path="s5.html"><a href="s5.html#test-de-sphéricité-homogénéité-des-variances-indice-a-1"><i class="fa fa-check"></i><b>7.7.2</b> Test de sphéricité (homogénéité des variances), Indice <code>a</code></a></li>
+<li class="chapter" data-level="7.7.3" data-path="s5.html"><a href="s5.html#anova-indice-a-1"><i class="fa fa-check"></i><b>7.7.3</b> ANOVA, Indice <code>a</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="s5.html"><a href="s5.html#indice-b-de-lintérieur-de-la-coquille-b_int_coq-4"><i class="fa fa-check"></i><b>7.8</b> Indice <code>b</code> de l’intérieur de la coquille <code>b_int_coq</code></a><ul>
+<li class="chapter" data-level="7.8.1" data-path="s5.html"><a href="s5.html#test-de-normalité-de-shapiro-wilk-indice-b-3"><i class="fa fa-check"></i><b>7.8.1</b> Test de normalité de Shapiro-Wilk, Indice <code>b</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="s5.html"><a href="s5.html#indice-l-du-jaune-doeuf-l_jaune-4"><i class="fa fa-check"></i><b>7.9</b> Indice <code>l</code> du jaune d’oeuf <code>l_jaune</code></a><ul>
+<li class="chapter" data-level="7.9.1" data-path="s5.html"><a href="s5.html#test-de-normalité-de-shapiro-wilk-indice-l-du-jaune-3"><i class="fa fa-check"></i><b>7.9.1</b> Test de normalité de Shapiro-Wilk, Indice <code>l</code> du jaune</a></li>
+<li class="chapter" data-level="7.9.2" data-path="s5.html"><a href="s5.html#test-de-sphéricité-homogénéité-des-variances-indice-l-du-jaune-1"><i class="fa fa-check"></i><b>7.9.2</b> Test de sphéricité (homogénéité des variances), Indice <code>l</code> du jaune</a></li>
+<li class="chapter" data-level="7.9.3" data-path="s5.html"><a href="s5.html#anova-indice-l-du-jaune-1"><i class="fa fa-check"></i><b>7.9.3</b> ANOVA, Indice <code>l</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="7.10" data-path="s5.html"><a href="s5.html#indice-a-du-jaune-doeuf-a_jaune-4"><i class="fa fa-check"></i><b>7.10</b> Indice <code>a</code> du jaune d’oeuf <code>a_jaune</code></a><ul>
+<li class="chapter" data-level="7.10.1" data-path="s5.html"><a href="s5.html#test-de-normalité-de-shapiro-wilk-indice-a-du-jaune-3"><i class="fa fa-check"></i><b>7.10.1</b> Test de normalité de Shapiro-Wilk, Indice <code>a</code> du jaune</a></li>
+<li class="chapter" data-level="7.10.2" data-path="s5.html"><a href="s5.html#test-de-sphéricité-homogénéité-des-variances-indice-a-du-jaune-2"><i class="fa fa-check"></i><b>7.10.2</b> Test de sphéricité (homogénéité des variances), Indice <code>a</code> du jaune</a></li>
+<li class="chapter" data-level="7.10.3" data-path="s5.html"><a href="s5.html#anova-indice-a-du-jaune-2"><i class="fa fa-check"></i><b>7.10.3</b> ANOVA, Indice <code>a</code> du jaune</a></li>
+<li class="chapter" data-level="7.10.4" data-path="s5.html"><a href="s5.html#visualisation-boxplots-indice-a-du-jaune"><i class="fa fa-check"></i><b>7.10.4</b> Visualisation boxplots, Indice <code>a</code> du jaune</a></li>
+<li class="chapter" data-level="7.10.5" data-path="s5.html"><a href="s5.html#test-post-hoc-student-newman-keuls-indice-a-du-jaune"><i class="fa fa-check"></i><b>7.10.5</b> Test post-hoc, Student-Newman Keuls, Indice <code>a</code> du jaune</a></li>
+<li class="chapter" data-level="7.10.6" data-path="s5.html"><a href="s5.html#visualisation-des-groupes-bareplots-avec-labels-indice-a-du-jaune"><i class="fa fa-check"></i><b>7.10.6</b> Visualisation des groupes, bareplots avec labels, Indice <code>a</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="7.11" data-path="s5.html"><a href="s5.html#indice-b-du-jaune-doeuf-b_jaune-4"><i class="fa fa-check"></i><b>7.11</b> Indice <code>b</code> du jaune d’oeuf <code>b_jaune</code></a><ul>
+<li class="chapter" data-level="7.11.1" data-path="s5.html"><a href="s5.html#test-de-normalité-de-shapiro-wilk-indice-b-du-jaune-3"><i class="fa fa-check"></i><b>7.11.1</b> Test de normalité de Shapiro-Wilk, Indice <code>b</code> du jaune</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="mesrep.html"><a href="mesrep.html"><i class="fa fa-check"></i><b>8</b> Les séances, en mesures répétées</a><ul>
+<li class="chapter" data-level="8.1" data-path="mesrep.html"><a href="mesrep.html#les-données-3"><i class="fa fa-check"></i><b>8.1</b> LES DONNÉES</a></li>
+<li class="chapter" data-level="8.2" data-path="mesrep.html"><a href="mesrep.html#masse-des-oeufs"><i class="fa fa-check"></i><b>8.2</b> MASSE DES OEUFS</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-masse-des-oeufs"><i class="fa fa-check"></i><b>8.2.1</b> Sommaire par séance, masse des oeufs</a></li>
+<li class="chapter" data-level="8.2.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-masse-des-oeufs-3"><i class="fa fa-check"></i><b>8.2.2</b> Visualisation boxplots, masse des oeufs</a></li>
+<li class="chapter" data-level="8.2.3" data-path="mesrep.html"><a href="mesrep.html#normalité-masse-des-oeufs"><i class="fa fa-check"></i><b>8.2.3</b> Normalité, masse des oeufs</a></li>
+<li class="chapter" data-level="8.2.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-masse-des-oeufs"><i class="fa fa-check"></i><b>8.2.4</b> Test de Friedman, masse des oeufs</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="mesrep.html"><a href="mesrep.html#masse-de-la-coquille"><i class="fa fa-check"></i><b>8.3</b> MASSE DE LA COQUILLE</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-masse-de-la-coquille"><i class="fa fa-check"></i><b>8.3.1</b> Sommaire par séance, masse de la coquille</a></li>
+<li class="chapter" data-level="8.3.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-masse-de-la-coquille-3"><i class="fa fa-check"></i><b>8.3.2</b> Visualisation boxplots, masse de la coquille</a></li>
+<li class="chapter" data-level="8.3.3" data-path="mesrep.html"><a href="mesrep.html#normalité-masse-de-la-coquille"><i class="fa fa-check"></i><b>8.3.3</b> Normalité, masse de la coquille</a></li>
+<li class="chapter" data-level="8.3.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-masse-de-la-coquille"><i class="fa fa-check"></i><b>8.3.4</b> Test de Friedman, masse de la coquille</a></li>
+<li class="chapter" data-level="8.3.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon."><i class="fa fa-check"></i><b>8.3.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon.</a></li>
+<li class="chapter" data-level="8.3.6" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-avec-p-values-1"><i class="fa fa-check"></i><b>8.3.6</b> Visualisation : Boxplots avec p-values</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="mesrep.html"><a href="mesrep.html#épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>8.4</b> ÉPAISSEUR DE LA COQUILLE</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>8.4.1</b> Sommaire par séance, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="8.4.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-épaisseur-de-la-coquille-1"><i class="fa fa-check"></i><b>8.4.2</b> Visualisation boxplots, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="8.4.3" data-path="mesrep.html"><a href="mesrep.html#normalité-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>8.4.3</b> Normalité, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="8.4.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>8.4.4</b> Test de Friedman, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="8.4.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon.-1"><i class="fa fa-check"></i><b>8.4.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="mesrep.html"><a href="mesrep.html#masse-du-jaune"><i class="fa fa-check"></i><b>8.5</b> MASSE DU JAUNE</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-masse-du-jaune"><i class="fa fa-check"></i><b>8.5.1</b> Sommaire par séance, masse du jaune</a></li>
+<li class="chapter" data-level="8.5.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-masse-du-jaune-3"><i class="fa fa-check"></i><b>8.5.2</b> Visualisation boxplots, masse du jaune</a></li>
+<li class="chapter" data-level="8.5.3" data-path="mesrep.html"><a href="mesrep.html#normalité-masse-du-jaune"><i class="fa fa-check"></i><b>8.5.3</b> Normalité, masse du jaune</a></li>
+<li class="chapter" data-level="8.5.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-masse-du-jaune"><i class="fa fa-check"></i><b>8.5.4</b> Test de Friedman, masse du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="mesrep.html"><a href="mesrep.html#masse-du-blanc"><i class="fa fa-check"></i><b>8.6</b> MASSE DU BLANC</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-masse-du-blanc"><i class="fa fa-check"></i><b>8.6.1</b> Sommaire par séance, masse du blanc</a></li>
+<li class="chapter" data-level="8.6.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-masse-du-blanc-3"><i class="fa fa-check"></i><b>8.6.2</b> Visualisation boxplots, masse du blanc</a></li>
+<li class="chapter" data-level="8.6.3" data-path="mesrep.html"><a href="mesrep.html#normalité-masse-du-blanc"><i class="fa fa-check"></i><b>8.6.3</b> Normalité, masse du blanc</a></li>
+<li class="chapter" data-level="8.6.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-masse-du-blanc"><i class="fa fa-check"></i><b>8.6.4</b> Test de Friedman, masse du blanc</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="mesrep.html"><a href="mesrep.html#indice-l-intérieur-de-la-coquille"><i class="fa fa-check"></i><b>8.7</b> INDICE ‘l’ INTÉRIEUR DE LA COQUILLE</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-indice-l-intérieur-coquille"><i class="fa fa-check"></i><b>8.7.1</b> Sommaire par séance, indice ‘l’ intérieur coquille</a></li>
+<li class="chapter" data-level="8.7.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-indice-l-intérieur-coquille"><i class="fa fa-check"></i><b>8.7.2</b> Visualisation boxplots, indice ‘l’ intérieur coquille</a></li>
+<li class="chapter" data-level="8.7.3" data-path="mesrep.html"><a href="mesrep.html#normalité-indice-l-intérieur-coquille"><i class="fa fa-check"></i><b>8.7.3</b> Normalité, indice ‘l’ intérieur coquille</a></li>
+<li class="chapter" data-level="8.7.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-indice-l-intérieur-coquille"><i class="fa fa-check"></i><b>8.7.4</b> Test de Friedman, indice ‘l’ intérieur coquille</a></li>
+<li class="chapter" data-level="8.7.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon.-2"><i class="fa fa-check"></i><b>8.7.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="mesrep.html"><a href="mesrep.html#indice-a-intérieur-de-la-coquille"><i class="fa fa-check"></i><b>8.8</b> INDICE ‘a’ INTÉRIEUR DE LA COQUILLE</a><ul>
+<li class="chapter" data-level="8.8.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-indice-a-intérieur-coquille"><i class="fa fa-check"></i><b>8.8.1</b> Sommaire par séance, indice ‘a’ intérieur coquille</a></li>
+<li class="chapter" data-level="8.8.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-indice-a-intérieur-coquille"><i class="fa fa-check"></i><b>8.8.2</b> Visualisation boxplots, indice ‘a’ intérieur coquille</a></li>
+<li class="chapter" data-level="8.8.3" data-path="mesrep.html"><a href="mesrep.html#normalité-indice-a-intérieur-coquille"><i class="fa fa-check"></i><b>8.8.3</b> Normalité, indice ‘a’ intérieur coquille</a></li>
+<li class="chapter" data-level="8.8.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-indice-a-intérieur-coquille"><i class="fa fa-check"></i><b>8.8.4</b> Test de Friedman, indice ‘a’ intérieur coquille</a></li>
+<li class="chapter" data-level="8.8.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon.-3"><i class="fa fa-check"></i><b>8.8.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="mesrep.html"><a href="mesrep.html#indice-b-intérieur-de-la-coquille"><i class="fa fa-check"></i><b>8.9</b> INDICE ‘b’ INTÉRIEUR DE LA COQUILLE</a><ul>
+<li class="chapter" data-level="8.9.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-indice-b-intérieur-coquille"><i class="fa fa-check"></i><b>8.9.1</b> Sommaire par séance, indice ‘b’ intérieur coquille</a></li>
+<li class="chapter" data-level="8.9.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-indice-b-intérieur-coquille"><i class="fa fa-check"></i><b>8.9.2</b> Visualisation boxplots, indice ‘b’ intérieur coquille</a></li>
+<li class="chapter" data-level="8.9.3" data-path="mesrep.html"><a href="mesrep.html#normalité-indice-b-intérieur-coquille"><i class="fa fa-check"></i><b>8.9.3</b> Normalité, indice ‘b’ intérieur coquille</a></li>
+<li class="chapter" data-level="8.9.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-indice-b-intérieur-coquille"><i class="fa fa-check"></i><b>8.9.4</b> Test de Friedman, indice ‘b’ intérieur coquille</a></li>
+<li class="chapter" data-level="8.9.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon.-4"><i class="fa fa-check"></i><b>8.9.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="mesrep.html"><a href="mesrep.html#indice-l-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.10</b> INDICE ‘l’ DU JAUNE D’OEUF</a><ul>
+<li class="chapter" data-level="8.10.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-indice-l-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.10.1</b> Sommaire par séance, indice ‘l’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="8.10.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-indice-l-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.10.2</b> Visualisation boxplots, indice ‘l’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="8.10.3" data-path="mesrep.html"><a href="mesrep.html#normalité-indice-l-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.10.3</b> Normalité, indice ‘l’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="8.10.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-indice-l-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.10.4</b> Test de Friedman, indice ‘l’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="8.10.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon.-5"><i class="fa fa-check"></i><b>8.10.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.11" data-path="mesrep.html"><a href="mesrep.html#indice-a-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.11</b> INDICE ‘a’ DU JAUNE D’OEUF</a><ul>
+<li class="chapter" data-level="8.11.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-indice-a-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.11.1</b> Sommaire par séance, indice ‘a’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="8.11.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-indice-a-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.11.2</b> Visualisation boxplots, indice ‘a’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="8.11.3" data-path="mesrep.html"><a href="mesrep.html#normalité-indice-a-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.11.3</b> Normalité, indice ‘a’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="8.11.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-indice-a-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.11.4</b> Test de Friedman, indice ‘a’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="8.11.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon.-6"><i class="fa fa-check"></i><b>8.11.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.12" data-path="mesrep.html"><a href="mesrep.html#indice-b-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.12</b> INDICE ‘b’ DU JAUNE D’OEUF</a><ul>
+<li class="chapter" data-level="8.12.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-indice-b-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.12.1</b> Sommaire par séance, indice ‘b’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="8.12.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-indice-b-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.12.2</b> Visualisation boxplots, indice ‘b’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="8.12.3" data-path="mesrep.html"><a href="mesrep.html#normalité-indice-b-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.12.3</b> Normalité, indice ‘b’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="8.12.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-indice-b-du-jaune-doeuf"><i class="fa fa-check"></i><b>8.12.4</b> Test de Friedman, indice ‘b’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="8.12.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon"><i class="fa fa-check"></i><b>8.12.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon</a></li>
+</ul></li>
+<li class="chapter" data-level="8.13" data-path="mesrep.html"><a href="mesrep.html#protéines-totales"><i class="fa fa-check"></i><b>8.13</b> PROTÉINES TOTALES</a><ul>
+<li class="chapter" data-level="8.13.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-protéines"><i class="fa fa-check"></i><b>8.13.1</b> Sommaire par séance, protéines</a></li>
+<li class="chapter" data-level="8.13.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-protéines-1"><i class="fa fa-check"></i><b>8.13.2</b> Visualisation boxplots, protéines</a></li>
+<li class="chapter" data-level="8.13.3" data-path="mesrep.html"><a href="mesrep.html#normalité-protéines"><i class="fa fa-check"></i><b>8.13.3</b> Normalité, protéines</a></li>
+<li class="chapter" data-level="8.13.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-protéines"><i class="fa fa-check"></i><b>8.13.4</b> Test de Friedman, protéines</a></li>
+<li class="chapter" data-level="8.13.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon-1"><i class="fa fa-check"></i><b>8.13.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon</a></li>
+</ul></li>
+<li class="chapter" data-level="8.14" data-path="mesrep.html"><a href="mesrep.html#cholestérol-total"><i class="fa fa-check"></i><b>8.14</b> CHOLESTÉROL TOTAL</a><ul>
+<li class="chapter" data-level="8.14.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-cholestérol"><i class="fa fa-check"></i><b>8.14.1</b> Sommaire par séance, cholestérol</a></li>
+<li class="chapter" data-level="8.14.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-cholestérol-2"><i class="fa fa-check"></i><b>8.14.2</b> Visualisation boxplots, cholestérol</a></li>
+<li class="chapter" data-level="8.14.3" data-path="mesrep.html"><a href="mesrep.html#normalité-cholestérol"><i class="fa fa-check"></i><b>8.14.3</b> Normalité, cholestérol</a></li>
+<li class="chapter" data-level="8.14.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-cholestérol"><i class="fa fa-check"></i><b>8.14.4</b> Test de Friedman, cholestérol</a></li>
+<li class="chapter" data-level="8.14.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon-2"><i class="fa fa-check"></i><b>8.14.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon</a></li>
+</ul></li>
+<li class="chapter" data-level="8.15" data-path="mesrep.html"><a href="mesrep.html#lipides-totales"><i class="fa fa-check"></i><b>8.15</b> LIPIDES TOTALES</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Exploration des données, nutrition de cailles</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="s4" class="section level1">
+<h1><span class="header-section-number">Chapitre 6</span> Séance 4</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(<span class="st">&quot;tidyverse&quot;</span>) <span class="co"># tidy et ggplot2</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(<span class="st">&quot;agricolae&quot;</span>) <span class="co"># SNK.test() Student Newman-Keuls</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">library</span>(<span class="st">&quot;car&quot;</span>)       <span class="co"># leveneTest()</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw">library</span>(<span class="st">&quot;rstatix&quot;</span>)   <span class="co"># convert_as_factor()</span></a>
+<a class="sourceLine" id="cb1-5" title="5">df &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/seance.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb1-6" title="6">df &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">factor</span>(regime))</a></code></pre></div>
+<div id="masse-des-oeufs-masse_oeuf-3" class="section level2">
+<h2><span class="header-section-number">6.1</span> Masse des oeufs <code>masse_oeuf</code></h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">s4 &lt;-<span class="st"> </span>df <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="st">  </span><span class="kw">filter</span>(seance <span class="op">==</span><span class="st"> &quot;seance 4&quot;</span>)</a></code></pre></div>
+<div id="test-de-normalité-de-shapiro-wilk-masse-des-oeufs-2" class="section level3">
+<h3><span class="header-section-number">6.1.1</span> Test de normalité de Shapiro-Wilk, masse des oeufs</h3>
+<ul>
+<li><p>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale)</p></li>
+<li><p>H1 ou Ha si non.</p></li>
+<li><p>Si <strong>p-value &gt; 0,05</strong> alors la distribution des données n’est pas significativement différente de la distribution normale. On accepte Ho.</p></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="st">  </span><span class="kw">shapiro_test</span>(masse_oeuf)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   variable   statistic     p
+##   &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt;
+## 1 masse_oeuf     0.948 0.146</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; distribution normale.</p>
+</blockquote>
+</div>
+<div id="test-de-sphéricité-homogénéité-des-variances-masse-des-oeufs-1" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Test de sphéricité (homogénéité des variances), masse des oeufs</h3>
+<p>Pour ces tests :</p>
+<ul>
+<li><p><code>Ho</code>. Toutes les variances des populations (traitements) sont égales.</p></li>
+<li><p><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</p></li>
+<li><p>des valeurs p &lt; à 0,05 suggèrent que les variances sont significativement différentes et donc que l’hypothèse d’homogénéité des variances n’est pas respectée.</p></li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw">leveneTest</span>(masse_oeuf <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  9  0.7181 0.6871
+##       20</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05, variances homogènes.</p>
+</blockquote>
+</div>
+<div id="anova-masse-des-oeufs-2" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> ANOVA, masse des oeufs</h3>
+<ul>
+<li><p>Si la p-value est &lt; 0.05, on conclut qu’il existe des différences significatives entre les groupes (entre au moins deux groupes).</p></li>
+<li><p>si non, il n’y a pas de différence entre les effets des différents régimes.</p></li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">lm4 &lt;-<span class="st"> </span><span class="kw">lm</span>(masse_oeuf <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="kw">anova</span>(lm4)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: masse_oeuf
+##           Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+## regime     9 10.145 1.12719   2.105 0.07953 .
+## Residuals 20 10.710 0.53548                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; Pas de différences signifcatives entre les effets des régimes.</p>
+</blockquote>
+</div>
+<div id="visualisation-boxplots-masse-des-oeufs-2" class="section level3">
+<h3><span class="header-section-number">6.1.4</span> Visualisation boxplots, masse des oeufs</h3>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> s4, <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_oeuf)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span><span class="co">#theme_classic() +</span></a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Régimes&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Masse de l&#39;oeuf&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="test-post-hoc-student-newman-keuls-masse-des-oeufs-1" class="section level3">
+<h3><span class="header-section-number">6.1.5</span> Test post-hoc, Student-Newman Keuls, masse des oeufs</h3>
+<p>Les comparaisons des moyennes par paires :</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">tb_m4 &lt;-<span class="st"> </span>(<span class="kw">SNK.test</span>(lm4, <span class="st">&quot;regime&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>))<span class="op">$</span>groups <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw">select</span>(regime, masse_oeuf, groups) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb10-5" title="5">tb_m4</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+##    regime  masse_oeuf groups
+##    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt; 
+##  1 YC           11.4  a     
+##  2 Ba 1         11.2  ab    
+##  3 Ba 2,5       11.0  ab    
+##  4 WC           10.5  ab    
+##  5 Ba 10        10.5  ab    
+##  6 Ba 0,75      10.3  ab    
+##  7 Ba 5         10.3  ab    
+##  8 Ba 0,50      10.3  ab    
+##  9 Ba 0,25      10.2  ab    
+## 10 Ba 7,5        9.23 b</code></pre>
+<blockquote>
+<p>Étonnant !</p>
+</blockquote>
+</div>
+<div id="visualisation-des-groupes-bareplots-avec-labels-masse-des-oeufs-1" class="section level3">
+<h3><span class="header-section-number">6.1.6</span> Visualisation des groupes, bareplots avec labels, masse des oeufs</h3>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tb_m4, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_oeuf)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">width =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="st">  </span><span class="co">#ylim(0, 2) +</span></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> tb_m4, <span class="kw">aes</span>(<span class="dt">label =</span> groups), <span class="dt">vjust =</span> <span class="fl">-0.5</span>, <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-5" title="5"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Régimes&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Masse des oeufs (g)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb12-7" title="7"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="masse-de-la-coquille-masse_coq-3" class="section level2">
+<h2><span class="header-section-number">6.2</span> Masse de la coquille <code>masse_coq</code></h2>
+<div id="test-de-normalité-de-shapiro-wilk-masse-de-la-coquille-2" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Test de normalité de Shapiro-Wilk, masse de la coquille</h3>
+<ul>
+<li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
+</ul>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="st">  </span><span class="kw">shapiro_test</span>(masse_coq)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   variable  statistic      p
+##   &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;
+## 1 masse_coq     0.914 0.0193</code></pre>
+<blockquote>
+<p>p-value &lt; 0.05 =&gt; distribution non-normale. =&gt; Alternative non-paramétrique : Test de Kruskal-Wallis recommandé lorsque les hypothèses du test ANOVA à un facteur ne sont pas respectées.</p>
+</blockquote>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="st">  </span><span class="kw">kruskal_test</span>(masse_coq <span class="op">~</span><span class="st"> </span>regime)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 6
+##   .y.           n statistic    df      p method        
+## * &lt;chr&gt;     &lt;int&gt;     &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;         
+## 1 masse_coq    30      15.6     9 0.0756 Kruskal-Wallis</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; Pas de différence significative entre les effets des régimes.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="épaisseur-de-la-coquille-epaisseur_coq-3" class="section level2">
+<h2><span class="header-section-number">6.3</span> Épaisseur de la coquille <code>epaisseur_coq</code></h2>
+<div id="test-de-normalité-de-shapiro-wilk-épaisseur-de-la-coquille-2" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Test de normalité de Shapiro-Wilk, épaisseur de la coquille</h3>
+<ul>
+<li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
+</ul>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-2" title="2"><span class="st">  </span><span class="kw">shapiro_test</span>(epaisseur_coq)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   variable      statistic      p
+##   &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;
+## 1 epaisseur_coq     0.907 0.0124</code></pre>
+<blockquote>
+<p>p-value &lt; 0.05 =&gt; distribution non-normale. =&gt; Alternative non-paramétrique : Test de Kruskal-Wallis recommandé lorsque les hypothèses du test ANOVA à un facteur ne sont pas respectées.</p>
+</blockquote>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="st">  </span><span class="kw">kruskal_test</span>(epaisseur_coq <span class="op">~</span><span class="st"> </span>regime)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 6
+##   .y.               n statistic    df      p method        
+## * &lt;chr&gt;         &lt;int&gt;     &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;         
+## 1 epaisseur_coq    30      21.0     9 0.0126 Kruskal-Wallis</code></pre>
+<blockquote>
+<p>p-value &lt; 0.05 =&gt; Différence significative entre les effets d’au moins 2 régimes</p>
+</blockquote>
+<p>Test de Dunn pour identifier les groupes différents.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="st">  </span><span class="kw">dunn_test</span>(epaisseur_coq <span class="op">~</span><span class="st"> </span>regime, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="st">  </span><span class="kw">select</span>(group1, group2, p, p.adj, p.adj.signif) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-4" title="4"><span class="st">  </span><span class="kw">filter</span>(p.adj.signif <span class="op">!=</span><span class="st"> &quot;ns&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 2 x 5
+##   group1  group2        p  p.adj p.adj.signif
+##   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       
+## 1 Ba 0,75 Ba 5   0.000801 0.0361 *           
+## 2 Ba 5    WC     0.000570 0.0257 *</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-2" title="2"><span class="st">  </span><span class="kw">select</span>(regime, epaisseur_coq) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(regime) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-4" title="4"><span class="st">  </span><span class="kw">summarise_all</span>(<span class="kw">list</span>(<span class="dt">epaisseur_coq_moyen =</span> mean, <span class="dt">sd =</span> sd))</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+##    regime  epaisseur_coq_moyen     sd
+##    &lt;fct&gt;                 &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Ba 0,25               0.28  0.0173
+##  2 Ba 0,50               0.23  0.0361
+##  3 Ba 0,75               0.34  0.0436
+##  4 Ba 1                  0.233 0.0153
+##  5 Ba 10                 0.243 0.0115
+##  6 Ba 2,5                0.263 0.0252
+##  7 Ba 5                  0.2   0     
+##  8 Ba 7,5                0.247 0.0208
+##  9 WC                    0.367 0.0551
+## 10 YC                    0.27  0.0656</code></pre>
+<blockquote>
+<p>Différences significatives entre Ba0.75 et Ba5</p>
+<p>et entre Ba5 et WC.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="masse-du-jaune-doeuf-masse_du_jaune-3" class="section level2">
+<h2><span class="header-section-number">6.4</span> Masse du jaune d’oeuf <code>masse_du_jaune</code></h2>
+<div id="test-de-normalité-de-shapiro-wilk-masse-du-jaune-2" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> Test de normalité de Shapiro-Wilk, masse du jaune</h3>
+<ul>
+<li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
+</ul>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-2" title="2"><span class="st">  </span><span class="kw">shapiro_test</span>(masse_du_jaune)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   variable       statistic     p
+##   &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;
+## 1 masse_du_jaune     0.963 0.377</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; distribution normale.</p>
+</blockquote>
+</div>
+<div id="test-de-sphéricité-homogénéité-des-variances-masse-du-jaune-2" class="section level3">
+<h3><span class="header-section-number">6.4.2</span> Test de sphéricité (homogénéité des variances), masse du jaune</h3>
+<ul>
+<li><code>Ho</code>. Toutes les variances des populations sont égales.</li>
+<li><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</li>
+</ul>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="kw">leveneTest</span>(masse_du_jaune <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  9  0.6268  0.761
+##       20</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05, =&gt; variances homogènes.</p>
+</blockquote>
+</div>
+<div id="anova-masse-du-jaune-3" class="section level3">
+<h3><span class="header-section-number">6.4.3</span> ANOVA, masse du jaune</h3>
+<ul>
+<li><p>Si la p-value est inférieure au seuil de signification 0.05, on conclut qu’il existe des différences significatives entre les groupes (entre au moins deux groupes).</p></li>
+<li><p>si non, il n’y a pas de différence entre les effets des différents régimes.</p></li>
+</ul>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">lmj4 &lt;-<span class="st"> </span><span class="kw">lm</span>(masse_du_jaune <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a>
+<a class="sourceLine" id="cb29-2" title="2"><span class="kw">anova</span>(lmj4)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: masse_du_jaune
+##           Df Sum Sq  Mean Sq F value Pr(&gt;F)
+## regime     9 1.6490 0.183219  1.8684 0.1172
+## Residuals 20 1.9612 0.098061</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; Pas de différence significative entre les masses du jaune d’oeuf au seuil de 5% selon les régimes.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="masse-du-blanc-doeuf-masse_du_blanc-3" class="section level2">
+<h2><span class="header-section-number">6.5</span> Masse du blanc d’oeuf <code>masse_du_blanc</code></h2>
+<div id="test-de-normalité-de-shapiro-wilk-masse-du-blanc-2" class="section level3">
+<h3><span class="header-section-number">6.5.1</span> Test de normalité de Shapiro-Wilk, masse du blanc</h3>
+<ul>
+<li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="st">  </span><span class="kw">shapiro_test</span>(masse_du_blanc)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   variable       statistic     p
+##   &lt;chr&gt;              &lt;dbl&gt; &lt;dbl&gt;
+## 1 masse_du_blanc     0.951 0.184</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; distribution normale.</p>
+</blockquote>
+</div>
+<div id="test-de-sphéricité-homogénéité-des-variances-masse-du-blanc-1" class="section level3">
+<h3><span class="header-section-number">6.5.2</span> Test de sphéricité (homogénéité des variances), masse du blanc</h3>
+<ul>
+<li><code>Ho</code>. Toutes les variances des populations sont égales.</li>
+<li><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</li>
+</ul>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">leveneTest</span>(masse_du_blanc <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  9  0.8499 0.5815
+##       20</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; variances homogènes.</p>
+</blockquote>
+</div>
+<div id="anova-masse-du-blanc-2" class="section level3">
+<h3><span class="header-section-number">6.5.3</span> ANOVA masse du blanc</h3>
+<ul>
+<li><p>Si la p-value est inférieure au seuil de signification 0.05, on conclut qu’il existe des différences significatives entre les groupes (entre au moins deux groupes).</p></li>
+<li><p>si non, il n’y a pas de différence entre les effets des différents régimes.</p></li>
+</ul>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">lmb4 &lt;-<span class="st"> </span><span class="kw">lm</span>(masse_du_blanc <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a>
+<a class="sourceLine" id="cb35-2" title="2"><span class="kw">anova</span>(lmb4)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: masse_du_blanc
+##           Df Sum Sq Mean Sq F value   Pr(&gt;F)   
+## regime     9 5.9597 0.66218  3.6007 0.008156 **
+## Residuals 20 3.6781 0.18391                    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<blockquote>
+<p>p-value &lt; 0.01 =&gt; au moins deux régimes ont des effets très signifiquement différents.</p>
+</blockquote>
+</div>
+<div id="visualisation-boxplots-masse-du-blanc-2" class="section level3">
+<h3><span class="header-section-number">6.5.4</span> Visualisation boxplots masse du blanc</h3>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> s4, <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_du_blanc)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-3" title="3"><span class="st">  </span><span class="co">#theme_classic() +</span></a>
+<a class="sourceLine" id="cb37-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Régimes&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Masse du blanc d&#39;oeuf (g)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb37-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+</div>
+<div id="test-post-hoc-student-newman-keuls-masse-du-jaune-3" class="section level3">
+<h3><span class="header-section-number">6.5.5</span> Test post-hoc, Student-Newman Keuls, masse du jaune</h3>
+<p>Comparaisons des moyennes par paires :</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">tb_mb4 &lt;-<span class="st"> </span>(<span class="kw">SNK.test</span>(lmb4, <span class="st">&quot;regime&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>))<span class="op">$</span>groups <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-3" title="3"><span class="st">  </span><span class="kw">select</span>(regime, masse_du_blanc, groups) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb38-5" title="5">tb_mb4</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+##    regime  masse_du_blanc groups
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt; 
+##  1 Ba 2,5            6.39 a     
+##  2 YC                6.38 a     
+##  3 Ba 0,75           6.08 a     
+##  4 Ba 1              6.04 a     
+##  5 Ba 5              5.86 a     
+##  6 Ba 10             5.82 a     
+##  7 WC                5.79 a     
+##  8 Ba 0,50           5.72 a     
+##  9 Ba 0,25           5.61 a     
+## 10 Ba 7,5            4.73 b</code></pre>
+</div>
+<div id="visualisation-des-groupes-bareplots-avec-labels-4" class="section level3">
+<h3><span class="header-section-number">6.5.6</span> Visualisation des groupes, bareplots avec labels</h3>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tb_mb4, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_du_blanc)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">width =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="st">  </span><span class="co">#ylim(0, 2) +</span></a>
+<a class="sourceLine" id="cb40-4" title="4"><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> tb_mb4, <span class="kw">aes</span>(<span class="dt">label =</span> groups), <span class="dt">vjust =</span> <span class="fl">-0.5</span>, <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb40-5" title="5"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb40-6" title="6"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Régimes&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Masse du blanc d&#39;oeuf (g)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb40-7" title="7"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="indice-l-de-lintérieur-de-la-coquille-l_int_coq-3" class="section level2">
+<h2><span class="header-section-number">6.6</span> Indice <code>l</code> de l’intérieur de la coquille <code>l_int_coq</code></h2>
+<div id="test-de-normalité-de-shapiro-wilk-indice-l-2" class="section level3">
+<h3><span class="header-section-number">6.6.1</span> Test de normalité de Shapiro-Wilk, Indice <code>l</code></h3>
+<ul>
+<li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
+</ul>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb41-2" title="2"><span class="st">  </span><span class="kw">shapiro_test</span>(l_int_coq)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   variable  statistic     p
+##   &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+## 1 l_int_coq     0.971 0.575</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; distribution normale.</p>
+</blockquote>
+</div>
+<div id="test-de-sphéricité-homogénéité-des-variances-indice-l" class="section level3">
+<h3><span class="header-section-number">6.6.2</span> Test de sphéricité (homogénéité des variances), Indice <code>l</code></h3>
+<ul>
+<li><code>Ho</code>. Toutes les variances des populations sont égales.</li>
+<li><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</li>
+</ul>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="kw">leveneTest</span>(l_int_coq <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  9  0.8758 0.5616
+##       20</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; variances homogènes.</p>
+</blockquote>
+</div>
+<div id="anova-indice-l" class="section level3">
+<h3><span class="header-section-number">6.6.3</span> ANOVA, Indice <code>l</code></h3>
+<ul>
+<li><p>Si la p-value est inférieure au seuil de signification 0.05, on conclut qu’il existe des différences significatives entre les groupes (entre au moins deux groupes).</p></li>
+<li><p>si non, il n’y a pas de différence entre les effets des différents régimes.</p></li>
+</ul>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1">lilc4 &lt;-<span class="st"> </span><span class="kw">lm</span>(l_int_coq <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="kw">anova</span>(lilc4)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: l_int_coq
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## regime     9  49.48  5.4978  0.9333 0.5185
+## Residuals 20 117.81  5.8904</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; Pas de différences significatives entre les effets des régimes.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="indice-a-de-lintérieur-de-la-coquille-a_int_coq-3" class="section level2">
+<h2><span class="header-section-number">6.7</span> Indice <code>a</code> de l’intérieur de la coquille <code>a_int_coq</code></h2>
+<div id="test-de-normalité-de-shapiro-wilk-indice-a-2" class="section level3">
+<h3><span class="header-section-number">6.7.1</span> Test de normalité de Shapiro-Wilk, Indice <code>a</code></h3>
+<ul>
+<li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
+</ul>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb47-2" title="2"><span class="st">  </span><span class="kw">shapiro_test</span>(a_int_coq)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   variable  statistic     p
+##   &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+## 1 a_int_coq     0.984 0.922</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; distribution normale.</p>
+</blockquote>
+</div>
+<div id="test-de-sphéricité-homogénéité-des-variances-indice-a" class="section level3">
+<h3><span class="header-section-number">6.7.2</span> Test de sphéricité (homogénéité des variances), Indice <code>a</code></h3>
+<ul>
+<li><code>Ho</code>. Toutes les variances des populations sont égales.</li>
+<li><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</li>
+</ul>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="kw">leveneTest</span>(a_int_coq <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  9  0.9729   0.49
+##       20</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; variances homogènes.</p>
+</blockquote>
+</div>
+<div id="anova-indice-a" class="section level3">
+<h3><span class="header-section-number">6.7.3</span> ANOVA, Indice <code>a</code></h3>
+<ul>
+<li><p>Si la p-value est inférieure au seuil de signification 0.05, on conclut qu’il existe des différences significatives entre les groupes (entre au moins deux groupes).</p></li>
+<li><p>si non, il n’y a pas de différence entre les effets des différents régimes.</p></li>
+</ul>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">liac4 &lt;-<span class="st"> </span><span class="kw">lm</span>(a_int_coq <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a>
+<a class="sourceLine" id="cb51-2" title="2"><span class="kw">anova</span>(liac4)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: a_int_coq
+##           Df  Sum Sq Mean Sq F value Pr(&gt;F)
+## regime     9  8.4366  0.9374  0.7005 0.7014
+## Residuals 20 26.7645  1.3382</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; Pas de différences significatives entre les effets des régimes.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="indice-b-de-lintérieur-de-la-coquille-b_int_coq-3" class="section level2">
+<h2><span class="header-section-number">6.8</span> Indice <code>b</code> de l’intérieur de la coquille <code>b_int_coq</code></h2>
+<div id="test-de-normalité-de-shapiro-wilk-indice-b-2" class="section level3">
+<h3><span class="header-section-number">6.8.1</span> Test de normalité de Shapiro-Wilk, Indice <code>b</code></h3>
+<ul>
+<li>Ho. La distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
+</ul>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb53-2" title="2"><span class="st">  </span><span class="kw">shapiro_test</span>(b_int_coq)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   variable  statistic     p
+##   &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;
+## 1 b_int_coq     0.961 0.320</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; distribution normale</p>
+</blockquote>
+</div>
+<div id="test-de-sphéricité-homogénéité-des-variances-indice-b-1" class="section level3">
+<h3><span class="header-section-number">6.8.2</span> Test de sphéricité (homogénéité des variances), Indice <code>b</code></h3>
+<ul>
+<li><code>Ho</code>. Toutes les variances des populations sont égales.</li>
+<li><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</li>
+</ul>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1"><span class="kw">leveneTest</span>(b_int_coq <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  9  0.6429 0.7482
+##       20</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; variances homogènes.</p>
+</blockquote>
+</div>
+<div id="anova-indice-b-1" class="section level3">
+<h3><span class="header-section-number">6.8.3</span> ANOVA, Indice <code>b</code></h3>
+<ul>
+<li><p>Si la p-value est inférieure au seuil de signification 0.05, on conclut qu’il existe des différences significatives entre les groupes (entre au moins deux groupes).</p></li>
+<li><p>si non, il n’y a pas de différence entre les effets des différents régimes.</p></li>
+</ul>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">libc4 &lt;-<span class="st"> </span><span class="kw">lm</span>(b_int_coq <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a>
+<a class="sourceLine" id="cb57-2" title="2"><span class="kw">anova</span>(libc4)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: b_int_coq
+##           Df  Sum Sq Mean Sq F value Pr(&gt;F)
+## regime     9  1.5086 0.16762  0.2721 0.9752
+## Residuals 20 12.3215 0.61608</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; Pas de différence significative entre les effets des régimes sur ce paramètre.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="indice-l-du-jaune-doeuf-l_jaune-3" class="section level2">
+<h2><span class="header-section-number">6.9</span> Indice <code>l</code> du jaune d’oeuf <code>l_jaune</code></h2>
+<div id="test-de-normalité-de-shapiro-wilk-indice-l-du-jaune-2" class="section level3">
+<h3><span class="header-section-number">6.9.1</span> Test de normalité de Shapiro-Wilk, Indice <code>l</code> du jaune</h3>
+<ul>
+<li>Ho. La distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
+</ul>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb59-2" title="2"><span class="st">  </span><span class="kw">shapiro_test</span>(l_jaune)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   variable statistic     p
+##   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
+## 1 l_jaune      0.965 0.411</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; distribution normale.</p>
+</blockquote>
+</div>
+<div id="test-de-sphéricité-homogénéité-des-variances-indice-l-du-jaune" class="section level3">
+<h3><span class="header-section-number">6.9.2</span> Test de sphéricité (homogénéité des variances), Indice <code>l</code> du jaune</h3>
+<ul>
+<li><code>Ho</code>. Toutes les variances des populations sont égales.</li>
+<li><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</li>
+</ul>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" title="1"><span class="kw">leveneTest</span>(l_jaune <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  9  0.6875  0.712
+##       20</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; variances homogènes.</p>
+</blockquote>
+</div>
+<div id="anova-indice-l-du-jaune" class="section level3">
+<h3><span class="header-section-number">6.9.3</span> ANOVA, Indice <code>l</code> du jaune</h3>
+<ul>
+<li><p>Si la p-value est inférieure au seuil de signification 0.05, on conclut qu’il existe des différences significatives entre les groupes (entre au moins deux groupes).</p></li>
+<li><p>si non, il n’y a pas de différence entre les effets des différents régimes.</p></li>
+</ul>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" title="1">lilj4 &lt;-<span class="st"> </span><span class="kw">lm</span>(l_jaune <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a>
+<a class="sourceLine" id="cb63-2" title="2"><span class="kw">anova</span>(lilj4)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: l_jaune
+##           Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+## regime     9 148.91 16.5461  2.6285 0.03447 *
+## Residuals 20 125.89  6.2948                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<blockquote>
+<p>p-value &lt; 0.05 =&gt; au moins deux régimes ont des effets signifiquement différents.</p>
+</blockquote>
+</div>
+<div id="visualisation-boxplots-indice-l-du-jaune" class="section level3">
+<h3><span class="header-section-number">6.9.4</span> Visualisation boxplots, Indice <code>l</code> du jaune</h3>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> s4, <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> l_jaune)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb65-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb65-3" title="3"><span class="st">  </span><span class="co">#theme_classic() +</span></a>
+<a class="sourceLine" id="cb65-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Régimes&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Indice l du jaune d&#39;oeuf&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb65-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+</div>
+<div id="test-post-hoc-student-newman-keuls-indice-l-du-jaune" class="section level3">
+<h3><span class="header-section-number">6.9.5</span> Test post-hoc, Student-Newman Keuls, Indice <code>l</code> du jaune</h3>
+<p>Comparaisons des moyennes par paires :</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">tb_ilj4 &lt;-<span class="st"> </span>(<span class="kw">SNK.test</span>(lilj4, <span class="st">&quot;regime&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>))<span class="op">$</span>groups <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-3" title="3"><span class="st">  </span><span class="kw">select</span>(regime, l_jaune, groups) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb66-5" title="5">tb_ilj4</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+##    regime  l_jaune groups
+##    &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; 
+##  1 Ba 0,50    69.1 a     
+##  2 Ba 10      69.1 a     
+##  3 Ba 1       68.7 a     
+##  4 Ba 0,75    67.2 ab    
+##  5 Ba 5       66.9 ab    
+##  6 WC         66.4 ab    
+##  7 Ba 2,5     66.3 ab    
+##  8 Ba 7,5     66.2 ab    
+##  9 YC         64.1 ab    
+## 10 Ba 0,25    61.5 b</code></pre>
+</div>
+<div id="visualisation-des-groupes-bareplots-avec-labels-indice-l-du-jaune" class="section level3">
+<h3><span class="header-section-number">6.9.6</span> Visualisation des groupes, bareplots avec labels, Indice <code>l</code> du jaune</h3>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tb_ilj4, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> l_jaune)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb68-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">width =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb68-3" title="3"><span class="st">  </span><span class="co">#ylim(0, 2) +</span></a>
+<a class="sourceLine" id="cb68-4" title="4"><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> tb_ilj4, <span class="kw">aes</span>(<span class="dt">label =</span> groups), <span class="dt">vjust =</span> <span class="fl">-0.5</span>, <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb68-5" title="5"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb68-6" title="6"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Régimes&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Indice l du jaune d&#39;oeuf&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb68-7" title="7"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="indice-a-du-jaune-doeuf-a_jaune-3" class="section level2">
+<h2><span class="header-section-number">6.10</span> Indice <code>a</code> du jaune d’oeuf <code>a_jaune</code></h2>
+<div id="test-de-normalité-de-shapiro-wilk-indice-a-du-jaune-2" class="section level3">
+<h3><span class="header-section-number">6.10.1</span> Test de normalité de Shapiro-Wilk, Indice <code>a</code> du jaune</h3>
+<ul>
+<li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
+</ul>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb69-2" title="2"><span class="st">  </span><span class="kw">shapiro_test</span>(a_jaune)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   variable statistic     p
+##   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
+## 1 a_jaune      0.973 0.623</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; distribution normale</p>
+</blockquote>
+</div>
+<div id="test-de-sphéricité-homogénéité-des-variances-indice-a-du-jaune-1" class="section level3">
+<h3><span class="header-section-number">6.10.2</span> Test de sphéricité (homogénéité des variances), Indice <code>a</code> du jaune</h3>
+<ul>
+<li><code>Ho</code>. Toutes les variances des populations sont égales.</li>
+<li><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</li>
+</ul>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" title="1"><span class="kw">leveneTest</span>(a_jaune <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  9  0.3501 0.9457
+##       20</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; variances homogènes.</p>
+</blockquote>
+</div>
+<div id="anova-indice-a-du-jaune-1" class="section level3">
+<h3><span class="header-section-number">6.10.3</span> ANOVA, Indice <code>a</code> du jaune</h3>
+<ul>
+<li><p>Si la p-value est inférieure au seuil de signification 0.05, on conclut qu’il existe des différences significatives entre les groupes (entre au moins deux groupes).</p></li>
+<li><p>si non, il n’y a pas de différence entre les effets des différents régimes.</p></li>
+</ul>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" title="1">liaj4 &lt;-<span class="st"> </span><span class="kw">lm</span>(a_jaune <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a>
+<a class="sourceLine" id="cb73-2" title="2"><span class="kw">anova</span>(liaj4)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: a_jaune
+##           Df Sum Sq Mean Sq F value Pr(&gt;F)
+## regime     9 10.495  1.1661  1.1558 0.3725
+## Residuals 20 20.178  1.0089</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; Pas d’effets signifiquement différents entre les régimes.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="indice-b-du-jaune-doeuf-b_jaune-3" class="section level2">
+<h2><span class="header-section-number">6.11</span> Indice <code>b</code> du jaune d’oeuf <code>b_jaune</code></h2>
+<div id="test-de-normalité-de-shapiro-wilk-indice-b-du-jaune-2" class="section level3">
+<h3><span class="header-section-number">6.11.1</span> Test de normalité de Shapiro-Wilk, Indice <code>b</code> du jaune</h3>
+<ul>
+<li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
+</ul>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb75-2" title="2"><span class="st">  </span><span class="kw">shapiro_test</span>(b_jaune)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   variable statistic       p
+##   &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;
+## 1 b_jaune      0.886 0.00390</code></pre>
+<blockquote>
+<p>p-value &lt; 0.05 -&gt; distribution non-normale. =&gt; Alternative non-paramétrique : Test de Kruskal-Wallis recommandé lorsque les hypothèses du test ANOVA à un facteur ne sont pas respectées.</p>
+</blockquote>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb77-2" title="2"><span class="st">  </span><span class="kw">kruskal_test</span>(b_jaune <span class="op">~</span><span class="st"> </span>regime)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 6
+##   .y.         n statistic    df      p method        
+## * &lt;chr&gt;   &lt;int&gt;     &lt;dbl&gt; &lt;int&gt;  &lt;dbl&gt; &lt;chr&gt;         
+## 1 b_jaune    30      20.9     9 0.0129 Kruskal-Wallis</code></pre>
+<blockquote>
+<p>p-value &lt; 0.05 =&gt; Au moins 2 groupes ont des effets significativement différents.</p>
+</blockquote>
+<p>Test de Dunn pour identifier les groupes différents.</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb79-2" title="2"><span class="st">  </span><span class="kw">dunn_test</span>(b_jaune <span class="op">~</span><span class="st"> </span>regime, <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb79-3" title="3"><span class="st">  </span><span class="kw">select</span>(group1, group2, p, p.adj, p.adj.signif) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb79-4" title="4"><span class="st">  </span><span class="kw">filter</span>(p.adj.signif <span class="op">!=</span><span class="st"> &quot;ns&quot;</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 5
+##   group1 group2        p  p.adj p.adj.signif
+##   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       
+## 1 WC     YC     0.000706 0.0318 *</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb81-2" title="2"><span class="st">  </span><span class="kw">select</span>(regime, b_jaune) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb81-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(regime) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb81-4" title="4"><span class="st">  </span><span class="kw">summarise_all</span>(<span class="kw">list</span>(<span class="dt">b_jaune_moyen =</span> mean, <span class="dt">sd =</span> sd))</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+##    regime  b_jaune_moyen    sd
+##    &lt;fct&gt;           &lt;dbl&gt; &lt;dbl&gt;
+##  1 Ba 0,25          17.5 0.611
+##  2 Ba 0,50          22.5 1.48 
+##  3 Ba 0,75          20.0 2.44 
+##  4 Ba 1             23.3 6.57 
+##  5 Ba 10            25.0 2.76 
+##  6 Ba 2,5           23.9 3.36 
+##  7 Ba 5             17.6 0    
+##  8 Ba 7,5           22.4 2.14 
+##  9 WC               16.7 0.842
+## 10 YC               34.9 2.99</code></pre>
+<blockquote>
+<p>le YC et le WC ont des effets significativement différents sur l’indice b du jaune d’oeuf.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="teneur-en-protéines-totales-prot_tot-3" class="section level2">
+<h2><span class="header-section-number">6.12</span> Teneur en protéines totales <code>prot_tot</code></h2>
+<div id="test-de-normalité-de-shapiro-wilk-protéines-2" class="section level3">
+<h3><span class="header-section-number">6.12.1</span> Test de normalité de Shapiro-Wilk, protéines</h3>
+<ul>
+<li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
+</ul>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb83-2" title="2"><span class="st">  </span><span class="kw">shapiro_test</span>(prot_tot)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   variable statistic      p
+##   &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+## 1 prot_tot     0.916 0.0217</code></pre>
+<blockquote>
+<p>p-value &lt; 0.05 =&gt; distribution non-normale. =&gt; Alternative non-paramétrique : Test de Kruskal-Wallis recommandé lorsque les hypothèses du test ANOVA à un facteur ne sont pas respectées.</p>
+</blockquote>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb85-2" title="2"><span class="st">  </span><span class="kw">kruskal_test</span>(prot_tot <span class="op">~</span><span class="st"> </span>regime)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 6
+##   .y.          n statistic    df     p method        
+## * &lt;chr&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;         
+## 1 prot_tot    30      12.9     9 0.168 Kruskal-Wallis</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; Pas de différences significatives entre les effets des régimes au seuil de 5%.</p>
+</blockquote>
+<hr />
+</div>
+</div>
+<div id="teneur-en-cholestérol-total-chol_tot-3" class="section level2">
+<h2><span class="header-section-number">6.13</span> Teneur en cholestérol total <code>chol_tot</code></h2>
+<div id="test-de-normalité-de-shapiro-wilk-cholestérol-2" class="section level3">
+<h3><span class="header-section-number">6.13.1</span> Test de normalité de Shapiro-Wilk, cholestérol</h3>
+<ul>
+<li>Ho. la distribution de l’échantillon est normale (ou n’est pas différente d’une distribution normale).</li>
+</ul>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" title="1">s4 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb87-2" title="2"><span class="st">  </span><span class="kw">shapiro_test</span>(chol_tot)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   variable statistic     p
+##   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
+## 1 chol_tot     0.966 0.447</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05 =&gt; distribution normale.</p>
+</blockquote>
+</div>
+<div id="test-de-sphéricité-homogénéité-des-variances-cholestérol-1" class="section level3">
+<h3><span class="header-section-number">6.13.2</span> Test de sphéricité (homogénéité des variances), cholestérol</h3>
+<ul>
+<li><code>Ho</code>. Toutes les variances des populations sont égales.</li>
+<li><code>H1</code> ou <code>Ha</code>. Au moins deux d’entre elles diffèrent.</li>
+</ul>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" title="1"><span class="kw">leveneTest</span>(chol_tot <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a></code></pre></div>
+<pre><code>## Levene&#39;s Test for Homogeneity of Variance (center = median)
+##       Df F value Pr(&gt;F)
+## group  9  0.3712 0.9356
+##       20</code></pre>
+<blockquote>
+<p>p-value &gt; 0.05, =&gt; variances homogènes.</p>
+</blockquote>
+</div>
+<div id="anova-cholestérol-1" class="section level3">
+<h3><span class="header-section-number">6.13.3</span> ANOVA, cholestérol</h3>
+<p>Si la p-value est inférieure au seuil de signification 0.05, on conclut qu’il existe des différences significatives entre les groupes (entre au moins deux groupes).</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" title="1">lch4 &lt;-<span class="st"> </span><span class="kw">lm</span>(chol_tot <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> s4)</a>
+<a class="sourceLine" id="cb91-2" title="2"><span class="kw">anova</span>(lch4)</a></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: chol_tot
+##           Df     Sum Sq   Mean Sq F value    Pr(&gt;F)    
+## regime     9 1934886574 214987397  13.524 1.061e-06 ***
+## Residuals 20  317935774  15896789                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<blockquote>
+<p>p-value &lt; 0.05 =&gt; au moins deux régimes ont des effets différents sur la teneur en cholestérol de l’oeuf au seuil de 5%.</p>
+</blockquote>
+</div>
+<div id="visualisation-boxplots-cholestérol-1" class="section level3">
+<h3><span class="header-section-number">6.13.4</span> Visualisation boxplots, cholestérol</h3>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> s4, <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> chol_tot)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb93-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb93-3" title="3"><span class="st">  </span><span class="co">#theme_classic() +</span></a>
+<a class="sourceLine" id="cb93-4" title="4"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Régimes&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Teneur en cholestérol de l&#39;oeuf&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb93-5" title="5"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+</div>
+<div id="test-post-hoc-student-newman-keuls-cholestérol-1" class="section level3">
+<h3><span class="header-section-number">6.13.5</span> Test post-hoc, Student-Newman Keuls, cholestérol</h3>
+<p>Comparaisons des moyennes par paires</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1">tb_ch4 &lt;-<span class="st"> </span>(<span class="kw">SNK.test</span>(lch4, <span class="st">&quot;regime&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>))<span class="op">$</span>groups <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb94-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb94-3" title="3"><span class="st">  </span><span class="kw">select</span>(regime, chol_tot, groups) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb94-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb94-5" title="5">tb_ch4</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+##    regime  chol_tot groups
+##    &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt; 
+##  1 Ba 0,50   35587. a     
+##  2 Ba 0,25   32269. ab    
+##  3 Ba 0,75   27016. bc    
+##  4 Ba 5      25635. bc    
+##  5 Ba 2,5    25604. bc    
+##  6 Ba 1      20568. cd    
+##  7 Ba 7,5    17632. cde   
+##  8 YC        14073. de    
+##  9 Ba 10     13338. de    
+## 10 WC         9966. e</code></pre>
+</div>
+<div id="visualisation-des-groupes-bareplots-avec-labels-cholestérol-1" class="section level3">
+<h3><span class="header-section-number">6.13.6</span> Visualisation des groupes, bareplots avec labels, cholestérol</h3>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> tb_ch4, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> chol_tot)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb96-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">width =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb96-3" title="3"><span class="st">  </span><span class="co">#ylim(0, 2) +</span></a>
+<a class="sourceLine" id="cb96-4" title="4"><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">data =</span> tb_ch4, <span class="kw">aes</span>(<span class="dt">label =</span> groups), <span class="dt">vjust =</span> <span class="fl">-0.5</span>, <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb96-5" title="5"><span class="st">  </span><span class="kw">theme_classic</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb96-6" title="6"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Régimes&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Teneur en cholestérol de l&#39;oeuf&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb96-7" title="7"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="teneur-en-lipides-totales-lip_tot-3" class="section level2">
+<h2><span class="header-section-number">6.14</span> Teneur en lipides totales <code>lip_tot</code></h2>
+<p>Lipides non analysées pour cette séance.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="s3.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="s5.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Silue_N._2021_Nutrition_Cailles.pdf", "Silue_N._2021_Nutrition_Cailles.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

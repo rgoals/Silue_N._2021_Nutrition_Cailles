@@ -1,5 +1,675 @@
 # Séance 4 {#s4}
 
+```{r message = FALSE, warning = FALSE}
+library("tidyverse") # tidy et ggplot2
+library("agricolae") # SNK.test() Student Newman-Keuls
+library("car")       # leveneTest()
+library("rstatix")   # convert_as_factor()
+df <- read_csv("data/seance.csv")
+df <- df %>%
+  mutate(regime = factor(regime))
+```
+
+## Masse des oeufs `masse_oeuf`
+
+```{r}
+s4 <- df %>% 
+  filter(seance == "seance 4")
+```
+
+### Test de normalité de Shapiro-Wilk, masse des oeufs
+
+- Ho. la distribution de l’échantillon est normale (ou n'est pas différente d'une distribution normale)
+
+- H1 ou Ha si non.
+
+- Si **p-value > 0,05** alors la distribution des données n’est pas significativement différente de la distribution normale. On accepte Ho.
+
+```{r}
+s4 %>% 
+  shapiro_test(masse_oeuf)
+```
+
+> p-value > 0.05 => distribution normale. 
+
+### Test de sphéricité (homogénéité des variances), masse des oeufs
+
+Pour ces tests :
+
+- `Ho`. Toutes les variances des populations (traitements) sont égales.
+- `H1` ou `Ha`. Au moins deux d'entre elles diffèrent.
+
+- des valeurs p < à 0,05 suggèrent que les variances sont significativement différentes et donc que l'hypothèse d'homogénéité des variances n'est pas respectée. 
+
+```{r}
+leveneTest(masse_oeuf ~ regime, data = s4)
+```
+
+> p-value > 0.05, variances homogènes.
+
+### ANOVA, masse des oeufs
+
+- Si la p-value est < 0.05, on conclut qu'il existe des différences significatives entre les groupes (entre au moins deux groupes). 
+
+- si non, il n'y a pas de différence entre les effets des différents régimes. 
+
+```{r}
+lm4 <- lm(masse_oeuf ~ regime, data = s4)
+anova(lm4)
+```
+
+> p-value > 0.05 => Pas de différences signifcatives entre les effets des régimes.
+
+### Visualisation boxplots, masse des oeufs
+
+```{r}
+ggplot(data = s4, aes(x = regime, y = masse_oeuf)) +
+  geom_boxplot() + 
+  #theme_classic() +
+  xlab("Régimes") + ylab("Masse de l'oeuf") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
+```
+
+### Test post-hoc, Student-Newman Keuls, masse des oeufs
+
+Les comparaisons des moyennes par paires :
+
+```{r}
+tb_m4 <- (SNK.test(lm4, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, masse_oeuf, groups) %>% 
+  as_tibble()
+tb_m4
+```
+
+> Étonnant !
+
+### Visualisation des groupes, bareplots avec labels, masse des oeufs
+
+```{r}
+ggplot(data = tb_m4, mapping = aes(x = regime, y = masse_oeuf)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  #ylim(0, 2) +
+  geom_text(data = tb_m4, aes(label = groups), vjust = -0.5, size = 4) +
+  theme_classic() +
+  xlab("Régimes") + ylab("Masse des oeufs (g)") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
+```
+
+
+***
+
+
+##  Masse de la coquille `masse_coq`
+
+### Test de normalité de Shapiro-Wilk, masse de la coquille
+
+- Ho. la distribution de l’échantillon est normale (ou n'est pas différente d'une distribution normale).
+
+```{r}
+s4 %>% 
+  shapiro_test(masse_coq)
+```
+
+> p-value < 0.05 => distribution non-normale. => Alternative non-paramétrique : Test de Kruskal-Wallis recommandé lorsque les hypothèses du test ANOVA à un facteur ne sont pas respectées.
+
+```{r}
+s4 %>% 
+  kruskal_test(masse_coq ~ regime)
+```
+
+> p-value > 0.05 => Pas de différence significative entre les effets des régimes. 
+
+
+***
+
+
+## Épaisseur de la coquille `epaisseur_coq`
+
+### Test de normalité de Shapiro-Wilk, épaisseur de la coquille
+
+- Ho. la distribution de l’échantillon est normale (ou n'est pas différente d'une distribution normale).
+
+```{r}
+s4 %>% 
+  shapiro_test(epaisseur_coq)
+```
+
+> p-value < 0.05 => distribution non-normale. => Alternative non-paramétrique : Test de Kruskal-Wallis recommandé lorsque les hypothèses du test ANOVA à un facteur ne sont pas respectées.
+
+```{r}
+s4 %>% 
+  kruskal_test(epaisseur_coq ~ regime)
+```
+
+> p-value < 0.05 => Différence significative entre les effets d'au moins 2 régimes
+
+Test de Dunn pour identifier les groupes différents. 
+
+```{r}
+s4 %>% 
+  dunn_test(epaisseur_coq ~ regime, p.adjust.method = "bonferroni") %>% 
+  select(group1, group2, p, p.adj, p.adj.signif) %>% 
+  filter(p.adj.signif != "ns")
+```
+
+```{r}
+s4 %>% 
+  select(regime, epaisseur_coq) %>% 
+  group_by(regime) %>% 
+  summarise_all(list(epaisseur_coq_moyen = mean, sd = sd))
+```
+
+> Différences significatives entre Ba0.75 et Ba5 
+>
+> et entre Ba5 et WC.
+
+
+***
+
+
+## Masse du jaune d'oeuf `masse_du_jaune`
+
+### Test de normalité de Shapiro-Wilk, masse du jaune
+
+- Ho. la distribution de l’échantillon est normale (ou n'est pas différente d'une distribution normale).
+
+```{r}
+s4 %>% 
+  shapiro_test(masse_du_jaune)
+```
+
+> p-value > 0.05 => distribution normale.
+
+### Test de sphéricité (homogénéité des variances), masse du jaune
+
+- `Ho`. Toutes les variances des populations sont égales.
+- `H1` ou `Ha`. Au moins deux d'entre elles diffèrent.
+
+```{r}
+leveneTest(masse_du_jaune ~ regime, data = s4)
+```
+
+> p-value > 0.05, => variances homogènes.
+
+### ANOVA, masse du jaune
+
+- Si la p-value est inférieure au seuil de signification 0.05, on conclut qu'il existe des différences significatives entre les groupes (entre au moins deux groupes). 
+
+- si non, il n'y a pas de différence entre les effets des différents régimes. 
+
+```{r}
+lmj4 <- lm(masse_du_jaune ~ regime, data = s4)
+anova(lmj4)
+```
+
+> p-value > 0.05 => Pas de différence significative entre les masses du jaune d'oeuf au seuil de 5% selon les régimes.
+
+
+***
+
+
+## Masse du blanc d'oeuf `masse_du_blanc`
+
+### Test de normalité de Shapiro-Wilk, masse du blanc
+
+- Ho. la distribution de l’échantillon est normale (ou n'est pas différente d'une distribution normale).
+
+```{r}
+s4 %>% 
+  shapiro_test(masse_du_blanc)
+```
+
+> p-value > 0.05 => distribution normale.
+
+### Test de sphéricité (homogénéité des variances), masse du blanc
+
+- `Ho`. Toutes les variances des populations sont égales.
+- `H1` ou `Ha`. Au moins deux d'entre elles diffèrent.
+
+```{r}
+leveneTest(masse_du_blanc ~ regime, data = s4)
+```
+
+> p-value > 0.05 => variances homogènes.
+
+### ANOVA masse du blanc
+
+- Si la p-value est inférieure au seuil de signification 0.05, on conclut qu'il existe des différences significatives entre les groupes (entre au moins deux groupes). 
+
+- si non, il n'y a pas de différence entre les effets des différents régimes. 
+
+```{r}
+lmb4 <- lm(masse_du_blanc ~ regime, data = s4)
+anova(lmb4)
+```
+
+> p-value < 0.01 => au moins deux régimes ont des effets très signifiquement différents.
+
+### Visualisation boxplots masse du blanc
+
+```{r}
+ggplot(data = s4, aes(x = regime, y = masse_du_blanc)) +
+  geom_boxplot() + 
+  #theme_classic() +
+  xlab("Régimes") + ylab("Masse du blanc d'oeuf (g)") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
+```
+
+### Test post-hoc, Student-Newman Keuls, masse du jaune
+
+Comparaisons des moyennes par paires :
+
+```{r}
+tb_mb4 <- (SNK.test(lmb4, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, masse_du_blanc, groups) %>% 
+  as_tibble()
+tb_mb4
+```
+
+### Visualisation des groupes, bareplots avec labels
+
+```{r}
+ggplot(data = tb_mb4, mapping = aes(x = regime, y = masse_du_blanc)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  #ylim(0, 2) +
+  geom_text(data = tb_mb4, aes(label = groups), vjust = -0.5, size = 4) +
+  theme_classic() +
+  xlab("Régimes") + ylab("Masse du blanc d'oeuf (g)") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
+```
+
+
+***
+
+
+## Indice `l` de l'intérieur de la coquille `l_int_coq`
+
+### Test de normalité de Shapiro-Wilk, Indice `l`
+
+- Ho. la distribution de l’échantillon est normale (ou n'est pas différente d'une distribution normale).
+
+```{r}
+s4 %>% 
+  shapiro_test(l_int_coq)
+```
+
+> p-value > 0.05 => distribution normale.
+
+### Test de sphéricité (homogénéité des variances), Indice `l`
+
+- `Ho`. Toutes les variances des populations sont égales.
+- `H1` ou `Ha`. Au moins deux d'entre elles diffèrent.
+
+```{r}
+leveneTest(l_int_coq ~ regime, data = s4)
+```
+
+> p-value > 0.05 => variances homogènes.
+
+### ANOVA, Indice `l`
+
+- Si la p-value est inférieure au seuil de signification 0.05, on conclut qu'il existe des différences significatives entre les groupes (entre au moins deux groupes). 
+
+- si non, il n'y a pas de différence entre les effets des différents régimes. 
+
+```{r}
+lilc4 <- lm(l_int_coq ~ regime, data = s4)
+anova(lilc4)
+```
+
+> p-value > 0.05 => Pas de différences significatives entre les effets des régimes.
+
+
+***
+
+
+## Indice `a` de l'intérieur de la coquille `a_int_coq`
+
+### Test de normalité de Shapiro-Wilk, Indice `a`
+
+- Ho. la distribution de l’échantillon est normale (ou n'est pas différente d'une distribution normale).
+
+```{r}
+s4 %>% 
+  shapiro_test(a_int_coq)
+```
+
+> p-value > 0.05 => distribution normale.
+
+### Test de sphéricité (homogénéité des variances), Indice `a`
+
+- `Ho`. Toutes les variances des populations sont égales.
+- `H1` ou `Ha`. Au moins deux d'entre elles diffèrent.
+
+```{r}
+leveneTest(a_int_coq ~ regime, data = s4)
+```
+
+> p-value > 0.05 => variances homogènes.
+
+### ANOVA, Indice `a`
+
+- Si la p-value est inférieure au seuil de signification 0.05, on conclut qu'il existe des différences significatives entre les groupes (entre au moins deux groupes). 
+
+- si non, il n'y a pas de différence entre les effets des différents régimes. 
+
+```{r}
+liac4 <- lm(a_int_coq ~ regime, data = s4)
+anova(liac4)
+```
+
+> p-value > 0.05 => Pas de différences significatives entre les effets des régimes.
+
+
+***
+
+
+## Indice `b` de l'intérieur de la coquille `b_int_coq`
+
+### Test de normalité de Shapiro-Wilk, Indice `b`
+
+- Ho. La distribution de l’échantillon est normale (ou n'est pas différente d'une distribution normale).
+
+```{r}
+s4 %>% 
+  shapiro_test(b_int_coq)
+```
+
+> p-value > 0.05 => distribution normale 
+
+### Test de sphéricité (homogénéité des variances), Indice `b`
+
+- `Ho`. Toutes les variances des populations sont égales.
+- `H1` ou `Ha`. Au moins deux d'entre elles diffèrent.
+
+```{r}
+leveneTest(b_int_coq ~ regime, data = s4)
+```
+
+> p-value > 0.05 => variances homogènes.
+
+### ANOVA, Indice `b`
+
+- Si la p-value est inférieure au seuil de signification 0.05, on conclut qu'il existe des différences significatives entre les groupes (entre au moins deux groupes). 
+
+- si non, il n'y a pas de différence entre les effets des différents régimes. 
+
+```{r}
+libc4 <- lm(b_int_coq ~ regime, data = s4)
+anova(libc4)
+```
+
+> p-value > 0.05 => Pas de différence significative entre les effets des régimes sur ce paramètre.
+
+
+***
+
+
+## Indice `l` du jaune d'oeuf `l_jaune`
+
+### Test de normalité de Shapiro-Wilk, Indice `l` du jaune
+
+- Ho. La distribution de l’échantillon est normale (ou n'est pas différente d'une distribution normale).
+
+```{r}
+s4 %>% 
+  shapiro_test(l_jaune)
+```
+
+> p-value > 0.05 => distribution normale.
+
+### Test de sphéricité (homogénéité des variances), Indice `l` du jaune
+
+- `Ho`. Toutes les variances des populations sont égales.
+- `H1` ou `Ha`. Au moins deux d'entre elles diffèrent.
+
+```{r}
+leveneTest(l_jaune ~ regime, data = s4)
+```
+
+> p-value > 0.05 => variances homogènes.
+
+### ANOVA, Indice `l` du jaune
+
+- Si la p-value est inférieure au seuil de signification 0.05, on conclut qu'il existe des différences significatives entre les groupes (entre au moins deux groupes). 
+
+- si non, il n'y a pas de différence entre les effets des différents régimes. 
+
+```{r}
+lilj4 <- lm(l_jaune ~ regime, data = s4)
+anova(lilj4)
+```
+
+> p-value < 0.05 => au moins deux régimes ont des effets signifiquement différents.
+
+### Visualisation boxplots, Indice `l` du jaune
+
+```{r}
+ggplot(data = s4, aes(x = regime, y = l_jaune)) +
+  geom_boxplot() + 
+  #theme_classic() +
+  xlab("Régimes") + ylab("Indice l du jaune d'oeuf") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
+```
+
+### Test post-hoc, Student-Newman Keuls, Indice `l` du jaune
+
+Comparaisons des moyennes par paires :
+
+```{r}
+tb_ilj4 <- (SNK.test(lilj4, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, l_jaune, groups) %>% 
+  as_tibble()
+tb_ilj4
+```
+
+### Visualisation des groupes, bareplots avec labels, Indice `l` du jaune
+
+```{r}
+ggplot(data = tb_ilj4, mapping = aes(x = regime, y = l_jaune)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  #ylim(0, 2) +
+  geom_text(data = tb_ilj4, aes(label = groups), vjust = -0.5, size = 4) +
+  theme_classic() +
+  xlab("Régimes") + ylab("Indice l du jaune d'oeuf") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
+```
+
+
+***
+
+
+## Indice `a` du jaune d'oeuf `a_jaune`
+
+### Test de normalité de Shapiro-Wilk, Indice `a` du jaune
+
+- Ho. la distribution de l’échantillon est normale (ou n'est pas différente d'une distribution normale).
+
+```{r}
+s4 %>% 
+  shapiro_test(a_jaune)
+```
+
+> p-value > 0.05 => distribution normale 
+
+### Test de sphéricité (homogénéité des variances), Indice `a` du jaune
+
+- `Ho`. Toutes les variances des populations sont égales.
+- `H1` ou `Ha`. Au moins deux d'entre elles diffèrent.
+
+```{r}
+leveneTest(a_jaune ~ regime, data = s4)
+```
+
+> p-value > 0.05 => variances homogènes.
+
+### ANOVA, Indice `a` du jaune
+
+- Si la p-value est inférieure au seuil de signification 0.05, on conclut qu'il existe des différences significatives entre les groupes (entre au moins deux groupes). 
+
+- si non, il n'y a pas de différence entre les effets des différents régimes. 
+
+```{r}
+liaj4 <- lm(a_jaune ~ regime, data = s4)
+anova(liaj4)
+```
+
+> p-value > 0.05 => Pas d'effets signifiquement différents entre les régimes.
+
+
+***
+
+
+## Indice `b` du jaune d'oeuf `b_jaune`
+
+### Test de normalité de Shapiro-Wilk, Indice `b` du jaune
+
+- Ho. la distribution de l’échantillon est normale (ou n'est pas différente d'une distribution normale).
+
+```{r}
+s4 %>% 
+  shapiro_test(b_jaune)
+```
+
+> p-value < 0.05 -> distribution non-normale. => Alternative non-paramétrique : Test de Kruskal-Wallis recommandé lorsque les hypothèses du test ANOVA à un facteur ne sont pas respectées.
+
+```{r}
+s4 %>% 
+  kruskal_test(b_jaune ~ regime)
+```
+
+> p-value < 0.05 => Au moins 2 groupes ont des effets significativement différents.
+
+Test de Dunn pour identifier les groupes différents. 
+
+```{r}
+s4 %>% 
+  dunn_test(b_jaune ~ regime, p.adjust.method = "bonferroni") %>% 
+  select(group1, group2, p, p.adj, p.adj.signif) %>% 
+  filter(p.adj.signif != "ns")
+```
+
+```{r}
+s4 %>% 
+  select(regime, b_jaune) %>% 
+  group_by(regime) %>% 
+  summarise_all(list(b_jaune_moyen = mean, sd = sd))
+```
+
+> le YC et le WC ont des effets significativement différents sur l'indice b du jaune d'oeuf.
+
+
+***
+
+
+## Teneur en protéines totales `prot_tot`
+
+### Test de normalité de Shapiro-Wilk, protéines
+
+- Ho. la distribution de l’échantillon est normale (ou n'est pas différente d'une distribution normale).
+
+```{r}
+s4 %>% 
+  shapiro_test(prot_tot)
+```
+
+> p-value < 0.05 => distribution non-normale. => Alternative non-paramétrique : Test de Kruskal-Wallis recommandé lorsque les hypothèses du test ANOVA à un facteur ne sont pas respectées.
+
+```{r}
+s4 %>% 
+  kruskal_test(prot_tot ~ regime)
+```
+
+> p-value > 0.05 => Pas de différences significatives entre les effets des régimes au seuil de 5%.
+
+
+***
+
+
+## Teneur en cholestérol total `chol_tot`
+
+### Test de normalité de Shapiro-Wilk, cholestérol
+
+- Ho. la distribution de l’échantillon est normale (ou n'est pas différente d'une distribution normale).
+
+```{r}
+s4 %>% 
+  shapiro_test(chol_tot)
+```
+
+> p-value > 0.05 => distribution normale. 
+
+### Test de sphéricité (homogénéité des variances), cholestérol
+
+- `Ho`. Toutes les variances des populations sont égales.
+- `H1` ou `Ha`. Au moins deux d'entre elles diffèrent.
+
+```{r}
+leveneTest(chol_tot ~ regime, data = s4)
+```
+
+> p-value > 0.05, => variances homogènes.
+
+### ANOVA, cholestérol
+
+Si la p-value est inférieure au seuil de signification 0.05, on conclut qu'il existe des différences significatives entre les groupes (entre au moins deux groupes). 
+
+```{r}
+lch4 <- lm(chol_tot ~ regime, data = s4)
+anova(lch4)
+```
+
+> p-value < 0.05 => au moins deux régimes ont des effets différents sur la teneur en cholestérol de l'oeuf au seuil de 5%.
+
+### Visualisation boxplots, cholestérol
+
+```{r}
+ggplot(data = s4, aes(x = regime, y = chol_tot)) +
+  geom_boxplot() + 
+  #theme_classic() +
+  xlab("Régimes") + ylab("Teneur en cholestérol de l'oeuf") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
+```
+
+### Test post-hoc, Student-Newman Keuls, cholestérol
+
+Comparaisons des moyennes par paires
+
+```{r}
+tb_ch4 <- (SNK.test(lch4, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, chol_tot, groups) %>% 
+  as_tibble()
+tb_ch4
+```
+
+### Visualisation des groupes, bareplots avec labels, cholestérol
+
+```{r}
+ggplot(data = tb_ch4, mapping = aes(x = regime, y = chol_tot)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  #ylim(0, 2) +
+  geom_text(data = tb_ch4, aes(label = groups), vjust = -0.5, size = 4) +
+  theme_classic() +
+  xlab("Régimes") + ylab("Teneur en cholestérol de l'oeuf") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
+```
+
+
+***
+
+
+## Teneur en lipides totales `lip_tot`
+
+Lipides non analysées pour cette séance.
+
+
+
+
+
 
 
 

@@ -395,3 +395,11 @@ normalité-cholestérol
 test-de-friedman-cholestérol
 comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon-2
 lipides-totales
+exploration-des-corrélations-en-séance-1
+exploration-des-corrélations-séance-1
+exploration-des-corrélations-séance-2
+exploration-des-corrélations-séance-3
+exploration-des-corrélations-séance-3-1
+exploration-des-corrélations-séance-3-2
+exploration-des-corrélations-séance-4
+exploration-des-corrélations-séance-5

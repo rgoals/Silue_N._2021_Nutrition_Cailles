@@ -24,6 +24,8 @@ library("tidyverse") # tidy et ggplot2
 library("agricolae") # SNK.test() Student Newman-Keuls
 library("car")       # leveneTest()
 library("rstatix")   # convert_as_factor()
+library("corrplot")  # matrice de corrélation cor(), corrplot()
+library("ggpmisc")   # stat_poly_eq() ajout équation
 ```
 
 ## Les données
@@ -707,5 +709,46 @@ anova(ll1)
 ```
 
 > p-value > 0.05 => Pas de différence entre les effets des régimes.
+
+
+***
+
+
+## Exploration des corrélations, séance 1
+
+Le corrélogramme suivant met en évidence les éventuelles corrélations dans les séries de données.
+
+```{r fig.width = 10, fig.height = 10}
+M1 <- cor(s1[, 4:18])
+corrplot(M1, method = "number", type = "upper")
+```
+
+Les corrélations positives sont en bleu et les négatives en rouge. Moins la corrélation est importante, moins les chiffres sont visibles (plus, ils sont flous). Là où il y a des points d'intérrogation c'est que la variable contient des valeurs manquantes. **Je les ai juste laissé comme tels si non il y a moyen de calculer sans les valeurs manquantes**.
+
+On peut donc décéler celles dont l'interprétation peut être intéressante en science.
+
+Visualisons graphiquement (un cas) la forte corrélation entre la masse de l'oeuf et celle du blanc d'oeuf (r = 0.91).
+
+```{r}
+droitereg <- y ~ x
+ggplot(data = s1, aes(x = masse_oeuf, y = masse_du_blanc)) +
+  geom_point() +
+  geom_smooth(method = lm, formula = droitereg) +
+   stat_poly_eq(formula = droitereg,
+                eq.with.lhs = "italic(hat(y))~`=`~",
+                aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
+                parse = TRUE)
+```
+
+
+
+
+
+
+
+
+
+
+
 
 

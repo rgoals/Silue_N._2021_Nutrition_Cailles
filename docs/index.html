@@ -24,7 +24,7 @@
 <meta name="author" content="Silué Nahoulé" />
 
 
-<meta name="date" content="2021-07-25" />
+<meta name="date" content="2021-08-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -168,22 +168,87 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="s1.html"><a href="s1.html"><i class="fa fa-check"></i><b>3</b> Séance 1</a><ul>
 <li class="chapter" data-level="3.1" data-path="s1.html"><a href="s1.html#librairies"><i class="fa fa-check"></i><b>3.1</b> Librairies</a></li>
 <li class="chapter" data-level="3.2" data-path="s1.html"><a href="s1.html#les-données-2"><i class="fa fa-check"></i><b>3.2</b> Les données</a></li>
-<li class="chapter" data-level="3.3" data-path="s1.html"><a href="s1.html#les-différentes-variables"><i class="fa fa-check"></i><b>3.3</b> Les différentes variables</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="s1.html"><a href="s1.html#masse-des-oeufs-masse_oeuf"><i class="fa fa-check"></i><b>3.3.1</b> Masse des oeufs : <code>masse_oeuf</code></a></li>
-<li class="chapter" data-level="3.3.2" data-path="s1.html"><a href="s1.html#masse-de-la-coquille-masse_coq"><i class="fa fa-check"></i><b>3.3.2</b> Masse de la coquille : <code>masse_coq</code></a></li>
-<li class="chapter" data-level="3.3.3" data-path="s1.html"><a href="s1.html#épaisseur-de-la-coquille-epaisseur_coq"><i class="fa fa-check"></i><b>3.3.3</b> Épaisseur de la coquille : <code>epaisseur_coq</code></a></li>
-<li class="chapter" data-level="3.3.4" data-path="s1.html"><a href="s1.html#masse-du-jaune-doeuf-masse_du_jaune"><i class="fa fa-check"></i><b>3.3.4</b> Masse du jaune d’oeuf : <code>masse_du_jaune</code></a></li>
-<li class="chapter" data-level="3.3.5" data-path="s1.html"><a href="s1.html#masse-du-blanc-doeuf-masse_du_blanc"><i class="fa fa-check"></i><b>3.3.5</b> Masse du blanc d’oeuf : <code>masse_du_blanc</code></a></li>
-<li class="chapter" data-level="3.3.6" data-path="s1.html"><a href="s1.html#indice-l-de-lintérieur-de-la-coquille-l_int_coq"><i class="fa fa-check"></i><b>3.3.6</b> Indice <code>l</code> de l’intérieur de la coquille : <code>l_int_coq</code></a></li>
-<li class="chapter" data-level="3.3.7" data-path="s1.html"><a href="s1.html#indice-a-de-lintérieur-de-la-coquille-a_int_coq"><i class="fa fa-check"></i><b>3.3.7</b> Indice <code>a</code> de l’intérieur de la coquille : <code>a_int_coq</code></a></li>
-<li class="chapter" data-level="3.3.8" data-path="s1.html"><a href="s1.html#indice-b-de-lintérieur-de-la-coquille-b_int_coq"><i class="fa fa-check"></i><b>3.3.8</b> Indice <code>b</code> de l’intérieur de la coquille : <code>b_int_coq</code></a></li>
-<li class="chapter" data-level="3.3.9" data-path="s1.html"><a href="s1.html#indice-l-du-jaune-doeuf-l_jaune"><i class="fa fa-check"></i><b>3.3.9</b> Indice <code>l</code> du jaune d’oeuf : <code>l_jaune</code></a></li>
-<li class="chapter" data-level="3.3.10" data-path="s1.html"><a href="s1.html#indice-a-du-jaune-doeuf-a_jaune"><i class="fa fa-check"></i><b>3.3.10</b> Indice <code>a</code> du jaune d’oeuf : <code>a_jaune</code></a></li>
-<li class="chapter" data-level="3.3.11" data-path="s1.html"><a href="s1.html#indice-b-du-jaune-doeuf-b_jaune"><i class="fa fa-check"></i><b>3.3.11</b> Indice <code>b</code> du jaune d’oeuf : <code>b_jaune</code></a></li>
-<li class="chapter" data-level="3.3.12" data-path="s1.html"><a href="s1.html#teneur-en-protéines-totales-prot_tot"><i class="fa fa-check"></i><b>3.3.12</b> Teneur en protéines totales : <code>prot_tot</code></a></li>
-<li class="chapter" data-level="3.3.13" data-path="s1.html"><a href="s1.html#teneur-en-cholestérol-total-chol_tot"><i class="fa fa-check"></i><b>3.3.13</b> Teneur en cholestérol total : <code>chol_tot</code></a></li>
-<li class="chapter" data-level="3.3.14" data-path="s1.html"><a href="s1.html#teneur-en-lipides-totales-lip_tot"><i class="fa fa-check"></i><b>3.3.14</b> Teneur en lipides totales : <code>lip_tot</code></a></li>
+<li class="chapter" data-level="3.3" data-path="s1.html"><a href="s1.html#masse-des-oeufs-masse_oeuf"><i class="fa fa-check"></i><b>3.3</b> Masse des oeufs : <code>masse_oeuf</code></a><ul>
+<li class="chapter" data-level="3.3.1" data-path="s1.html"><a href="s1.html#test-de-normalité-masse-des-oeufs"><i class="fa fa-check"></i><b>3.3.1</b> Test de normalité, masse des oeufs</a></li>
+<li class="chapter" data-level="3.3.2" data-path="s1.html"><a href="s1.html#test-dhomogénéité-des-variances-masse-des-oeufs"><i class="fa fa-check"></i><b>3.3.2</b> Test d’homogénéité des variances, masse des oeufs</a></li>
+<li class="chapter" data-level="3.3.3" data-path="s1.html"><a href="s1.html#anova-masse-des-oeufs"><i class="fa fa-check"></i><b>3.3.3</b> ANOVA, masse des oeufs</a></li>
+<li class="chapter" data-level="3.3.4" data-path="s1.html"><a href="s1.html#visualisation-boxplots-masse-des-oeufs"><i class="fa fa-check"></i><b>3.3.4</b> Visualisation boxplots, masse des oeufs</a></li>
+<li class="chapter" data-level="3.3.5" data-path="s1.html"><a href="s1.html#visualisation-des-groupes-masse-des-oeufs"><i class="fa fa-check"></i><b>3.3.5</b> Visualisation des groupes, masse des oeufs</a></li>
 </ul></li>
+<li class="chapter" data-level="3.4" data-path="s1.html"><a href="s1.html#masse-de-la-coquille-masse_coq"><i class="fa fa-check"></i><b>3.4</b> Masse de la coquille : <code>masse_coq</code></a><ul>
+<li class="chapter" data-level="3.4.1" data-path="s1.html"><a href="s1.html#test-de-normalité-masse-de-la-coquille"><i class="fa fa-check"></i><b>3.4.1</b> Test de normalité, masse de la coquille</a></li>
+<li class="chapter" data-level="3.4.2" data-path="s1.html"><a href="s1.html#test-de-sphéricité-homogénéité-des-variances-masse-de-la-coquille"><i class="fa fa-check"></i><b>3.4.2</b> Test de sphéricité (homogénéité des variances), masse de la coquille</a></li>
+<li class="chapter" data-level="3.4.3" data-path="s1.html"><a href="s1.html#anova-masse-de-la-coquille"><i class="fa fa-check"></i><b>3.4.3</b> ANOVA, masse de la coquille</a></li>
+<li class="chapter" data-level="3.4.4" data-path="s1.html"><a href="s1.html#visualisation-boxplots-masse-de-la-coquille"><i class="fa fa-check"></i><b>3.4.4</b> Visualisation boxplots, masse de la coquille</a></li>
+<li class="chapter" data-level="3.4.5" data-path="s1.html"><a href="s1.html#comparaisons-par-paires-masse-de-la-coquille"><i class="fa fa-check"></i><b>3.4.5</b> Comparaisons par paires, masse de la coquille</a></li>
+<li class="chapter" data-level="3.4.6" data-path="s1.html"><a href="s1.html#visualisation-des-groupes-masse-de-la-coquille"><i class="fa fa-check"></i><b>3.4.6</b> Visualisation des groupes, masse de la coquille</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="s1.html"><a href="s1.html#épaisseur-de-la-coquille-epaisseur_coq"><i class="fa fa-check"></i><b>3.5</b> Épaisseur de la coquille : <code>epaisseur_coq</code></a><ul>
+<li class="chapter" data-level="3.5.1" data-path="s1.html"><a href="s1.html#test-de-normalité-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>3.5.1</b> Test de normalité, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="3.5.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>3.5.2</b> Test de Kruskal-Walli, épaisseur de la coquille</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="s1.html"><a href="s1.html#masse-du-jaune-doeuf-masse_du_jaune"><i class="fa fa-check"></i><b>3.6</b> Masse du jaune d’oeuf : <code>masse_du_jaune</code></a><ul>
+<li class="chapter" data-level="3.6.1" data-path="s1.html"><a href="s1.html#test-de-normalité-masse-du-jaune"><i class="fa fa-check"></i><b>3.6.1</b> Test de normalité, masse du jaune</a></li>
+<li class="chapter" data-level="3.6.2" data-path="s1.html"><a href="s1.html#test-de-sphéricité-masse-du-jaune"><i class="fa fa-check"></i><b>3.6.2</b> Test de sphéricité, masse du jaune</a></li>
+<li class="chapter" data-level="3.6.3" data-path="s1.html"><a href="s1.html#anova-masse-du-jaune"><i class="fa fa-check"></i><b>3.6.3</b> ANOVA, masse du jaune</a></li>
+<li class="chapter" data-level="3.6.4" data-path="s1.html"><a href="s1.html#visualisation-boxplots-masse-du-jaune"><i class="fa fa-check"></i><b>3.6.4</b> Visualisation boxplots masse du jaune</a></li>
+<li class="chapter" data-level="3.6.5" data-path="s1.html"><a href="s1.html#comparaisons-par-paires-masse-du-jaune"><i class="fa fa-check"></i><b>3.6.5</b> Comparaisons par paires, masse du jaune</a></li>
+<li class="chapter" data-level="3.6.6" data-path="s1.html"><a href="s1.html#visualisation-des-groupes-bareplots-avec-labels-masse-du-jaune"><i class="fa fa-check"></i><b>3.6.6</b> Visualisation des groupes, bareplots avec labels, masse du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="s1.html"><a href="s1.html#masse-du-blanc-doeuf-masse_du_blanc"><i class="fa fa-check"></i><b>3.7</b> Masse du blanc d’oeuf : <code>masse_du_blanc</code></a><ul>
+<li class="chapter" data-level="3.7.1" data-path="s1.html"><a href="s1.html#test-de-normalité-masse-du-blanc"><i class="fa fa-check"></i><b>3.7.1</b> Test de normalité, masse du blanc</a></li>
+<li class="chapter" data-level="3.7.2" data-path="s1.html"><a href="s1.html#test-de-sphéricité-masse-du-blanc"><i class="fa fa-check"></i><b>3.7.2</b> Test de sphéricité, masse du blanc</a></li>
+<li class="chapter" data-level="3.7.3" data-path="s1.html"><a href="s1.html#anova-masse-du-blanc"><i class="fa fa-check"></i><b>3.7.3</b> ANOVA, masse du blanc</a></li>
+<li class="chapter" data-level="3.7.4" data-path="s1.html"><a href="s1.html#visualisation-boxplots-masse-du-blanc"><i class="fa fa-check"></i><b>3.7.4</b> Visualisation boxplots masse du blanc</a></li>
+<li class="chapter" data-level="3.7.5" data-path="s1.html"><a href="s1.html#comparaisons-par-paires-masse-du-jaune-1"><i class="fa fa-check"></i><b>3.7.5</b> Comparaisons par paires, masse du jaune</a></li>
+<li class="chapter" data-level="3.7.6" data-path="s1.html"><a href="s1.html#visualisation-des-groupes-bareplots-avec-labels"><i class="fa fa-check"></i><b>3.7.6</b> Visualisation des groupes, bareplots avec labels</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="s1.html"><a href="s1.html#indice-l-de-lintérieur-de-la-coquille-l_int_coq"><i class="fa fa-check"></i><b>3.8</b> Indice <code>l</code> de l’intérieur de la coquille : <code>l_int_coq</code></a><ul>
+<li class="chapter" data-level="3.8.1" data-path="s1.html"><a href="s1.html#test-de-normalité-indice-l"><i class="fa fa-check"></i><b>3.8.1</b> Test de normalité, Indice <code>l</code></a></li>
+<li class="chapter" data-level="3.8.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-indice-l"><i class="fa fa-check"></i><b>3.8.2</b> Test de Kruskal-Walli, indice <code>l</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.9" data-path="s1.html"><a href="s1.html#indice-a-de-lintérieur-de-la-coquille-a_int_coq"><i class="fa fa-check"></i><b>3.9</b> Indice <code>a</code> de l’intérieur de la coquille : <code>a_int_coq</code></a><ul>
+<li class="chapter" data-level="3.9.1" data-path="s1.html"><a href="s1.html#test-de-normalité-indice-a"><i class="fa fa-check"></i><b>3.9.1</b> Test de normalité, Indice <code>a</code></a></li>
+<li class="chapter" data-level="3.9.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-indice-a"><i class="fa fa-check"></i><b>3.9.2</b> Test de Kruskal-Walli, indice <code>a</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="s1.html"><a href="s1.html#indice-b-de-lintérieur-de-la-coquille-b_int_coq"><i class="fa fa-check"></i><b>3.10</b> Indice <code>b</code> de l’intérieur de la coquille : <code>b_int_coq</code></a><ul>
+<li class="chapter" data-level="3.10.1" data-path="s1.html"><a href="s1.html#test-de-normalité-indice-b"><i class="fa fa-check"></i><b>3.10.1</b> Test de normalité, Indice <code>b</code></a></li>
+<li class="chapter" data-level="3.10.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-indice-b"><i class="fa fa-check"></i><b>3.10.2</b> Test de Kruskal-Walli, indice <code>b</code></a></li>
+<li class="chapter" data-level="3.10.3" data-path="s1.html"><a href="s1.html#test-de-dunn-indice-b"><i class="fa fa-check"></i><b>3.10.3</b> Test de Dunn, indice <code>b</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.11" data-path="s1.html"><a href="s1.html#indice-l-du-jaune-doeuf-l_jaune"><i class="fa fa-check"></i><b>3.11</b> Indice <code>l</code> du jaune d’oeuf : <code>l_jaune</code></a><ul>
+<li class="chapter" data-level="3.11.1" data-path="s1.html"><a href="s1.html#test-de-normalité-indice-l-du-jaune"><i class="fa fa-check"></i><b>3.11.1</b> Test de normalité, Indice <code>l</code> du jaune</a></li>
+<li class="chapter" data-level="3.11.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-l-du-jaune"><i class="fa fa-check"></i><b>3.11.2</b> Test de Kruskal-Walli, <code>l</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="3.12" data-path="s1.html"><a href="s1.html#indice-a-du-jaune-doeuf-a_jaune"><i class="fa fa-check"></i><b>3.12</b> Indice <code>a</code> du jaune d’oeuf : <code>a_jaune</code></a><ul>
+<li class="chapter" data-level="3.12.1" data-path="s1.html"><a href="s1.html#test-de-normalité-indice-a-du-jaune"><i class="fa fa-check"></i><b>3.12.1</b> Test de normalité, Indice <code>a</code> du jaune</a></li>
+<li class="chapter" data-level="3.12.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-a-du-jaune"><i class="fa fa-check"></i><b>3.12.2</b> Test de Kruskal-Walli, <code>a</code> du jaune</a></li>
+<li class="chapter" data-level="3.12.3" data-path="s1.html"><a href="s1.html#test-de-dunn-a-du-jaune"><i class="fa fa-check"></i><b>3.12.3</b> Test de Dunn, <code>a</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="3.13" data-path="s1.html"><a href="s1.html#indice-b-du-jaune-doeuf-b_jaune"><i class="fa fa-check"></i><b>3.13</b> Indice <code>b</code> du jaune d’oeuf : <code>b_jaune</code></a><ul>
+<li class="chapter" data-level="3.13.1" data-path="s1.html"><a href="s1.html#test-de-normalité-indice-b-du-jaune"><i class="fa fa-check"></i><b>3.13.1</b> Test de normalité, Indice <code>b</code> du jaune</a></li>
+<li class="chapter" data-level="3.13.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-b-du-jaune"><i class="fa fa-check"></i><b>3.13.2</b> Test de Kruskal-Walli, <code>b</code> du jaune</a></li>
+<li class="chapter" data-level="3.13.3" data-path="s1.html"><a href="s1.html#test-de-dunn-b-du-jaune"><i class="fa fa-check"></i><b>3.13.3</b> Test de Dunn, <code>b</code> du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="3.14" data-path="s1.html"><a href="s1.html#teneur-en-protéines-totales-prot_tot"><i class="fa fa-check"></i><b>3.14</b> Teneur en protéines totales : <code>prot_tot</code></a><ul>
+<li class="chapter" data-level="3.14.1" data-path="s1.html"><a href="s1.html#test-de-normalité-protéines"><i class="fa fa-check"></i><b>3.14.1</b> Test de normalité, protéines</a></li>
+<li class="chapter" data-level="3.14.2" data-path="s1.html"><a href="s1.html#test-de-sphéricité-protéines"><i class="fa fa-check"></i><b>3.14.2</b> Test de sphéricité, protéines</a></li>
+<li class="chapter" data-level="3.14.3" data-path="s1.html"><a href="s1.html#anova-protéines"><i class="fa fa-check"></i><b>3.14.3</b> ANOVA, protéines</a></li>
+<li class="chapter" data-level="3.14.4" data-path="s1.html"><a href="s1.html#visualisation-boxplots-protéines"><i class="fa fa-check"></i><b>3.14.4</b> Visualisation boxplots, protéines</a></li>
+<li class="chapter" data-level="3.14.5" data-path="s1.html"><a href="s1.html#comparaisons-par-paires-protéines"><i class="fa fa-check"></i><b>3.14.5</b> Comparaisons par paires, protéines</a></li>
+<li class="chapter" data-level="3.14.6" data-path="s1.html"><a href="s1.html#visualisation-des-groupes-bareplots-avec-labels-protéines"><i class="fa fa-check"></i><b>3.14.6</b> Visualisation des groupes, bareplots avec labels, protéines</a></li>
+</ul></li>
+<li class="chapter" data-level="3.15" data-path="s1.html"><a href="s1.html#teneur-en-cholestérol-total-chol_tot"><i class="fa fa-check"></i><b>3.15</b> Teneur en cholestérol total : <code>chol_tot</code></a><ul>
+<li class="chapter" data-level="3.15.1" data-path="s1.html"><a href="s1.html#test-de-normalité-cholestérol"><i class="fa fa-check"></i><b>3.15.1</b> Test de normalité, cholestérol</a></li>
+<li class="chapter" data-level="3.15.2" data-path="s1.html"><a href="s1.html#test-de-kruskal-walli-chol_tot"><i class="fa fa-check"></i><b>3.15.2</b> Test de Kruskal-Walli, <code>chol_tot</code></a></li>
+<li class="chapter" data-level="3.15.3" data-path="s1.html"><a href="s1.html#test-de-dunn-chol_tot"><i class="fa fa-check"></i><b>3.15.3</b> Test de Dunn, <code>chol_tot</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.16" data-path="s1.html"><a href="s1.html#teneur-en-lipides-totales-lip_tot"><i class="fa fa-check"></i><b>3.16</b> Teneur en lipides totales : <code>lip_tot</code></a><ul>
+<li class="chapter" data-level="3.16.1" data-path="s1.html"><a href="s1.html#test-de-normalité-lipides"><i class="fa fa-check"></i><b>3.16.1</b> Test de normalité, lipides</a></li>
+<li class="chapter" data-level="3.16.2" data-path="s1.html"><a href="s1.html#test-de-sphéricité-lipides"><i class="fa fa-check"></i><b>3.16.2</b> Test de sphéricité, lipides</a></li>
+<li class="chapter" data-level="3.16.3" data-path="s1.html"><a href="s1.html#anova-lipides"><i class="fa fa-check"></i><b>3.16.3</b> ANOVA, lipides</a></li>
+</ul></li>
+<li class="chapter" data-level="3.17" data-path="s1.html"><a href="s1.html#exploration-des-corrélations-séance-1"><i class="fa fa-check"></i><b>3.17</b> Exploration des corrélations, séance 1</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="s2.html"><a href="s2.html"><i class="fa fa-check"></i><b>4</b> Séance 2</a><ul>
 <li class="chapter" data-level="4.1" data-path="s2.html"><a href="s2.html#masse-des-oeufs-masse_oeuf-1"><i class="fa fa-check"></i><b>4.1</b> Masse des oeufs <code>masse_oeuf</code></a><ul>
@@ -243,6 +308,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.13.6" data-path="s2.html"><a href="s2.html#visualisation-des-groupes-bareplots-avec-labels-cholestérol"><i class="fa fa-check"></i><b>4.13.6</b> Visualisation des groupes, bareplots avec labels, cholestérol</a></li>
 </ul></li>
 <li class="chapter" data-level="4.14" data-path="s2.html"><a href="s2.html#teneur-en-lipides-totales-lip_tot-1"><i class="fa fa-check"></i><b>4.14</b> Teneur en lipides totales <code>lip_tot</code></a></li>
+<li class="chapter" data-level="4.15" data-path="s2.html"><a href="s2.html#exploration-des-corrélations-séance-2"><i class="fa fa-check"></i><b>4.15</b> Exploration des corrélations, séance 2</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="s3.html"><a href="s3.html"><i class="fa fa-check"></i><b>5</b> Séance 3</a><ul>
 <li class="chapter" data-level="5.1" data-path="s3.html"><a href="s3.html#masse-des-oeufs-masse_oeuf-2"><i class="fa fa-check"></i><b>5.1</b> Masse des oeufs <code>masse_oeuf</code></a><ul>
@@ -317,6 +383,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.13.1" data-path="s3.html"><a href="s3.html#test-de-normalité-de-shapiro-wilk-cholestérol-1"><i class="fa fa-check"></i><b>5.13.1</b> Test de normalité de Shapiro-Wilk, cholestérol</a></li>
 </ul></li>
 <li class="chapter" data-level="5.14" data-path="s3.html"><a href="s3.html#teneur-en-lipides-totales-lip_tot-2"><i class="fa fa-check"></i><b>5.14</b> Teneur en lipides totales <code>lip_tot</code></a></li>
+<li class="chapter" data-level="5.15" data-path="s3.html"><a href="s3.html#exploration-des-corrélations-séance-3"><i class="fa fa-check"></i><b>5.15</b> Exploration des corrélations, séance 3</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="s4.html"><a href="s4.html"><i class="fa fa-check"></i><b>6</b> Séance 4</a><ul>
 <li class="chapter" data-level="6.1" data-path="s4.html"><a href="s4.html#masse-des-oeufs-masse_oeuf-3"><i class="fa fa-check"></i><b>6.1</b> Masse des oeufs <code>masse_oeuf</code></a><ul>
@@ -389,6 +456,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.13.6" data-path="s4.html"><a href="s4.html#visualisation-des-groupes-bareplots-avec-labels-cholestérol-1"><i class="fa fa-check"></i><b>6.13.6</b> Visualisation des groupes, bareplots avec labels, cholestérol</a></li>
 </ul></li>
 <li class="chapter" data-level="6.14" data-path="s4.html"><a href="s4.html#teneur-en-lipides-totales-lip_tot-3"><i class="fa fa-check"></i><b>6.14</b> Teneur en lipides totales <code>lip_tot</code></a></li>
+<li class="chapter" data-level="6.15" data-path="s4.html"><a href="s4.html#exploration-des-corrélations-séance-3-1"><i class="fa fa-check"></i><b>6.15</b> Exploration des corrélations, séance 3</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="s5.html"><a href="s5.html"><i class="fa fa-check"></i><b>7</b> Séance 5</a><ul>
 <li class="chapter" data-level="7.1" data-path="s5.html"><a href="s5.html#masse-des-oeufs-masse_oeuf-4"><i class="fa fa-check"></i><b>7.1</b> Masse des oeufs <code>masse_oeuf</code></a><ul>
@@ -439,6 +507,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.11" data-path="s5.html"><a href="s5.html#indice-b-du-jaune-doeuf-b_jaune-4"><i class="fa fa-check"></i><b>7.11</b> Indice <code>b</code> du jaune d’oeuf <code>b_jaune</code></a><ul>
 <li class="chapter" data-level="7.11.1" data-path="s5.html"><a href="s5.html#test-de-normalité-de-shapiro-wilk-indice-b-du-jaune-3"><i class="fa fa-check"></i><b>7.11.1</b> Test de normalité de Shapiro-Wilk, Indice <code>b</code> du jaune</a></li>
 </ul></li>
+<li class="chapter" data-level="7.12" data-path="s5.html"><a href="s5.html#exploration-des-corrélations-séance-3-2"><i class="fa fa-check"></i><b>7.12</b> Exploration des corrélations, séance 3</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="mesrep.html"><a href="mesrep.html"><i class="fa fa-check"></i><b>8</b> Les séances, en mesures répétées</a><ul>
 <li class="chapter" data-level="8.1" data-path="mesrep.html"><a href="mesrep.html#les-données-3"><i class="fa fa-check"></i><b>8.1</b> LES DONNÉES</a></li>
@@ -557,7 +626,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Exploration des données, nutrition de cailles</h1>
 <p class="author"><em>Silué Nahoulé</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-07-25</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-08-07</em></p>
 </div>
 <div id="gmq" class="section level1">
 <h1><span class="header-section-number">Chapitre 1</span> Gain moyen quotidien</h1>

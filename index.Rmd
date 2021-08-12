@@ -7,7 +7,7 @@ documentclass: book
 #bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "Analyses exploratoires"
+description: "The output format for this example is bookdown::gitbook."
 ---
 
 # Gain moyen quotidien {#gmq}

@@ -734,7 +734,7 @@ droitereg <- y ~ x
 ggplot(data = s1, aes(x = masse_oeuf, y = masse_du_blanc)) +
   geom_point() +
   geom_smooth(method = lm, formula = droitereg) +
-   stat_poly_eq(formula = droitereg,
+  stat_poly_eq(formula = droitereg,
                 eq.with.lhs = "italic(hat(y))~`=`~",
                 aes(label = paste(..eq.label.., ..rr.label.., sep = "~~~")), 
                 parse = TRUE)

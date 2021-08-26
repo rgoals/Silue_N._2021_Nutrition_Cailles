@@ -1,0 +1,5 @@
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+
+**Adboulkader Kassambara (2021)**. [Comparaison de plusieurs moyennes dans R. ANOVA sur mesures répétées](https://www.datanovia.com/en/fr/lessons/anova-sur-mesures-repetees-dans-r/). Notes de cours avec exemples de cas.

@@ -1,5 +1,28 @@
 # Matières grasses {#mg}
 
+Nous utiliserons le jeu de données `mg` qui contient différentes mesures dont les taux de MG mesurés en 4 seances lors d'un essai nutrition de cailles à base de différents regimes.
+
+Essai en ... blocs de Fisher ... avec 10 traitements en 3 répétitions. Les 10 traitements :
+
+1. BA 0.25
+1. BA 0.5
+1. BA 0.75
+1. BA 1
+1. BA 2.5
+1. BA 5
+1. BA 7.5
+1. BA 10
+1. WC
+1. YC
+
+Le taux de MG de l'oeuf a été analysé durant 4 séances : séance 1 (mg1), séance 2 (mg2), séance 3 (mg3), séance 4 (mg4).
+
+La question est de savoir si les différents regimes induisent des taux de MG des oeufs significativement différents avec le temps. 
+
+> **En d’autres termes, nous aimerions savoir s’il y a une interaction significative entre le type de regime alimentaire et le temps sur la teneur en Mg des oeufs de cailles.**
+>
+> L’ANOVA à deux facteurs sur mesures répétées peut être effectuée afin de **déterminer s’il y a une interaction significative entre ces 2 facteurs sur la teneur en Mg des oeufs.**
+
 ## Les librairies utiles
 
 ```{r message = FALSE, warning = FALSE}
@@ -16,22 +39,72 @@ library("rstatix")   # convert_as_factor()
 mg <- read_csv("data/mg.csv")
 mg <- mg %>% 
   mutate(regime = factor(regime))
-head(mg)
 ```
 
-Rassembler les colonnes mg1 à mg4 en format long et convertir l'identifiant et les seances en facteurs.
+Rassembler les colonnes mg1 (mesure de MG de la séance 1) à mg4 (mesure de MG de la séance 4) en format long. Ajouter une colonne pour identifier les échantillons. L'identifiant (`id`) de chaque observation et et la colonne rassemblant les anciens titres de colonnes (`mg1`, `mg2`, `mg3`, `mg4`) doivent être convertis en facteurs.
 
 ```{r message = FALSE, warning = FALSE}
 mgl <- mg %>%
-  mutate(id = 1:nrow(mg)) %>% 
+  mutate(id = 1:nrow(.)) %>% 
   gather(key = "seance", value = "tmg", -c(regime, reference, id)) %>%
   convert_as_factor(id, seance)
-head(mgl)
+glimpse(mgl)
 ```
 
-> Les scores renommés en `tmg` pour `taux de matière grasse`.
+> Les valeurs pour chaque séances sont renommés en `tmg` pour `taux de matière grasse`.
+
 
 ## Sommaire des données, par séance
+
+```{r}
+mgl %>%
+  group_by(seance, regime) %>%
+  get_summary_stats(tmg, type = "mean_sd") %>% 
+  select(-variable)
+```
+
+> 40 groupes établis. Ça se peut que ce ne soit pas le type d'analyse adéquate. Peut-être seulement l'effet du temps ...
+
+On établira plus bas des anova séance par séance pour les différences probables entre regimes.
+
+
+## Visualisation boxplots
+
+```{r}
+bxp <- ggplot(mgl, aes(x = seance, y = tmg, color = regime)) +
+  geom_boxplot()
+bxp
+```
+
+
+## Détection valeurs aberrantes
+
+```{r}
+mgl_out <- mgl %>%
+  group_by(seance, regime) %>%
+  identify_outliers(tmg)
+mgl_out
+```
+
+Pas de valeurs aberrantes extrêmes !
+
+## Le modèle
+
+```{r}
+lm <- anova_test(data = mgl, 
+                 dv = tmg, 
+                 wid = id,  
+                 within = c(seance)) # c(seance, regime)) ne tourne pas !
+
+get_anova_table(lm)
+```
+
+On oublie l'effet des régimes lorsqu'on voudrait exploiter ces données comme des mesures répétées. Seulement l'effet du temps nous donne de l'information ... Ce qui ramène à une ANOVA à 1 facteur sur mesures répétées.
+
+> **La question dans ce cas revient à se demander si les taux de MG des oeufs mesurés sur l'ensemble des sujets sont significativement différents d'une séance à l'autre (c'est-à-dire avec le temps)**. 
+
+
+## Sommaire à 1 facteur
 
 ```{r}
 mgl %>%
@@ -40,28 +113,31 @@ mgl %>%
   select(-variable)
 ```
 
-## Visualisation boxplots, par séance
-
-```{r message = FALSE, warning = FALSE}
-ggboxplot(mgl, x = "seance", y = "tmg") #, add = "point")
-```
-
-## Détection valeurs aberrantes
-
-(Pas pour les exclure !)
+## Visualisation à 1 facteur
 
 ```{r}
-out_mgl <- mgl %>%
+bxp <- ggplot(mgl, aes(x = seance, y = tmg)) +
+  geom_boxplot()
+bxp
+```
+
+## valeurs aberrantes, 1 facteur
+
+```{r}
+mgl_out <- mgl %>%
   group_by(seance) %>%
   identify_outliers(tmg)
-out_mgl
+mgl_out
 ```
+
+Il n'y a pas d'observation aberrante extrême.
+
 
 ## Conditions de l'ANOVA
 
 ### Normalité
 
-Si les données sont normalement distribuées, la p-value de Shapiro-Wilk doit être supérieure à 0,05.
+Si les données sont normalement distribuées, la p-value de Shapiro-Wilk doit être supérieure à 0,05 pour chaque régime.
 
 ```{r}
 mgl %>%
@@ -83,7 +159,9 @@ ggqqplot(mgl, "tmg", facet.by = "seance")
 
 Tous les points se situent approximativement le long de la ligne de référence => nous pouvons supposer une normalité.
 
-### Sphéricité (=> homoscédasticité ou homogénéité des variances)
+### Sphéricité
+
+=> homoscédasticité ou homogénéité des variances par séance
 
 ```{r}
 mgl %>%
@@ -94,13 +172,58 @@ mgl %>%
 
 > Toutes les valeurs p sont > 0.05 => toutes les variances sont homogènes.
 
+## Sphéricité et ANOVA, 1 facteur
+
+La fonction `anova_test()` réalise également le test de sphéricité de Mauchly. Données utilisées : Tableau modélé en format long `mgl`.
+
+```{r message = FALSE, warning = FALSE}
+lm <- anova_test(data = mgl,       #
+                        dv = tmg,        # dependant variable, num
+                        wid = id,        # identificateur de cas/échantillon (facteur)
+                        within = seance) # facteur de groupement intra-sujets
+get_anova_table(lm)
+```
+
+> C'est la p-value qui nous intéresse et elle est < 0.000 => Différence statistiquement significative entre au moins 2 séances.
+
+## Comparaisons par paires, 1 facteur
+
+```{r}
+tph <- mgl %>%
+  pairwise_t_test(tmg ~ seance, 
+                  paired = TRUE,
+                  p.adjust.method = "bonferroni")
+
+tph %>% 
+  select(group1, group2, p, p.adj, p.adj.signif)
+```
+
+
+### Visualisation, boxplots avec p-values
+
+```{r message = FALSE, warning = FALSE}
+tph <- tph %>% add_xy_position(x = "seance")
+
+ggboxplot(mgl, x = "seance", y = "tmg") + 
+  stat_pvalue_manual(tph) +
+  labs(subtitle = get_test_label(lm, detailed = TRUE), 
+       caption = get_pwc_label(tph))
+```
+
+> séance 1 ≠ séance 2
+> séance 1 ≠ séance 3
+> séance 1 ≠ séance 4
+> séance 2 ≠ séance 4
+> séance 2 ≈ séance 3
+> séance 3 ≈ séance 4.
+
+
 *** 
 
-## Comparaisons des effets des régimes sur le taux de MG, par séance
+## ANOVA par séance
 
 Les conditions de la validité d'une ANOVA étant remplies, les interprétations seront donc valides.
 
-***
 
 ### Séance 1
 
@@ -247,65 +370,5 @@ ggplot(data = phs4, mapping = aes(x = regime, y = mg4)) +
   xlab("Régimes") + ylab("Taux de matières grasses") +
   theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1))
 ```
-
-***
-
-## MESURES REPÉTÉES
-
-## Sphéricité et ANOVA, mesures repétées
-
-La fonction `anova_test()` réalise également le test de sphéricité de Mauchly. Données utilisées : Tableau modélé en format long `mgl`.
-
-```{r message = FALSE, warning = FALSE}
-mg_anova <- anova_test(data = mgl,      #
-                        dv = tmg,        # dependant variable, num
-                        wid = id,        # identificateur de cas/échantillon (facteur)
-                        within = seance) # facteur de groupement intra-sujets
-get_anova_table(mg_anova)
-```
-
-> C'est la p-value qui nous intéresse et elle est < 0.000 => Différence statistiquement significative entre au moins 2 séances.
-
-## Comparaisons par paires, mesures repétées
-
-```{r}
-tph <- mgl %>%
-  pairwise_t_test(tmg ~ seance, 
-                  paired = TRUE,
-                  p.adjust.method = "bonferroni")
-
-tph %>% 
-  select(group1, group2, p, p.adj, p.adj.signif)
-```
-
-```{r}
-mgl %>%
-  group_by(seance) %>%
-  get_summary_stats(tmg, type = "mean_sd") %>% 
-  select(-variable)
-```
-
-> séance 1 ≠ séance 2
-> séance 1 ≠ séance 3
-> séance 1 ≠ séance 4
-> séance 2 ≠ séance 4
-> séance 2 ≈ séance 3
-> séance 3 ≈ séance 4.
-
-#### Visualisation : Boxplots avec p-values
-
-```{r message = FALSE, warning = FALSE}
-tph <- tph %>% add_xy_position(x = "seance")
-ggboxplot(mgl, x = "seance", y = "tmg") + 
-  stat_pvalue_manual(tph) +
-  labs(
-    subtitle = get_test_label(mg_anova, detailed = TRUE),
-    caption = get_pwc_label(tph)
-  )
-```
-
-
-
-
 
 

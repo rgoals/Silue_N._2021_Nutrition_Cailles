@@ -1,6 +1,6 @@
 --- 
 title: "Exploration des données, nutrition de cailles"
-author: "Silué Nahoulé"
+author: "Silué N."
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -12,8 +12,47 @@ description: "The output format for this example is bookdown::gitbook."
 
 # Travail à faire
 
-## ab
+## Gain moyen quotidien des cailles
 
-## cd
 
-## ef
+
+## Taux de matière grasse de l'oeuf
+
+
+
+## Effets des régimes pour différentes variables de l'oeuf
+
+1. `masse_oeuf` : masse des oeufs,
+1. `masse_coq` : masse de la coquille, 
+1. `epais_coq` : épaisseur de la coquille, 
+1. `masse_jaune` : masse du jaune d'oeuf, 
+1. `masse_blanc` : masse du blanc d'oeuf, 
+1. `indlic` : indice `l` de l'intérieur de la coquille, 
+1. `indaic` : indice `a` de l'intérieur de la coquille, 
+1. `indbic` : indice `b` de l'intérieur de la coquille, 
+1. `indljau` : indice `l` du jaune d'oeuf, 
+1. `indajau` : indice `a` du jaune d'oeuf, 
+1. `indbjau` : indice `b` du jaune d'oeuf, 
+1. `prot_tot` : Teneur en protéines totales, 
+1. `chol_tot` : Teneur en cholestérol total, 
+1. `lip_tot` : Teneur en lipides totales
+
+
+## Les librairies
+
+```{r message = FALSE, warning = FALSE}
+library("ggpubr")    # ggboxplot()
+library("agricolae") # SNK.test() Student Newman-Keuls
+library("car")       # leveneTest()
+library("rstatix")   # convert_as_factor(), friedman_test()
+library("Rmisc")     # summarySE()
+library("corrplot")  # matrice de corrélation cor(), corrplot()
+library("ggpmisc")   # stat_poly_eq() ajout équation
+library("tidyverse") # tidy et ggplot2
+```
+
+
+```{r}
+#cm <- multcomp::glht(lm1, linfct = multcomp::mcp(engrais = "Tukey"))
+#summary(cm)
+```

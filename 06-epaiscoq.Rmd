@@ -1,0 +1,415 @@
+
+# Épaisseur de la coquille
+
+La démarche sera la même que celle des chapitres précédents. Il se peut qu'il y ait moins de commentaires.
+
+Même jeu de données `oeuf.csv` qui contient différentes mesures dont les **épaisseurs de coquilles** d'oeuf mesurées en 5 séances. Mêmes traitements (régimes).
+
+La question est de savoir si les différents régimes induisent des **épaisseurs de coquille** d'oeuf significativement différentes avec le temps. Mais chaque traitement n'ayant pas été appliqué sur chaque groupe d'oiseaux, l'ANOVA à mesures répétées ne pourrait pas être appliquée. Nous comparerons les effets des traitements séance par séance, puis à l'aide d'une figure on appréciera s'il y a une évolution en fonction du temps.  
+
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+library("ggpubr")
+library("agricolae")
+library("car")
+library("rstatix")
+library("Rmisc")
+library("tidyverse")
+```
+
+## Les données
+
+```{r message = FALSE, warning = FALSE}
+ep <- read_csv("data/oeuf.csv")
+ep <- ep %>% 
+  select(seance, regime, no_oeuf, epais_coq) %>% 
+  mutate(id = rep(1:30, 5), .before = 1,
+         id = factor(id),
+         seance = factor(seance),
+         regime = factor(regime))
+```
+
+Le tableau a été préalablement structuré en format long en Excel. J'ai ajouté un identifiant (`id`) pour les échantillons des séances.
+
+```{r message = FALSE, warning = FALSE}
+glimpse(ep)
+```
+
+
+## Visualisation boxplots
+
+```{r ep-boxplot}
+bxp <- ggplot(ep, aes(x = regime, y = epais_coq, fill = regime)) +
+  geom_boxplot() +
+  facet_grid(seance ~ .) +
+  theme(axis.text.x = element_text(angle = 90, color = "black", vjust = 0.5, hjust = 1)) +
+  theme_bw()
+bxp
+```
+
+Il y a des variations notables d'une séance à l'autre pour certains régimes.
+
+## Détection des valeurs aberrantes extrêmes
+
+```{r}
+ep_out <- ep %>%
+  group_by(seance, regime) %>%
+  identify_outliers(epais_coq)
+ep_out
+```
+
+=> Pas de valeurs aberrantes extrêmes pour toutes les séances.
+
+
+## Conditions de l'ANOVA
+
+### Normalité
+
+Si les données sont normalement distribuées, la p-value de Shapiro-Wilk doit être supérieure à 0,05 pour chaque régime.
+
+```{r}
+ep %>%
+  group_by(seance) %>%
+  shapiro_test(epais_coq)
+```
+
+=> Normalité confirmée pour toutes les séances sauf la première.
+
+Créer des QQ-plots pour chaque point par séance
+
+```{r ep-qqplot, message = FALSE, warning = FALSE}
+ggqqplot(ep, "epais_coq", facet.by = "seance")
+```
+
+Tous les points se situent approximativement le long de la ligne de référence. Sauf pour la 1ère séance. On regardera de plus près celle-là au moment venu.
+
+### Homogénéité des variances
+
+```{r}
+ep %>%
+  select(seance, regime, epais_coq) %>% 
+  group_by(seance) %>%
+  levene_test(epais_coq ~ regime)
+```
+
+=> Toutes les valeurs p sont > 0.05 => toutes les variances sont homogènes.
+
+Les conditions de la validité d'une ANOVA étant remplies, les interprétations seront donc valides. Le cas de la séance 4 vera une vérification supplémentaire.
+
+
+## ANOVA à 1 facteur séance par séance
+
+### Séance 1
+
+```{r}
+ep1 <- ep %>% filter(seance == "seance 1")
+
+ep1_out <- ep1 %>% 
+  identify_outliers(epais_coq)
+ep1_out
+```
+
+=> Une observation aberrante et extrême. On pourrait l'exclure pour voir. 
+=> L'exclusion de l'observation extrême n'a pas amélioré la distribution mais la transformation `log()` le reussi. Le modèle ANOVA sera donc fait avec le `log(epaisseur_coquille)`.
+
+
+```{r}
+lm1 <- lm(log(epais_coq) ~ regime, data = ep1)
+Anova(lm1)
+```
+
+=> Différence significative entre les effets d'au moins 2 régimes sur l'épaisseur de la coquille.
+
+```{r}
+shapiro_test(residuals(lm1))
+```
+
+```{r}
+leveneTest(residuals(lm1) ~ ep1$regime)
+```
+
+La p-value de l'ANOVA `Anova(lm1)` > 0.05 => différence très significative entre les effets d'au moins 2 régimes sur l'épaisseur de la coquille à la séance 1.
+
+#### Comparaisons par paires
+
+Comparaisons des moyennes par paires (Student - Newman - Keuls).
+
+```{r}
+
+```
+
+
+```{r}
+cm1 <- (SNK.test(lm1, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) #%>% 
+colnames(cm1)[1] <- "epais_coq" # renommer log(epais_coq)
+cm1
+```
+
+#### Visualisation des groupes, bareplots avec labels
+
+```{r ep1-barplot}
+ggplot(data = cm1, mapping = aes(x = regime, y = epais_coq)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  #ylim(0, 1.6) +
+  xlab("Régimes") + ylab("Log(Épaisseur de la coquille)") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+
+### Séance 2
+
+#### Le modèle
+
+```{r}
+ep2 <- ep %>% filter(seance == "seance 2")
+lm2 <- lm(epais_coq ~ regime, data = ep2)
+Anova(lm2)
+```
+
+La p-value est > 0.05 => Pas de différence significative entre les effetes des régimes.
+
+
+#### Comparaisons par paires
+
+```{r}
+cm2 <- (SNK.test(lm2, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, epais_coq, groups) %>% 
+  as_tibble()
+cm2
+```
+
+#### Visualisation des groupes
+
+```{r ep2-barplot, message = FALSE, warning = FALSE}
+ggplot(data = cm2, mapping = aes(x = regime, y = epais_coq)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  ylim(0, 0.4) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  xlab("Régimes") + ylab("Épaisseur de la coquille") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+
+### Séance 3
+
+#### Le modèle
+
+```{r}
+ep3 <- ep %>% filter(seance == "seance 3")
+lm3 <- lm(epais_coq ~ regime, data = ep3)
+Anova(lm3)
+```
+
+La p-value < 0.01 => Différence très significative entre les effetes d'au moins 2 régimes.
+
+
+#### Comparaisons par paires
+
+```{r}
+cm3 <- (SNK.test(lm3, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, epais_coq, groups) %>% 
+  as_tibble()
+cm3
+```
+
+#### Visualisation des groupes
+
+```{r ep3-barplot, message = FALSE, warning = FALSE}
+ggplot(data = cm3, mapping = aes(x = regime, y = epais_coq)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  ylim(0, 0.4) +
+  xlab("Régimes") + ylab("Épaisseur de la coquille") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+
+### Séance 4
+
+#### Le modèle
+
+```{r}
+ep4 <- ep %>% filter(seance == "seance 4")
+lm4 <- lm(epais_coq ~ regime, data = ep4)
+Anova(lm4)
+```
+
+La p-value < 0.01 => différence très significative entre les effets d'au moins 2 régimes.
+
+
+#### Comparaisons par paires, séance 4
+
+```{r}
+cm4 <- (SNK.test(lm4, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, epais_coq, groups) %>% 
+  as_tibble()
+cm4
+```
+
+
+#### Visualisation des groupes
+
+```{r ep4-barplot, message = FALSE, warning = FALSE}
+ggplot(data = cm4, mapping = aes(x = regime, y = epais_coq)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  ylim(0, 0.4) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  xlab("Régimes") + ylab("Épaisseur de la coquille") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+
+### Séance 5
+
+#### Le modèle
+
+```{r}
+ep5 <- ep %>% filter(seance == "seance 5")
+lm5 <- lm(epais_coq ~ regime, data = ep5)
+Anova(lm5)
+```
+
+La p-value > 0.05 => Pas de différence significative entre les effets des régimes.
+
+
+#### Comparaisons par paires
+
+```{r}
+cm5 <- (SNK.test(lm5, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, epais_coq, groups) %>% 
+  as_tibble()
+cm5
+```
+
+
+#### Visualisation
+
+```{r ep5-barplot, message = FALSE, warning = FALSE}
+ggplot(data = cm5, mapping = aes(x = regime, y = epais_coq)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  ylim(0, 0.3) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  xlab("Régimes") + ylab("Épaisseur de la coquille") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+
+
+## Évolution de l'épaisseur de la coquille par régime au cours du temps
+
+### Sommaire
+
+```{r}
+ep_ic <- summarySE(ep, 
+                   measurevar = "epais_coq", 
+                   groupvars = c("seance", "regime"),
+                   na.rm = TRUE)
+
+ep_ic
+```
+
+
+### Visualisation
+
+```{r ep-temps-evo}
+ggplot(ep_ic, aes(x = seance, y = epais_coq, colour = regime, group = regime)) + 
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  ylab("Épaisseur de la coquille") +
+  theme_bw()
+```
+
+Tendances différentes selon les régimes. Vous jugerez. Certains ont eu des épaisseurs décroissantes de 1 à 3, les autres ont atteint un maximum à la séance 2 pour décroitre ensuite.
+
+Nous savons par les analyses pour chaque séance plus haut, que
+
+- séance 1 : il existe des différences d'effet entre les régimes
+- séance 2 : pas de différences d'effet signicatives entre les régimes 
+- séance 3 : il existe des différences d'effet entre les régimes
+- séance 4 : il existe des différences d'effet entre les régimes
+- séance 5 : pas de différences d'effet signicatives entre les régimes
+
+
+Puisque les données ne répondent pas aux conditions pour évaluer les effets des régimes au cours du temps, on négligera l'effet des régimes pour évaluer globalement l'effet du temps sur les masses des coquilles d'oeuf.
+
+> **On pourrait se demander si les masses des coquilles mesurées sur l'ensemble des sujets sont significativement différentes d'une séance à l'autre (c'est-à-dire avec le temps)**.
+
+### Effet du temps
+
+#### boxplots, facteur temps
+
+```{r ep-temps-boxplot}
+bxp <- ggplot(ep, aes(x = seance, y = epais_coq)) +
+  geom_boxplot()
+bxp
+```
+
+#### Valeurs aberrantes, facteur temps
+
+```{r}
+ep <- ep %>% mutate(id2 = 1:nrow(.), .before = 1)
+ep_out <- ep %>%
+  group_by(seance) %>%
+  identify_outliers(epais_coq)
+ep_out
+```
+
+=> 1 observation aberrante extrême pour la séances 2. On pourrait l'exclure. Mais je l'ai conservé pour la suite.
+
+```{r}
+#ep <- ep %>% filter(id2 != ...)
+```
+
+
+#### Homogénéité des variances et ANOVA, facteur temps
+
+Les autres conditions ont déjà été vérifiées. La fonction `anova_test()` réalise également le test de sphéricité de Mauchly. 
+
+```{r message = FALSE, warning = FALSE}
+lm <- anova_test(data = ep,
+                 dv = epais_coq,
+                 wid = id,
+                 within = seance)
+
+get_anova_table(lm)
+```
+
+=> C'est la p-value qui nous intéresse et elle est < 0.05 => différence significative entre certaines séances.
+
+#### Comparaisons par paires, facteur temps
+
+```{r}
+tph <- ep %>%
+  pairwise_t_test(epais_coq ~ seance, 
+                  paired = TRUE,
+                  p.adjust.method = "bonferroni")
+
+tph %>% 
+  select(group1, group2, p, p.adj, p.adj.signif)
+```
+
+
+#### Boxplots avec p-values
+
+```{r ep-temps-pwc, message = FALSE, warning = FALSE}
+tph <- tph %>% add_xy_position(x = "seance")
+
+ggboxplot(ep, x = "seance", y = "epais_coq") + 
+  stat_pvalue_manual(tph) +
+  labs(subtitle = get_test_label(lm, detailed = TRUE), 
+       caption = get_pwc_label(tph))
+```
+
+Différence significative seulement entre les séances 2 et 5.
+

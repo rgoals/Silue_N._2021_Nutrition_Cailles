@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapitre 5 Masse de la coquille | Exploration des données, nutrition de cailles</title>
+  <meta name="description" content="The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapitre 5 Masse de la coquille | Exploration des données, nutrition de cailles" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The output format for this example is bookdown::gitbook." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapitre 5 Masse de la coquille | Exploration des données, nutrition de cailles" />
+  
+  <meta name="twitter:description" content="The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Silué N." />
+
+
+<meta name="date" content="2021-09-07" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="masse-des-oeufs.html"/>
+<link rel="next" href="épaisseur-de-la-coquille.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Travail à faire</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#gain-moyen-quotidien-des-cailles"><i class="fa fa-check"></i><b>1.1</b> Gain moyen quotidien des cailles</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#taux-de-matière-grasse-de-loeuf"><i class="fa fa-check"></i><b>1.2</b> Taux de matière grasse de l’oeuf</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#effets-des-régimes-pour-différentes-variables-de-loeuf"><i class="fa fa-check"></i><b>1.3</b> Effets des régimes pour différentes variables de l’oeuf</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#les-librairies"><i class="fa fa-check"></i><b>1.4</b> Les librairies</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="gmq.html"><a href="gmq.html"><i class="fa fa-check"></i><b>2</b> Gain moyen quotidien</a><ul>
+<li class="chapter" data-level="2.1" data-path="gmq.html"><a href="gmq.html#les-données"><i class="fa fa-check"></i><b>2.1</b> Les données</a></li>
+<li class="chapter" data-level="2.2" data-path="gmq.html"><a href="gmq.html#visualisation-boxplots"><i class="fa fa-check"></i><b>2.2</b> Visualisation, boxplots</a></li>
+<li class="chapter" data-level="2.3" data-path="gmq.html"><a href="gmq.html#identification-des-valeurs-extrêmes-aberrantes"><i class="fa fa-check"></i><b>2.3</b> Identification des valeurs extrêmes aberrantes</a></li>
+<li class="chapter" data-level="2.4" data-path="gmq.html"><a href="gmq.html#le-modèle"><i class="fa fa-check"></i><b>2.4</b> Le Modèle</a></li>
+<li class="chapter" data-level="2.5" data-path="gmq.html"><a href="gmq.html#vérification-des-conditions-de-lanova"><i class="fa fa-check"></i><b>2.5</b> Vérification des conditions de l’ANOVA</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="gmq.html"><a href="gmq.html#hypothèse-de-normalité"><i class="fa fa-check"></i><b>2.5.1</b> Hypothèse de normalité</a></li>
+<li class="chapter" data-level="2.5.2" data-path="gmq.html"><a href="gmq.html#homogénéité-des-variances"><i class="fa fa-check"></i><b>2.5.2</b> Homogénéité des variances</a></li>
+<li class="chapter" data-level="2.5.3" data-path="gmq.html"><a href="gmq.html#alternative-non-paramétrique-test-de-kruskal-wallis"><i class="fa fa-check"></i><b>2.5.3</b> Alternative non-paramétrique, test de Kruskal-Wallis</a></li>
+<li class="chapter" data-level="2.5.4" data-path="gmq.html"><a href="gmq.html#comparaisons-par-paires-test-de-dunn"><i class="fa fa-check"></i><b>2.5.4</b> Comparaisons par paires, test de Dunn</a></li>
+<li class="chapter" data-level="2.5.5" data-path="gmq.html"><a href="gmq.html#visualisation-graphique"><i class="fa fa-check"></i><b>2.5.5</b> Visualisation graphique</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="mg.html"><a href="mg.html"><i class="fa fa-check"></i><b>3</b> Matières grasses</a><ul>
+<li class="chapter" data-level="3.1" data-path="mg.html"><a href="mg.html#les-données-1"><i class="fa fa-check"></i><b>3.1</b> Les données</a></li>
+<li class="chapter" data-level="3.2" data-path="mg.html"><a href="mg.html#visualisation-boxplots-1"><i class="fa fa-check"></i><b>3.2</b> Visualisation boxplots</a></li>
+<li class="chapter" data-level="3.3" data-path="mg.html"><a href="mg.html#détection-des-valeurs-aberrantes-extrêmes"><i class="fa fa-check"></i><b>3.3</b> Détection des valeurs aberrantes extrêmes</a></li>
+<li class="chapter" data-level="3.4" data-path="mg.html"><a href="mg.html#conditions-de-lanova"><i class="fa fa-check"></i><b>3.4</b> Conditions de l’ANOVA</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="mg.html"><a href="mg.html#normalité"><i class="fa fa-check"></i><b>3.4.1</b> Normalité</a></li>
+<li class="chapter" data-level="3.4.2" data-path="mg.html"><a href="mg.html#homogénéité-des-variances-1"><i class="fa fa-check"></i><b>3.4.2</b> Homogénéité des variances</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="mg.html"><a href="mg.html#anova-à-1-facteur-séance-par-séance"><i class="fa fa-check"></i><b>3.5</b> ANOVA à 1 facteur séance par séance</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="mg.html"><a href="mg.html#séance-1"><i class="fa fa-check"></i><b>3.5.1</b> Séance 1</a></li>
+<li class="chapter" data-level="3.5.2" data-path="mg.html"><a href="mg.html#séance-2"><i class="fa fa-check"></i><b>3.5.2</b> Séance 2</a></li>
+<li class="chapter" data-level="3.5.3" data-path="mg.html"><a href="mg.html#séance-3"><i class="fa fa-check"></i><b>3.5.3</b> Séance 3</a></li>
+<li class="chapter" data-level="3.5.4" data-path="mg.html"><a href="mg.html#séance-4"><i class="fa fa-check"></i><b>3.5.4</b> Séance 4</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="mg.html"><a href="mg.html#évolution-du-taux-de-matière-grasse-par-régime-au-cours-du-temps"><i class="fa fa-check"></i><b>3.6</b> Évolution du taux de matière grasse par régime au cours du temps</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="mg.html"><a href="mg.html#sommaire"><i class="fa fa-check"></i><b>3.6.1</b> Sommaire</a></li>
+<li class="chapter" data-level="3.6.2" data-path="mg.html"><a href="mg.html#visualisation"><i class="fa fa-check"></i><b>3.6.2</b> Visualisation</a></li>
+<li class="chapter" data-level="3.6.3" data-path="mg.html"><a href="mg.html#effet-du-temps"><i class="fa fa-check"></i><b>3.6.3</b> Effet du temps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html"><i class="fa fa-check"></i><b>4</b> Masse des oeufs</a><ul>
+<li class="chapter" data-level="4.1" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#les-données-2"><i class="fa fa-check"></i><b>4.1</b> Les données</a></li>
+<li class="chapter" data-level="4.2" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#visualisation-boxplots-2"><i class="fa fa-check"></i><b>4.2</b> Visualisation boxplots</a></li>
+<li class="chapter" data-level="4.3" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#détection-des-valeurs-aberrantes-extrêmes-1"><i class="fa fa-check"></i><b>4.3</b> Détection des valeurs aberrantes extrêmes</a></li>
+<li class="chapter" data-level="4.4" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#conditions-de-lanova-1"><i class="fa fa-check"></i><b>4.4</b> Conditions de l’ANOVA</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#normalité-1"><i class="fa fa-check"></i><b>4.4.1</b> Normalité</a></li>
+<li class="chapter" data-level="4.4.2" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#homogénéité-des-variances-2"><i class="fa fa-check"></i><b>4.4.2</b> Homogénéité des variances</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#anova-à-1-facteur-séance-par-séance-1"><i class="fa fa-check"></i><b>4.5</b> ANOVA à 1 facteur séance par séance</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#séance-1-1"><i class="fa fa-check"></i><b>4.5.1</b> Séance 1</a></li>
+<li class="chapter" data-level="4.5.2" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#séance-2-1"><i class="fa fa-check"></i><b>4.5.2</b> Séance 2</a></li>
+<li class="chapter" data-level="4.5.3" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#séance-3-1"><i class="fa fa-check"></i><b>4.5.3</b> Séance 3</a></li>
+<li class="chapter" data-level="4.5.4" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#séance-4-1"><i class="fa fa-check"></i><b>4.5.4</b> Séance 4</a></li>
+<li class="chapter" data-level="4.5.5" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#séance-5"><i class="fa fa-check"></i><b>4.5.5</b> Séance 5</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#évolution-de-la-masse-de-loeuf-par-régime-au-cours-du-temps"><i class="fa fa-check"></i><b>4.6</b> Évolution de la masse de l’oeuf par régime au cours du temps</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#sommaire-1"><i class="fa fa-check"></i><b>4.6.1</b> Sommaire</a></li>
+<li class="chapter" data-level="4.6.2" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#visualisation-2"><i class="fa fa-check"></i><b>4.6.2</b> Visualisation</a></li>
+<li class="chapter" data-level="4.6.3" data-path="masse-des-oeufs.html"><a href="masse-des-oeufs.html#effet-du-temps-1"><i class="fa fa-check"></i><b>4.6.3</b> Effet du temps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html"><i class="fa fa-check"></i><b>5</b> Masse de la coquille</a><ul>
+<li class="chapter" data-level="5.1" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#les-données-3"><i class="fa fa-check"></i><b>5.1</b> Les données</a></li>
+<li class="chapter" data-level="5.2" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#visualisation-boxplots-3"><i class="fa fa-check"></i><b>5.2</b> Visualisation boxplots</a></li>
+<li class="chapter" data-level="5.3" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#détection-des-valeurs-aberrantes-extrêmes-2"><i class="fa fa-check"></i><b>5.3</b> Détection des valeurs aberrantes extrêmes</a></li>
+<li class="chapter" data-level="5.4" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#conditions-de-lanova-2"><i class="fa fa-check"></i><b>5.4</b> Conditions de l’ANOVA</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#normalité-2"><i class="fa fa-check"></i><b>5.4.1</b> Normalité</a></li>
+<li class="chapter" data-level="5.4.2" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#homogénéité-des-variances-3"><i class="fa fa-check"></i><b>5.4.2</b> Homogénéité des variances</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#anova-à-1-facteur-séance-par-séance-2"><i class="fa fa-check"></i><b>5.5</b> ANOVA à 1 facteur séance par séance</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#séance-1-2"><i class="fa fa-check"></i><b>5.5.1</b> Séance 1</a></li>
+<li class="chapter" data-level="5.5.2" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#séance-2-2"><i class="fa fa-check"></i><b>5.5.2</b> Séance 2</a></li>
+<li class="chapter" data-level="5.5.3" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#séance-3-2"><i class="fa fa-check"></i><b>5.5.3</b> Séance 3</a></li>
+<li class="chapter" data-level="5.5.4" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#séance-4-2"><i class="fa fa-check"></i><b>5.5.4</b> Séance 4</a></li>
+<li class="chapter" data-level="5.5.5" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#séance-5-1"><i class="fa fa-check"></i><b>5.5.5</b> Séance 5</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#évolution-de-la-masse-de-la-coquille-par-régime-au-cours-du-temps"><i class="fa fa-check"></i><b>5.6</b> Évolution de la masse de la coquille par régime au cours du temps</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#sommaire-2"><i class="fa fa-check"></i><b>5.6.1</b> Sommaire</a></li>
+<li class="chapter" data-level="5.6.2" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#visualisation-4"><i class="fa fa-check"></i><b>5.6.2</b> Visualisation</a></li>
+<li class="chapter" data-level="5.6.3" data-path="masse-de-la-coquille.html"><a href="masse-de-la-coquille.html#effet-du-temps-2"><i class="fa fa-check"></i><b>5.6.3</b> Effet du temps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html"><i class="fa fa-check"></i><b>6</b> Épaisseur de la coquille</a><ul>
+<li class="chapter" data-level="6.1" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#les-données-4"><i class="fa fa-check"></i><b>6.1</b> Les données</a></li>
+<li class="chapter" data-level="6.2" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#visualisation-boxplots-4"><i class="fa fa-check"></i><b>6.2</b> Visualisation boxplots</a></li>
+<li class="chapter" data-level="6.3" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#détection-des-valeurs-aberrantes-extrêmes-3"><i class="fa fa-check"></i><b>6.3</b> Détection des valeurs aberrantes extrêmes</a></li>
+<li class="chapter" data-level="6.4" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#conditions-de-lanova-3"><i class="fa fa-check"></i><b>6.4</b> Conditions de l’ANOVA</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#normalité-3"><i class="fa fa-check"></i><b>6.4.1</b> Normalité</a></li>
+<li class="chapter" data-level="6.4.2" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#homogénéité-des-variances-4"><i class="fa fa-check"></i><b>6.4.2</b> Homogénéité des variances</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#anova-à-1-facteur-séance-par-séance-3"><i class="fa fa-check"></i><b>6.5</b> ANOVA à 1 facteur séance par séance</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#séance-1-3"><i class="fa fa-check"></i><b>6.5.1</b> Séance 1</a></li>
+<li class="chapter" data-level="6.5.2" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#séance-2-3"><i class="fa fa-check"></i><b>6.5.2</b> Séance 2</a></li>
+<li class="chapter" data-level="6.5.3" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#séance-3-3"><i class="fa fa-check"></i><b>6.5.3</b> Séance 3</a></li>
+<li class="chapter" data-level="6.5.4" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#séance-4-3"><i class="fa fa-check"></i><b>6.5.4</b> Séance 4</a></li>
+<li class="chapter" data-level="6.5.5" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#séance-5-2"><i class="fa fa-check"></i><b>6.5.5</b> Séance 5</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#évolution-de-lépaisseur-de-la-coquille-par-régime-au-cours-du-temps"><i class="fa fa-check"></i><b>6.6</b> Évolution de l’épaisseur de la coquille par régime au cours du temps</a><ul>
+<li class="chapter" data-level="6.6.1" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#sommaire-3"><i class="fa fa-check"></i><b>6.6.1</b> Sommaire</a></li>
+<li class="chapter" data-level="6.6.2" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#visualisation-6"><i class="fa fa-check"></i><b>6.6.2</b> Visualisation</a></li>
+<li class="chapter" data-level="6.6.3" data-path="épaisseur-de-la-coquille.html"><a href="épaisseur-de-la-coquille.html#effet-du-temps-3"><i class="fa fa-check"></i><b>6.6.3</b> Effet du temps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html"><i class="fa fa-check"></i><b>7</b> Masse du jaune d’oeuf</a><ul>
+<li class="chapter" data-level="7.1" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#les-données-5"><i class="fa fa-check"></i><b>7.1</b> Les données</a></li>
+<li class="chapter" data-level="7.2" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#visualisation-boxplots-5"><i class="fa fa-check"></i><b>7.2</b> Visualisation boxplots</a></li>
+<li class="chapter" data-level="7.3" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#détection-des-valeurs-aberrantes-extrêmes-4"><i class="fa fa-check"></i><b>7.3</b> Détection des valeurs aberrantes extrêmes</a></li>
+<li class="chapter" data-level="7.4" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#conditions-de-lanova-4"><i class="fa fa-check"></i><b>7.4</b> Conditions de l’ANOVA</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#normalité-4"><i class="fa fa-check"></i><b>7.4.1</b> Normalité</a></li>
+<li class="chapter" data-level="7.4.2" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#homogénéité-des-variances-5"><i class="fa fa-check"></i><b>7.4.2</b> Homogénéité des variances</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#anova-à-1-facteur-séance-par-séance-4"><i class="fa fa-check"></i><b>7.5</b> ANOVA à 1 facteur séance par séance</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#séance-1-4"><i class="fa fa-check"></i><b>7.5.1</b> Séance 1</a></li>
+<li class="chapter" data-level="7.5.2" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#séance-2-4"><i class="fa fa-check"></i><b>7.5.2</b> Séance 2</a></li>
+<li class="chapter" data-level="7.5.3" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#séance-3-4"><i class="fa fa-check"></i><b>7.5.3</b> Séance 3</a></li>
+<li class="chapter" data-level="7.5.4" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#séance-4-4"><i class="fa fa-check"></i><b>7.5.4</b> Séance 4</a></li>
+<li class="chapter" data-level="7.5.5" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#séance-5-3"><i class="fa fa-check"></i><b>7.5.5</b> Séance 5</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#évolution-de-la-masse-du-jaune-doeuf-par-régime-au-cours-du-temps"><i class="fa fa-check"></i><b>7.6</b> Évolution de la masse du jaune d’oeuf par régime au cours du temps</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#sommaire-4"><i class="fa fa-check"></i><b>7.6.1</b> Sommaire</a></li>
+<li class="chapter" data-level="7.6.2" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#visualisation-8"><i class="fa fa-check"></i><b>7.6.2</b> Visualisation</a></li>
+<li class="chapter" data-level="7.6.3" data-path="masse-du-jaune-doeuf.html"><a href="masse-du-jaune-doeuf.html#effet-du-temps-4"><i class="fa fa-check"></i><b>7.6.3</b> Effet du temps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html"><i class="fa fa-check"></i><b>8</b> Masse du blanc d’oeuf</a><ul>
+<li class="chapter" data-level="8.1" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#les-données-6"><i class="fa fa-check"></i><b>8.1</b> Les données</a></li>
+<li class="chapter" data-level="8.2" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#visualisation-boxplots-6"><i class="fa fa-check"></i><b>8.2</b> Visualisation boxplots</a></li>
+<li class="chapter" data-level="8.3" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#détection-des-valeurs-aberrantes-extrêmes-5"><i class="fa fa-check"></i><b>8.3</b> Détection des valeurs aberrantes extrêmes</a></li>
+<li class="chapter" data-level="8.4" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#conditions-de-lanova-5"><i class="fa fa-check"></i><b>8.4</b> Conditions de l’ANOVA</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#normalité-5"><i class="fa fa-check"></i><b>8.4.1</b> Normalité</a></li>
+<li class="chapter" data-level="8.4.2" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#homogénéité-des-variances-6"><i class="fa fa-check"></i><b>8.4.2</b> Homogénéité des variances</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#anova-à-1-facteur-séance-par-séance-5"><i class="fa fa-check"></i><b>8.5</b> ANOVA à 1 facteur séance par séance</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#séance-1-5"><i class="fa fa-check"></i><b>8.5.1</b> Séance 1</a></li>
+<li class="chapter" data-level="8.5.2" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#séance-2-5"><i class="fa fa-check"></i><b>8.5.2</b> Séance 2</a></li>
+<li class="chapter" data-level="8.5.3" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#séance-3-5"><i class="fa fa-check"></i><b>8.5.3</b> Séance 3</a></li>
+<li class="chapter" data-level="8.5.4" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#séance-4-5"><i class="fa fa-check"></i><b>8.5.4</b> Séance 4</a></li>
+<li class="chapter" data-level="8.5.5" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#séance-5-4"><i class="fa fa-check"></i><b>8.5.5</b> Séance 5</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#évolution-de-la-masse-du-blanc-doeuf-par-régime-au-cours-du-temps"><i class="fa fa-check"></i><b>8.6</b> Évolution de la masse du blanc d’oeuf par régime au cours du temps</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#sommaire-5"><i class="fa fa-check"></i><b>8.6.1</b> Sommaire</a></li>
+<li class="chapter" data-level="8.6.2" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#visualisation-10"><i class="fa fa-check"></i><b>8.6.2</b> Visualisation</a></li>
+<li class="chapter" data-level="8.6.3" data-path="masse-du-blanc-doeuf.html"><a href="masse-du-blanc-doeuf.html#effet-du-temps-5"><i class="fa fa-check"></i><b>8.6.3</b> Effet du temps</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="9" data-path="mesrep.html"><a href="mesrep.html"><i class="fa fa-check"></i><b>9</b> Les séances, en mesures répétées</a><ul>
+<li class="chapter" data-level="9.1" data-path="mesrep.html"><a href="mesrep.html#les-données-7"><i class="fa fa-check"></i><b>9.1</b> LES DONNÉES</a></li>
+<li class="chapter" data-level="9.2" data-path="mesrep.html"><a href="mesrep.html#masse-des-oeufs-1"><i class="fa fa-check"></i><b>9.2</b> MASSE DES OEUFS</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-masse-des-oeufs"><i class="fa fa-check"></i><b>9.2.1</b> Sommaire par séance, masse des oeufs</a></li>
+<li class="chapter" data-level="9.2.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-masse-des-oeufs"><i class="fa fa-check"></i><b>9.2.2</b> Visualisation boxplots, masse des oeufs</a></li>
+<li class="chapter" data-level="9.2.3" data-path="mesrep.html"><a href="mesrep.html#normalité-masse-des-oeufs"><i class="fa fa-check"></i><b>9.2.3</b> Normalité, masse des oeufs</a></li>
+<li class="chapter" data-level="9.2.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-masse-des-oeufs"><i class="fa fa-check"></i><b>9.2.4</b> Test de Friedman, masse des oeufs</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="mesrep.html"><a href="mesrep.html#masse-de-la-coquille-1"><i class="fa fa-check"></i><b>9.3</b> MASSE DE LA COQUILLE</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-masse-de-la-coquille"><i class="fa fa-check"></i><b>9.3.1</b> Sommaire par séance, masse de la coquille</a></li>
+<li class="chapter" data-level="9.3.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-masse-de-la-coquille"><i class="fa fa-check"></i><b>9.3.2</b> Visualisation boxplots, masse de la coquille</a></li>
+<li class="chapter" data-level="9.3.3" data-path="mesrep.html"><a href="mesrep.html#normalité-masse-de-la-coquille"><i class="fa fa-check"></i><b>9.3.3</b> Normalité, masse de la coquille</a></li>
+<li class="chapter" data-level="9.3.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-masse-de-la-coquille"><i class="fa fa-check"></i><b>9.3.4</b> Test de Friedman, masse de la coquille</a></li>
+<li class="chapter" data-level="9.3.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon."><i class="fa fa-check"></i><b>9.3.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon.</a></li>
+<li class="chapter" data-level="9.3.6" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-avec-p-values"><i class="fa fa-check"></i><b>9.3.6</b> Visualisation : Boxplots avec p-values</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="mesrep.html"><a href="mesrep.html#épaisseur-de-la-coquille-1"><i class="fa fa-check"></i><b>9.4</b> ÉPAISSEUR DE LA COQUILLE</a><ul>
+<li class="chapter" data-level="9.4.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>9.4.1</b> Sommaire par séance, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="9.4.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>9.4.2</b> Visualisation boxplots, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="9.4.3" data-path="mesrep.html"><a href="mesrep.html#normalité-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>9.4.3</b> Normalité, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="9.4.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-épaisseur-de-la-coquille"><i class="fa fa-check"></i><b>9.4.4</b> Test de Friedman, épaisseur de la coquille</a></li>
+<li class="chapter" data-level="9.4.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon.-1"><i class="fa fa-check"></i><b>9.4.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon.</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="mesrep.html"><a href="mesrep.html#masse-du-jaune"><i class="fa fa-check"></i><b>9.5</b> MASSE DU JAUNE</a><ul>
+<li class="chapter" data-level="9.5.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-masse-du-jaune"><i class="fa fa-check"></i><b>9.5.1</b> Sommaire par séance, masse du jaune</a></li>
+<li class="chapter" data-level="9.5.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-masse-du-jaune"><i class="fa fa-check"></i><b>9.5.2</b> Visualisation boxplots, masse du jaune</a></li>
+<li class="chapter" data-level="9.5.3" data-path="mesrep.html"><a href="mesrep.html#normalité-masse-du-jaune"><i class="fa fa-check"></i><b>9.5.3</b> Normalité, masse du jaune</a></li>
+<li class="chapter" data-level="9.5.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-masse-du-jaune"><i class="fa fa-check"></i><b>9.5.4</b> Test de Friedman, masse du jaune</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="mesrep.html"><a href="mesrep.html#masse-du-blanc"><i class="fa fa-check"></i><b>9.6</b> MASSE DU BLANC</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-masse-du-blanc"><i class="fa fa-check"></i><b>9.6.1</b> Sommaire par séance, masse du blanc</a></li>
+<li class="chapter" data-level="9.6.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-masse-du-blanc"><i class="fa fa-check"></i><b>9.6.2</b> Visualisation boxplots, masse du blanc</a></li>
+<li class="chapter" data-level="9.6.3" data-path="mesrep.html"><a href="mesrep.html#normalité-masse-du-blanc"><i class="fa fa-check"></i><b>9.6.3</b> Normalité, masse du blanc</a></li>
+<li class="chapter" data-level="9.6.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-masse-du-blanc"><i class="fa fa-check"></i><b>9.6.4</b> Test de Friedman, masse du blanc</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="mesrep.html"><a href="mesrep.html#indice-l-intérieur-de-la-coquille"><i class="fa fa-check"></i><b>9.7</b> INDICE ‘l’ INTÉRIEUR DE LA COQUILLE</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-indice-l-intérieur-coquille"><i class="fa fa-check"></i><b>9.7.1</b> Sommaire par séance, indice ‘l’ intérieur coquille</a></li>
+<li class="chapter" data-level="9.7.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-indice-l-intérieur-coquille"><i class="fa fa-check"></i><b>9.7.2</b> Visualisation boxplots, indice ‘l’ intérieur coquille</a></li>
+<li class="chapter" data-level="9.7.3" data-path="mesrep.html"><a href="mesrep.html#normalité-indice-l-intérieur-coquille"><i class="fa fa-check"></i><b>9.7.3</b> Normalité, indice ‘l’ intérieur coquille</a></li>
+<li class="chapter" data-level="9.7.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-indice-l-intérieur-coquille"><i class="fa fa-check"></i><b>9.7.4</b> Test de Friedman, indice ‘l’ intérieur coquille</a></li>
+<li class="chapter" data-level="9.7.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon.-2"><i class="fa fa-check"></i><b>9.7.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon.</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="mesrep.html"><a href="mesrep.html#indice-a-intérieur-de-la-coquille"><i class="fa fa-check"></i><b>9.8</b> INDICE ‘a’ INTÉRIEUR DE LA COQUILLE</a><ul>
+<li class="chapter" data-level="9.8.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-indice-a-intérieur-coquille"><i class="fa fa-check"></i><b>9.8.1</b> Sommaire par séance, indice ‘a’ intérieur coquille</a></li>
+<li class="chapter" data-level="9.8.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-indice-a-intérieur-coquille"><i class="fa fa-check"></i><b>9.8.2</b> Visualisation boxplots, indice ‘a’ intérieur coquille</a></li>
+<li class="chapter" data-level="9.8.3" data-path="mesrep.html"><a href="mesrep.html#normalité-indice-a-intérieur-coquille"><i class="fa fa-check"></i><b>9.8.3</b> Normalité, indice ‘a’ intérieur coquille</a></li>
+<li class="chapter" data-level="9.8.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-indice-a-intérieur-coquille"><i class="fa fa-check"></i><b>9.8.4</b> Test de Friedman, indice ‘a’ intérieur coquille</a></li>
+<li class="chapter" data-level="9.8.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon.-3"><i class="fa fa-check"></i><b>9.8.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon.</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="mesrep.html"><a href="mesrep.html#indice-b-intérieur-de-la-coquille"><i class="fa fa-check"></i><b>9.9</b> INDICE ‘b’ INTÉRIEUR DE LA COQUILLE</a><ul>
+<li class="chapter" data-level="9.9.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-indice-b-intérieur-coquille"><i class="fa fa-check"></i><b>9.9.1</b> Sommaire par séance, indice ‘b’ intérieur coquille</a></li>
+<li class="chapter" data-level="9.9.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-indice-b-intérieur-coquille"><i class="fa fa-check"></i><b>9.9.2</b> Visualisation boxplots, indice ‘b’ intérieur coquille</a></li>
+<li class="chapter" data-level="9.9.3" data-path="mesrep.html"><a href="mesrep.html#normalité-indice-b-intérieur-coquille"><i class="fa fa-check"></i><b>9.9.3</b> Normalité, indice ‘b’ intérieur coquille</a></li>
+<li class="chapter" data-level="9.9.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-indice-b-intérieur-coquille"><i class="fa fa-check"></i><b>9.9.4</b> Test de Friedman, indice ‘b’ intérieur coquille</a></li>
+<li class="chapter" data-level="9.9.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon.-4"><i class="fa fa-check"></i><b>9.9.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon.</a></li>
+</ul></li>
+<li class="chapter" data-level="9.10" data-path="mesrep.html"><a href="mesrep.html#indice-l-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.10</b> INDICE ‘l’ DU JAUNE D’OEUF</a><ul>
+<li class="chapter" data-level="9.10.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-indice-l-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.10.1</b> Sommaire par séance, indice ‘l’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="9.10.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-indice-l-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.10.2</b> Visualisation boxplots, indice ‘l’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="9.10.3" data-path="mesrep.html"><a href="mesrep.html#normalité-indice-l-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.10.3</b> Normalité, indice ‘l’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="9.10.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-indice-l-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.10.4</b> Test de Friedman, indice ‘l’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="9.10.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon.-5"><i class="fa fa-check"></i><b>9.10.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon.</a></li>
+</ul></li>
+<li class="chapter" data-level="9.11" data-path="mesrep.html"><a href="mesrep.html#indice-a-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.11</b> INDICE ‘a’ DU JAUNE D’OEUF</a><ul>
+<li class="chapter" data-level="9.11.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-indice-a-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.11.1</b> Sommaire par séance, indice ‘a’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="9.11.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-indice-a-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.11.2</b> Visualisation boxplots, indice ‘a’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="9.11.3" data-path="mesrep.html"><a href="mesrep.html#normalité-indice-a-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.11.3</b> Normalité, indice ‘a’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="9.11.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-indice-a-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.11.4</b> Test de Friedman, indice ‘a’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="9.11.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon.-6"><i class="fa fa-check"></i><b>9.11.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon.</a></li>
+</ul></li>
+<li class="chapter" data-level="9.12" data-path="mesrep.html"><a href="mesrep.html#indice-b-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.12</b> INDICE ‘b’ DU JAUNE D’OEUF</a><ul>
+<li class="chapter" data-level="9.12.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-indice-b-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.12.1</b> Sommaire par séance, indice ‘b’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="9.12.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-indice-b-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.12.2</b> Visualisation boxplots, indice ‘b’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="9.12.3" data-path="mesrep.html"><a href="mesrep.html#normalité-indice-b-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.12.3</b> Normalité, indice ‘b’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="9.12.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-indice-b-du-jaune-doeuf"><i class="fa fa-check"></i><b>9.12.4</b> Test de Friedman, indice ‘b’ du jaune d’oeuf</a></li>
+<li class="chapter" data-level="9.12.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon"><i class="fa fa-check"></i><b>9.12.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon</a></li>
+</ul></li>
+<li class="chapter" data-level="9.13" data-path="mesrep.html"><a href="mesrep.html#protéines-totales"><i class="fa fa-check"></i><b>9.13</b> PROTÉINES TOTALES</a><ul>
+<li class="chapter" data-level="9.13.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-protéines"><i class="fa fa-check"></i><b>9.13.1</b> Sommaire par séance, protéines</a></li>
+<li class="chapter" data-level="9.13.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-protéines"><i class="fa fa-check"></i><b>9.13.2</b> Visualisation boxplots, protéines</a></li>
+<li class="chapter" data-level="9.13.3" data-path="mesrep.html"><a href="mesrep.html#normalité-protéines"><i class="fa fa-check"></i><b>9.13.3</b> Normalité, protéines</a></li>
+<li class="chapter" data-level="9.13.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-protéines"><i class="fa fa-check"></i><b>9.13.4</b> Test de Friedman, protéines</a></li>
+<li class="chapter" data-level="9.13.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon-1"><i class="fa fa-check"></i><b>9.13.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon</a></li>
+</ul></li>
+<li class="chapter" data-level="9.14" data-path="mesrep.html"><a href="mesrep.html#cholestérol-total"><i class="fa fa-check"></i><b>9.14</b> CHOLESTÉROL TOTAL</a><ul>
+<li class="chapter" data-level="9.14.1" data-path="mesrep.html"><a href="mesrep.html#sommaire-par-séance-cholestérol"><i class="fa fa-check"></i><b>9.14.1</b> Sommaire par séance, cholestérol</a></li>
+<li class="chapter" data-level="9.14.2" data-path="mesrep.html"><a href="mesrep.html#visualisation-boxplots-cholestérol"><i class="fa fa-check"></i><b>9.14.2</b> Visualisation boxplots, cholestérol</a></li>
+<li class="chapter" data-level="9.14.3" data-path="mesrep.html"><a href="mesrep.html#normalité-cholestérol"><i class="fa fa-check"></i><b>9.14.3</b> Normalité, cholestérol</a></li>
+<li class="chapter" data-level="9.14.4" data-path="mesrep.html"><a href="mesrep.html#test-de-friedman-cholestérol"><i class="fa fa-check"></i><b>9.14.4</b> Test de Friedman, cholestérol</a></li>
+<li class="chapter" data-level="9.14.5" data-path="mesrep.html"><a href="mesrep.html#comparaisons-par-paires-à-laide-du-test-apparié-des-rangs-signés-de-wilcoxon-2"><i class="fa fa-check"></i><b>9.14.5</b> Comparaisons par paires à l’aide du test apparié des rangs signés de Wilcoxon</a></li>
+</ul></li>
+<li class="chapter" data-level="9.15" data-path="mesrep.html"><a href="mesrep.html#lipides-totales"><i class="fa fa-check"></i><b>9.15</b> LIPIDES TOTALES</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Exploration des données, nutrition de cailles</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="masse-de-la-coquille" class="section level1">
+<h1><span class="header-section-number">Chapitre 5</span> Masse de la coquille</h1>
+<p>La démarche sera la même que celle des chapitres précédents. Il se peut qu’il y ait moins de commentaires.</p>
+<p>Même jeu de données <code>oeuf.csv</code> qui contient différentes mesures dont les <strong>masses des coquilles</strong> d’oeuf mesurées en 5 séances. Mêmes traitements (régimes).</p>
+<p>La question est de savoir si les différents régimes induisent des <strong>masses de coquille</strong> d’oeuf significativement différentes avec le temps. Mais chaque traitement n’ayant pas été appliqué sur chaque groupe d’oiseaux, l’ANOVA à mesures répétées ne pourrait pas être appliquée. Nous comparerons les effets des traitements séance par séance, puis à l’aide d’une figure on appréciera s’il y a une évolution en fonction du temps.</p>
+<div id="les-données-3" class="section level2">
+<h2><span class="header-section-number">5.1</span> Les données</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">mc &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/oeuf.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb1-2" title="2">mc &lt;-<span class="st"> </span>mc <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="st">  </span><span class="kw">select</span>(seance, regime, no_oeuf, masse_coq) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">id =</span> <span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">30</span>, <span class="dv">5</span>), <span class="dt">.before =</span> <span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb1-5" title="5">         <span class="dt">id =</span> <span class="kw">factor</span>(id),</a>
+<a class="sourceLine" id="cb1-6" title="6">         <span class="dt">seance =</span> <span class="kw">factor</span>(seance),</a>
+<a class="sourceLine" id="cb1-7" title="7">         <span class="dt">regime =</span> <span class="kw">factor</span>(regime))</a></code></pre></div>
+<p>Le tableau a été préalablement structuré en format long en Excel. J’ai ajouté un identifiant (<code>id</code>) pour les échantillons des séances.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">glimpse</span>(mc)</a></code></pre></div>
+<pre><code>## Rows: 150
+## Columns: 5
+## $ id        &lt;fct&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1~
+## $ seance    &lt;fct&gt; seance 1, seance 1, seance 1, seance 1, seance 1, seance 1, ~
+## $ regime    &lt;fct&gt; &quot;Ba 0,25&quot;, &quot;Ba 0,25&quot;, &quot;Ba 0,25&quot;, &quot;Ba 0,50&quot;, &quot;Ba 0,50&quot;, &quot;Ba 0~
+## $ no_oeuf   &lt;dbl&gt; 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, ~
+## $ masse_coq &lt;dbl&gt; 1.187, 1.313, 1.431, 1.317, 1.176, 1.463, 1.107, 1.054, 1.08~</code></pre>
+</div>
+<div id="visualisation-boxplots-3" class="section level2">
+<h2><span class="header-section-number">5.2</span> Visualisation boxplots</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">bxp &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mc, <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_coq, <span class="dt">fill =</span> regime)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="st">  </span><span class="kw">facet_grid</span>(seance <span class="op">~</span><span class="st"> </span>.) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="fl">0.5</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="st">  </span><span class="kw">theme_bw</span>()</a>
+<a class="sourceLine" id="cb4-6" title="6">bxp</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/mc-boxplot-1.png" width="672" /></p>
+<p>Il y a des variations notables d’une séance à l’autre pour certains régimes.</p>
+</div>
+<div id="détection-des-valeurs-aberrantes-extrêmes-2" class="section level2">
+<h2><span class="header-section-number">5.3</span> Détection des valeurs aberrantes extrêmes</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">mc_out &lt;-<span class="st"> </span>mc <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(seance, regime) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="st">  </span><span class="kw">identify_outliers</span>(masse_coq)</a>
+<a class="sourceLine" id="cb5-4" title="4">mc_out</a></code></pre></div>
+<pre><code>## [1] seance     regime     id         no_oeuf    masse_coq  is.outlier is.extreme
+## &lt;0 rows&gt; (or 0-length row.names)</code></pre>
+<p>=&gt; Pas de valeurs aberrantes extrêmes pour toutes les séances.</p>
+</div>
+<div id="conditions-de-lanova-2" class="section level2">
+<h2><span class="header-section-number">5.4</span> Conditions de l’ANOVA</h2>
+<div id="normalité-2" class="section level3">
+<h3><span class="header-section-number">5.4.1</span> Normalité</h3>
+<p>Si les données sont normalement distribuées, la p-value de Shapiro-Wilk doit être supérieure à 0,05 pour chaque régime.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">mc <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(seance) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span><span class="kw">shapiro_test</span>(masse_coq)</a></code></pre></div>
+<pre><code>## # A tibble: 5 x 4
+##   seance   variable  statistic      p
+##   &lt;fct&gt;    &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;
+## 1 seance 1 masse_coq     0.962 0.356 
+## 2 seance 2 masse_coq     0.964 0.385 
+## 3 seance 3 masse_coq     0.954 0.214 
+## 4 seance 4 masse_coq     0.914 0.0193
+## 5 seance 5 masse_coq     0.972 0.606</code></pre>
+<p>=&gt; Normalité confirmée pour toutes les séances sauf la 4.</p>
+<p>Créer des QQ-plots pour chaque point par séance</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw">ggqqplot</span>(mc, <span class="st">&quot;masse_coq&quot;</span>, <span class="dt">facet.by =</span> <span class="st">&quot;seance&quot;</span>)</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/mc-qqplot-1.png" width="672" /></p>
+<p>Tous les points se situent approximativement le long de la ligne de référence. Mais on regardera de plus près la séance 4 au moment venu.</p>
+</div>
+<div id="homogénéité-des-variances-3" class="section level3">
+<h3><span class="header-section-number">5.4.2</span> Homogénéité des variances</h3>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">mc <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="st">  </span><span class="kw">select</span>(seance, regime, masse_coq) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(seance) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="st">  </span><span class="kw">levene_test</span>(masse_coq <span class="op">~</span><span class="st"> </span>regime)</a></code></pre></div>
+<pre><code>## # A tibble: 5 x 5
+##   seance     df1   df2 statistic     p
+##   &lt;fct&gt;    &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1 seance 1     9    20     1.16  0.373
+## 2 seance 2     9    20     0.408 0.916
+## 3 seance 3     9    20     0.988 0.480
+## 4 seance 4     9    20     0.565 0.810
+## 5 seance 5     9    20     0.658 0.736</code></pre>
+<p>=&gt; Toutes les valeurs p sont &gt; 0.05 =&gt; toutes les variances sont homogènes.</p>
+<p>Les conditions de la validité d’une ANOVA étant remplies, les interprétations seront donc valides. Le cas de la séance 4 vera une vérification supplémentaire.</p>
+</div>
+</div>
+<div id="anova-à-1-facteur-séance-par-séance-2" class="section level2">
+<h2><span class="header-section-number">5.5</span> ANOVA à 1 facteur séance par séance</h2>
+<div id="séance-1-2" class="section level3">
+<h3><span class="header-section-number">5.5.1</span> Séance 1</h3>
+<div id="le-modèle-10" class="section level4">
+<h4><span class="header-section-number">5.5.1.1</span> Le modèle</h4>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">mc1 &lt;-<span class="st"> </span>mc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(seance <span class="op">==</span><span class="st"> &quot;seance 1&quot;</span>)</a>
+<a class="sourceLine" id="cb12-2" title="2">lm1 &lt;-<span class="st"> </span><span class="kw">lm</span>(masse_coq <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> mc1)</a>
+<a class="sourceLine" id="cb12-3" title="3"><span class="kw">Anova</span>(lm1)</a></code></pre></div>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: masse_coq
+##            Sum Sq Df F value    Pr(&gt;F)    
+## regime    0.47716  9   5.306 0.0009252 ***
+## Residuals 0.19984 20                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>La p-value &lt; 0.01 =&gt; différence très significative entre les effets d’au moins 2 régimes sur la masse de la coquille à la séance 1.</p>
+</div>
+<div id="comparaisons-par-paires-6" class="section level4">
+<h4><span class="header-section-number">5.5.1.2</span> Comparaisons par paires</h4>
+<p>Comparaisons des moyennes par paires, Student - Newman - Keuls.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">cm1 &lt;-<span class="st"> </span>(<span class="kw">SNK.test</span>(lm1, <span class="st">&quot;regime&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>))<span class="op">$</span>groups <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="st">  </span><span class="kw">select</span>(regime, masse_coq, groups) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb14-5" title="5">cm1</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+##    regime  masse_coq groups
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; 
+##  1 YC           1.49 a     
+##  2 WC           1.42 a     
+##  3 Ba 10        1.38 ab    
+##  4 Ba 0,50      1.32 abc   
+##  5 Ba 0,25      1.31 abc   
+##  6 Ba 1         1.26 abc   
+##  7 Ba 5         1.25 abc   
+##  8 Ba 2,5       1.15 bc    
+##  9 Ba 7,5       1.12 bc    
+## 10 Ba 0,75      1.08 c</code></pre>
+</div>
+<div id="visualisation-des-groupes-bareplots-avec-labels-2" class="section level4">
+<h4><span class="header-section-number">5.5.1.3</span> Visualisation des groupes, bareplots avec labels</h4>
+<p>Figure pas nécessaire.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> cm1, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_coq)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">width =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-3" title="3"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> groups), <span class="dt">vjust =</span> <span class="fl">-0.5</span>, <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-4" title="4"><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="fl">1.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Régimes&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Masse de la coquille (g)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-6" title="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb16-7" title="7"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/mc1-barplot-1.png" width="672" /></p>
+</div>
+</div>
+<div id="séance-2-2" class="section level3">
+<h3><span class="header-section-number">5.5.2</span> Séance 2</h3>
+<div id="le-modèle-11" class="section level4">
+<h4><span class="header-section-number">5.5.2.1</span> Le modèle</h4>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">mc2 &lt;-<span class="st"> </span>mc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(seance <span class="op">==</span><span class="st"> &quot;seance 2&quot;</span>)</a>
+<a class="sourceLine" id="cb17-2" title="2">lm2 &lt;-<span class="st"> </span><span class="kw">lm</span>(masse_coq <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> mc2)</a>
+<a class="sourceLine" id="cb17-3" title="3"><span class="kw">Anova</span>(lm2)</a></code></pre></div>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: masse_coq
+##            Sum Sq Df F value  Pr(&gt;F)  
+## regime    0.35177  9   2.582 0.03707 *
+## Residuals 0.30275 20                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>La p-value est &lt; 0.05 =&gt; Différence significative entre les effetes d’au moins 2 régimes.</p>
+</div>
+<div id="comparaisons-par-paires-7" class="section level4">
+<h4><span class="header-section-number">5.5.2.2</span> Comparaisons par paires</h4>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">cm2 &lt;-<span class="st"> </span>(<span class="kw">SNK.test</span>(lm2, <span class="st">&quot;regime&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>))<span class="op">$</span>groups <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-3" title="3"><span class="st">  </span><span class="kw">select</span>(regime, masse_coq, groups) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb19-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb19-5" title="5">cm2</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+##    regime  masse_coq groups
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; 
+##  1 YC           1.56 a     
+##  2 Ba 1         1.48 ab    
+##  3 Ba 0,25      1.41 ab    
+##  4 Ba 5         1.38 ab    
+##  5 Ba 0,75      1.37 ab    
+##  6 WC           1.30 ab    
+##  7 Ba 7,5       1.3  ab    
+##  8 Ba 10        1.28 ab    
+##  9 Ba 0,50      1.22 ab    
+## 10 Ba 2,5       1.20 b</code></pre>
+</div>
+<div id="visualisation-des-groupes-6" class="section level4">
+<h4><span class="header-section-number">5.5.2.3</span> Visualisation des groupes</h4>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> cm2, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_coq)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">width =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="fl">1.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb21-4" title="4"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> groups), <span class="dt">vjust =</span> <span class="fl">-0.5</span>, <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb21-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Régimes&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Masse de la coquille (g)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb21-6" title="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb21-7" title="7"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/mc2-barplot-1.png" width="672" /></p>
+</div>
+</div>
+<div id="séance-3-2" class="section level3">
+<h3><span class="header-section-number">5.5.3</span> Séance 3</h3>
+<div id="le-modèle-12" class="section level4">
+<h4><span class="header-section-number">5.5.3.1</span> Le modèle</h4>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">mc3 &lt;-<span class="st"> </span>mc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(seance <span class="op">==</span><span class="st"> &quot;seance 3&quot;</span>)</a>
+<a class="sourceLine" id="cb22-2" title="2">lm3 &lt;-<span class="st"> </span><span class="kw">lm</span>(masse_coq <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> mc3)</a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="kw">Anova</span>(lm3)</a></code></pre></div>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: masse_coq
+##            Sum Sq Df F value  Pr(&gt;F)  
+## regime    0.35845  9  3.1607 0.01537 *
+## Residuals 0.25202 20                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>La p-value &lt; 0.05 =&gt; Différence significative entre les effetes d’au moins 2 régimes.</p>
+</div>
+<div id="comparaisons-par-paires-8" class="section level4">
+<h4><span class="header-section-number">5.5.3.2</span> Comparaisons par paires</h4>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">cm3 &lt;-<span class="st"> </span>(<span class="kw">SNK.test</span>(lm3, <span class="st">&quot;regime&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>))<span class="op">$</span>groups <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb24-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb24-3" title="3"><span class="st">  </span><span class="kw">select</span>(regime, masse_coq, groups) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb24-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb24-5" title="5">cm3</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+##    regime  masse_coq groups
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; 
+##  1 Ba 2,5       1.53 a     
+##  2 Ba 0,50      1.42 ab    
+##  3 Ba 1         1.39 ab    
+##  4 Ba 0,25      1.39 ab    
+##  5 Ba 7,5       1.37 ab    
+##  6 WC           1.33 ab    
+##  7 Ba 5         1.31 ab    
+##  8 YC           1.24 ab    
+##  9 Ba 0,75      1.22 ab    
+## 10 Ba 10        1.13 b</code></pre>
+</div>
+<div id="visualisation-des-groupes-7" class="section level4">
+<h4><span class="header-section-number">5.5.3.3</span> Visualisation des groupes</h4>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> cm3, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_coq)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">width =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-3" title="3"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> groups), <span class="dt">vjust =</span> <span class="fl">-0.5</span>, <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-4" title="4"><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="fl">1.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Régimes&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Masse de la coquille (g)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-6" title="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-7" title="7"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/mc3-barplot-1.png" width="672" /></p>
+</div>
+</div>
+<div id="séance-4-2" class="section level3">
+<h3><span class="header-section-number">5.5.4</span> Séance 4</h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">mc4 &lt;-<span class="st"> </span>mc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(seance <span class="op">==</span><span class="st"> &quot;seance 4&quot;</span>)</a>
+<a class="sourceLine" id="cb27-2" title="2"></a>
+<a class="sourceLine" id="cb27-3" title="3">mc4_out &lt;-<span class="st"> </span>mc4 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb27-4" title="4"><span class="st">  </span><span class="kw">identify_outliers</span>(masse_coq)</a>
+<a class="sourceLine" id="cb27-5" title="5">mc4_out</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 7
+##   id    seance   regime  no_oeuf masse_coq is.outlier is.extreme
+##   &lt;fct&gt; &lt;fct&gt;    &lt;fct&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;lgl&gt;      &lt;lgl&gt;     
+## 1 3     seance 4 Ba 0,25       3      1.65 TRUE       FALSE</code></pre>
+<p>Excluons cette observation pour apprécier.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">mc4 &lt;-<span class="st"> </span>mc4 <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(<span class="op">!</span><span class="st"> </span>id <span class="op">%in%</span><span class="st"> </span>mc4_out<span class="op">$</span>id)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">mc4 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="st">  </span><span class="kw">shapiro_test</span>(masse_coq)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 3
+##   variable  statistic      p
+##   &lt;chr&gt;         &lt;dbl&gt;  &lt;dbl&gt;
+## 1 masse_coq     0.940 0.0981</code></pre>
+<p>=&gt; Normalité OK !</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">mc4 <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb32-2" title="2"><span class="st">  </span><span class="kw">levene_test</span>(masse_coq <span class="op">~</span><span class="st"> </span>regime)</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 4
+##     df1   df2 statistic     p
+##   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1     9    19     0.719 0.686</code></pre>
+<p>=&gt; Homogénéité des variances toujours OK !</p>
+<div id="le-modèle-13" class="section level4">
+<h4><span class="header-section-number">5.5.4.1</span> Le modèle</h4>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">lm4 &lt;-<span class="st"> </span><span class="kw">lm</span>(masse_coq <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> mc4)</a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="kw">Anova</span>(lm4)</a></code></pre></div>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: masse_coq
+##            Sum Sq Df F value Pr(&gt;F)
+## regime    0.23631  9  1.2033 0.3485
+## Residuals 0.41461 19</code></pre>
+<p>La p-value &gt; 0.05 =&gt; différence pas significative entre les effets des régimes.</p>
+</div>
+<div id="comparaisons-par-paires-séance-4-2" class="section level4">
+<h4><span class="header-section-number">5.5.4.2</span> Comparaisons par paires, séance 4</h4>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">cm4 &lt;-<span class="st"> </span>(<span class="kw">SNK.test</span>(lm4, <span class="st">&quot;regime&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>))<span class="op">$</span>groups <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-3" title="3"><span class="st">  </span><span class="kw">select</span>(regime, masse_coq, groups) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb36-5" title="5">cm4</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+##    regime  masse_coq groups
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; 
+##  1 Ba 1         1.30 a     
+##  2 Ba 0,25      1.30 a     
+##  3 Ba 2,5       1.27 a     
+##  4 Ba 7,5       1.24 a     
+##  5 Ba 10        1.22 a     
+##  6 YC           1.18 a     
+##  7 WC           1.13 a     
+##  8 Ba 0,50      1.08 a     
+##  9 Ba 0,75      1.07 a     
+## 10 Ba 5         1.04 a</code></pre>
+</div>
+<div id="visualisation-des-groupes-8" class="section level4">
+<h4><span class="header-section-number">5.5.4.3</span> Visualisation des groupes</h4>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> cm4, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_coq)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">width =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-3" title="3"><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="fl">1.5</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-4" title="4"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> groups), <span class="dt">vjust =</span> <span class="fl">-0.5</span>, <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Régimes&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Masse de la coquille (g)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-6" title="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-7" title="7"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/mc4-barplot-1.png" width="672" /></p>
+</div>
+</div>
+<div id="séance-5-1" class="section level3">
+<h3><span class="header-section-number">5.5.5</span> Séance 5</h3>
+<div id="le-modèle-14" class="section level4">
+<h4><span class="header-section-number">5.5.5.1</span> Le modèle</h4>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1">mc5 &lt;-<span class="st"> </span>mc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(seance <span class="op">==</span><span class="st"> &quot;seance 5&quot;</span>)</a>
+<a class="sourceLine" id="cb39-2" title="2">lm5 &lt;-<span class="st"> </span><span class="kw">lm</span>(masse_coq <span class="op">~</span><span class="st"> </span>regime, <span class="dt">data =</span> mc5)</a>
+<a class="sourceLine" id="cb39-3" title="3"><span class="kw">Anova</span>(lm5)</a></code></pre></div>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: masse_coq
+##            Sum Sq Df F value Pr(&gt;F)
+## regime    0.14107  9  1.1202 0.3935
+## Residuals 0.27985 20</code></pre>
+<p>La p-value &gt; 0.05 =&gt; différence pas significative entre les effets des régimes.</p>
+</div>
+<div id="comparaisons-par-paires-9" class="section level4">
+<h4><span class="header-section-number">5.5.5.2</span> Comparaisons par paires</h4>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1">cm5 &lt;-<span class="st"> </span>(<span class="kw">SNK.test</span>(lm5, <span class="st">&quot;regime&quot;</span>, <span class="dt">group =</span> <span class="ot">TRUE</span>))<span class="op">$</span>groups <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb41-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">regime =</span> <span class="kw">rownames</span>(.)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb41-3" title="3"><span class="st">  </span><span class="kw">select</span>(regime, masse_coq, groups) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb41-4" title="4"><span class="st">  </span><span class="kw">as_tibble</span>()</a>
+<a class="sourceLine" id="cb41-5" title="5">cm5</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 3
+##    regime  masse_coq groups
+##    &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt; 
+##  1 Ba 0,50      1.51 a     
+##  2 Ba 10        1.48 a     
+##  3 Ba 1         1.42 a     
+##  4 WC           1.40 a     
+##  5 Ba 0,75      1.39 a     
+##  6 Ba 7,5       1.37 a     
+##  7 YC           1.33 a     
+##  8 Ba 0,25      1.33 a     
+##  9 Ba 2,5       1.30 a     
+## 10 Ba 5         1.30 a</code></pre>
+</div>
+<div id="visualisation-3" class="section level4">
+<h4><span class="header-section-number">5.5.5.3</span> Visualisation</h4>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> cm5, <span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> regime, <span class="dt">y =</span> masse_coq)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>, <span class="dt">width =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-3" title="3"><span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="fl">1.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-4" title="4"><span class="st">  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label =</span> groups), <span class="dt">vjust =</span> <span class="fl">-0.5</span>, <span class="dt">size =</span> <span class="dv">4</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;Régimes&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Masse de la coquille (g)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-6" title="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">45</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">vjust =</span> <span class="dv">1</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb43-7" title="7"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/mc5-barplot-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="évolution-de-la-masse-de-la-coquille-par-régime-au-cours-du-temps" class="section level2">
+<h2><span class="header-section-number">5.6</span> Évolution de la masse de la coquille par régime au cours du temps</h2>
+<div id="sommaire-2" class="section level3">
+<h3><span class="header-section-number">5.6.1</span> Sommaire</h3>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">mc_ic &lt;-<span class="st"> </span><span class="kw">summarySE</span>(mc, </a>
+<a class="sourceLine" id="cb44-2" title="2">                   <span class="dt">measurevar =</span> <span class="st">&quot;masse_coq&quot;</span>, </a>
+<a class="sourceLine" id="cb44-3" title="3">                   <span class="dt">groupvars =</span> <span class="kw">c</span>(<span class="st">&quot;seance&quot;</span>, <span class="st">&quot;regime&quot;</span>),</a>
+<a class="sourceLine" id="cb44-4" title="4">                   <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb44-5" title="5"></a>
+<a class="sourceLine" id="cb44-6" title="6">mc_ic</a></code></pre></div>
+<pre><code>##      seance  regime N masse_coq          sd           se          ci
+## 1  seance 1 Ba 0,25 3  1.310333 0.122021856 0.0704493514 0.303119094
+## 2  seance 1 Ba 0,50 3  1.318667 0.143507259 0.0828539545 0.356491794
+## 3  seance 1 Ba 0,75 3  1.080667 0.026501572 0.0153006899 0.065833555
+## 4  seance 1    Ba 1 3  1.263000 0.128175661 0.0740022522 0.318405993
+## 5  seance 1   Ba 10 3  1.381000 0.000000000 0.0000000000 0.000000000
+## 6  seance 1  Ba 2,5 3  1.148333 0.106326541 0.0613876571 0.264129770
+## 7  seance 1    Ba 5 3  1.255000 0.037643060 0.0217332311 0.093510546
+## 8  seance 1  Ba 7,5 3  1.121000 0.026851443 0.0155026879 0.066702683
+## 9  seance 1      WC 3  1.420667 0.110028784 0.0635251481 0.273326652
+## 10 seance 1      YC 3  1.488333 0.147500282 0.0851593278 0.366411014
+## 11 seance 2 Ba 0,25 3  1.406333 0.063877487 0.0368796843 0.158680474
+## 12 seance 2 Ba 0,50 3  1.218000 0.099954990 0.0577090403 0.248301960
+## 13 seance 2 Ba 0,75 3  1.368667 0.095311769 0.0550282756 0.236767560
+## 14 seance 2    Ba 1 3  1.480667 0.134838175 0.0778488564 0.334956595
+## 15 seance 2   Ba 10 3  1.281000 0.109672239 0.0633192967 0.272440945
+## 16 seance 2  Ba 2,5 3  1.195333 0.065033325 0.0375470076 0.161551735
+## 17 seance 2    Ba 5 3  1.382000 0.138683092 0.0800687205 0.344507899
+## 18 seance 2  Ba 7,5 3  1.300000 0.163450298 0.0943680737 0.406033050
+## 19 seance 2      WC 3  1.304333 0.204756766 0.1182163741 0.508644005
+## 20 seance 2      YC 3  1.562000 0.076863515 0.0443771713 0.190939557
+## 21 seance 3 Ba 0,25 3  1.389000 0.063174362 0.0364737348 0.156933815
+## 22 seance 3 Ba 0,50 3  1.415333 0.134440817 0.0776194420 0.333969504
+## 23 seance 3 Ba 0,75 3  1.219000 0.057087652 0.0329595712 0.141813589
+## 24 seance 3    Ba 1 3  1.394667 0.135692053 0.0783418435 0.337077747
+## 25 seance 3   Ba 10 3  1.127000 0.000000000 0.0000000000 0.000000000
+## 26 seance 3  Ba 2,5 3  1.534000 0.121000000 0.0698593826 0.300580663
+## 27 seance 3    Ba 5 3  1.314500 0.000500000 0.0002886751 0.001242069
+## 28 seance 3  Ba 7,5 3  1.374667 0.240803516 0.1390279748 0.598189095
+## 29 seance 3      WC 3  1.330000 0.000000000 0.0000000000 0.000000000
+## 30 seance 3      YC 3  1.244333 0.098215749 0.0567048891 0.243981446
+## 31 seance 4 Ba 0,25 3  1.413333 0.202376711 0.1168422488 0.502731621
+## 32 seance 4 Ba 0,50 3  1.078000 0.160411970 0.0926138938 0.398485423
+## 33 seance 4 Ba 0,75 3  1.068333 0.121911170 0.0703854467 0.302844134
+## 34 seance 4    Ba 1 3  1.297333 0.055365453 0.0319652589 0.137535409
+## 35 seance 4   Ba 10 3  1.216667 0.125707332 0.0725771620 0.312274324
+## 36 seance 4  Ba 2,5 3  1.266667 0.141923688 0.0819396797 0.352557987
+## 37 seance 4    Ba 5 3  1.045000 0.000000000 0.0000000000 0.000000000
+## 38 seance 4  Ba 7,5 3  1.241333 0.342077964 0.1974988045 0.849768770
+## 39 seance 4      WC 3  1.132333 0.008082904 0.0046666667 0.020079046
+## 40 seance 4      YC 3  1.177667 0.103001618 0.0594680119 0.255870204
+## 41 seance 5 Ba 0,25 3  1.326667 0.095552778 0.0551674219 0.237366259
+## 42 seance 5 Ba 0,50 3  1.509667 0.109235220 0.0630669838 0.271355330
+## 43 seance 5 Ba 0,75 3  1.391000 0.056204982 0.0324499615 0.139620915
+## 44 seance 5    Ba 1 3  1.415667 0.069176104 0.0399388421 0.171842968
+## 45 seance 5   Ba 10 3  1.480000 0.000000000 0.0000000000 0.000000000
+## 46 seance 5  Ba 2,5 3  1.302333 0.113058982 0.0652746335 0.280854080
+## 47 seance 5    Ba 5 3  1.299333 0.138911243 0.0802004433 0.345074656
+## 48 seance 5  Ba 7,5 3  1.370667 0.273234942 0.1577522671 0.678753223
+## 49 seance 5      WC 3  1.404667 0.048273526 0.0278707334 0.119918087
+## 50 seance 5      YC 3  1.327000 0.043000000 0.0248260616 0.106817922</code></pre>
+</div>
+<div id="visualisation-4" class="section level3">
+<h3><span class="header-section-number">5.6.2</span> Visualisation</h3>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw">ggplot</span>(mc_ic, <span class="kw">aes</span>(<span class="dt">x =</span> seance, <span class="dt">y =</span> masse_coq, <span class="dt">colour =</span> regime, <span class="dt">group =</span> regime)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb46-2" title="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-4" title="4"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Masse de la coquille (g)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb46-5" title="5"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/mc-temps-evo-1.png" width="672" /></p>
+<p>Il ne semble pas se dégager une tendance concrète entre les différentes séances, ou difficile à exploiter. Vous jugerez.</p>
+<p>Nous savons par les analyses pour chaque séance plus haut, que</p>
+<ul>
+<li>séance 1 : il existe des différences d’effet entre les régimes</li>
+<li>séance 2 : il existe des différences d’effet entre les régimes</li>
+<li>séance 3 : il existe des différences d’effet entre les régimes</li>
+<li>séance 4 : pas de différences signicatives (1 valeur aberrante exclue)</li>
+<li>séance 5 : pas de différences signicatives</li>
+</ul>
+<p>Puisque les données ne répondent pas aux conditions pour évaluer les effets des régimes au cours du temps, on négligera l’effet des régimes pour évaluer globalement l’effet du temps sur les masses des coquilles d’oeuf.</p>
+<blockquote>
+<p><strong>On pourrait se demander si les masses des coquilles mesurées sur l’ensemble des sujets sont significativement différentes d’une séance à l’autre (c’est-à-dire avec le temps)</strong>.</p>
+</blockquote>
+</div>
+<div id="effet-du-temps-2" class="section level3">
+<h3><span class="header-section-number">5.6.3</span> Effet du temps</h3>
+<div id="boxplots-facteur-temps-2" class="section level4">
+<h4><span class="header-section-number">5.6.3.1</span> boxplots, facteur temps</h4>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1">bxp &lt;-<span class="st"> </span><span class="kw">ggplot</span>(mc, <span class="kw">aes</span>(<span class="dt">x =</span> seance, <span class="dt">y =</span> masse_coq)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-2" title="2"><span class="st">  </span><span class="kw">geom_boxplot</span>()</a>
+<a class="sourceLine" id="cb47-3" title="3">bxp</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/mc-temps-boxplot-1.png" width="672" /></p>
+</div>
+<div id="valeurs-aberrantes-facteur-temps-2" class="section level4">
+<h4><span class="header-section-number">5.6.3.2</span> Valeurs aberrantes, facteur temps</h4>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">mc &lt;-<span class="st"> </span>mc <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">id2 =</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(.), <span class="dt">.before =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb48-2" title="2">mc_out &lt;-<span class="st"> </span>mc <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(seance) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb48-4" title="4"><span class="st">  </span><span class="kw">identify_outliers</span>(masse_coq)</a>
+<a class="sourceLine" id="cb48-5" title="5">mc_out</a></code></pre></div>
+<pre><code>## # A tibble: 3 x 8
+##   seance     id2 id    regime  no_oeuf masse_coq is.outlier is.extreme
+##   &lt;fct&gt;    &lt;int&gt; &lt;fct&gt; &lt;fct&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;lgl&gt;      &lt;lgl&gt;     
+## 1 seance 3    73 13    Ba 2,5        1      1.66 TRUE       FALSE     
+## 2 seance 4    93 3     Ba 0,25       3      1.65 TRUE       FALSE     
+## 3 seance 5   140 20    Ba 7,5        2      1.68 TRUE       FALSE</code></pre>
+<p>=&gt; 3 observations aberrantes mais pas extrêmes pour les séances 3, 4 et 5 ; une par séance. On pourrait les exclure. Mais je les ai conservé pour la suite.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="co">#mc &lt;- mc %&gt;% filter(id2 != ....)</span></a></code></pre></div>
+</div>
+<div id="homogénéité-des-variances-et-anova-facteur-temps-2" class="section level4">
+<h4><span class="header-section-number">5.6.3.3</span> Homogénéité des variances et ANOVA, facteur temps</h4>
+<p>Les autres conditions ont déjà été vérifiées. La fonction <code>anova_test()</code> réalise également le test de sphéricité de Mauchly.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" title="1">lm &lt;-<span class="st"> </span><span class="kw">anova_test</span>(<span class="dt">data =</span> mc,</a>
+<a class="sourceLine" id="cb51-2" title="2">                 <span class="dt">dv =</span> masse_coq,  <span class="co"># dependant variable, num</span></a>
+<a class="sourceLine" id="cb51-3" title="3">                 <span class="dt">wid =</span> id,        <span class="co"># identificateur de cas/échantillon (facteur)</span></a>
+<a class="sourceLine" id="cb51-4" title="4">                 <span class="dt">within =</span> seance) <span class="co"># facteur de groupement intra-sujets</span></a>
+<a class="sourceLine" id="cb51-5" title="5"></a>
+<a class="sourceLine" id="cb51-6" title="6"><span class="kw">get_anova_table</span>(lm)</a></code></pre></div>
+<pre><code>## ANOVA Table (type III tests)
+## 
+##   Effect DFn DFd   F        p p&lt;.05   ges
+## 1 seance   4 116 7.6 1.79e-05     * 0.169</code></pre>
+<p>=&gt; C’est la p-value qui nous intéresse et elle est &lt; 0.05 =&gt; différence significative entre certaines séances.</p>
+</div>
+<div id="comparaisons-par-paires-facteur-temps-2" class="section level4">
+<h4><span class="header-section-number">5.6.3.4</span> Comparaisons par paires, facteur temps</h4>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" title="1">tph &lt;-<span class="st"> </span>mc <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb53-2" title="2"><span class="st">  </span><span class="kw">pairwise_t_test</span>(masse_coq <span class="op">~</span><span class="st"> </span>seance, </a>
+<a class="sourceLine" id="cb53-3" title="3">                  <span class="dt">paired =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb53-4" title="4">                  <span class="dt">p.adjust.method =</span> <span class="st">&quot;bonferroni&quot;</span>)</a>
+<a class="sourceLine" id="cb53-5" title="5"></a>
+<a class="sourceLine" id="cb53-6" title="6">tph <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb53-7" title="7"><span class="st">  </span><span class="kw">select</span>(group1, group2, p, p.adj, p.adj.signif)</a></code></pre></div>
+<pre><code>## # A tibble: 10 x 5
+##    group1   group2          p p.adj p.adj.signif
+##    &lt;chr&gt;    &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       
+##  1 seance 1 seance 2 0.066    0.663 ns          
+##  2 seance 1 seance 3 0.196    1     ns          
+##  3 seance 1 seance 4 0.042    0.422 ns          
+##  4 seance 1 seance 5 0.004    0.041 *           
+##  5 seance 2 seance 3 0.698    1     ns          
+##  6 seance 2 seance 4 0.000175 0.002 **          
+##  7 seance 2 seance 5 0.404    1     ns          
+##  8 seance 3 seance 4 0.000297 0.003 **          
+##  9 seance 3 seance 5 0.173    1     ns          
+## 10 seance 4 seance 5 0.00011  0.001 **</code></pre>
+</div>
+<div id="boxplots-avec-p-values-2" class="section level4">
+<h4><span class="header-section-number">5.6.3.5</span> Boxplots avec p-values</h4>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" title="1">tph &lt;-<span class="st"> </span>tph <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">add_xy_position</span>(<span class="dt">x =</span> <span class="st">&quot;seance&quot;</span>)</a>
+<a class="sourceLine" id="cb55-2" title="2"></a>
+<a class="sourceLine" id="cb55-3" title="3"><span class="kw">ggboxplot</span>(mc, <span class="dt">x =</span> <span class="st">&quot;seance&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;masse_coq&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb55-4" title="4"><span class="st">  </span><span class="kw">stat_pvalue_manual</span>(tph) <span class="op">+</span></a>
+<a class="sourceLine" id="cb55-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">subtitle =</span> <span class="kw">get_test_label</span>(lm, <span class="dt">detailed =</span> <span class="ot">TRUE</span>), </a>
+<a class="sourceLine" id="cb55-6" title="6">       <span class="dt">caption =</span> <span class="kw">get_pwc_label</span>(tph))</a></code></pre></div>
+<p><img src="Silue_N._2021_Nutrition_Cailles_files/figure-html/mc-temps-pwc-1.png" width="672" /></p>
+<p>Un peu difficile à exploiter mais on pourrait se baser sur le tableau du code ci-dessus pour les déméler …</p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="masse-des-oeufs.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="épaisseur-de-la-coquille.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Silue_N._2021_Nutrition_Cailles.pdf", "Silue_N._2021_Nutrition_Cailles.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

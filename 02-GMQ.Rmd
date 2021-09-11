@@ -1,6 +1,11 @@
 
 # Gain moyen quotidien {#gmq}
 
+Nous utiliserons le jeu de données `gmq.csv` qui contient les mesures de masses ce cailles.
+
+La question est de savoir si les différents régimes induisent des GMQ significativement différents.  
+
+
 ```{r message=FALSE, warning=FALSE, echo=FALSE}
 library("tidyverse")
 library("ggpubr")

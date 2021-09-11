@@ -1,0 +1,136 @@
+
+# Teneur en lipides des oeufs
+
+La démarche sera la même que celle des chapitres précédents. Il se peut qu'il y ait moins de commentaires.
+
+Même jeu de données `oeuf.csv` qui contient différentes mesures dont la **teneur en lipides totaux de l'oeuf**, mesurée en 1 séance. Mêmes traitements (régimes).
+
+La question est de savoir si les différents régimes induisent des **teneurs en lipides totaux** des oeufs significativement différents. 
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+library("ggpubr")
+library("agricolae")
+library("car")
+library("rstatix")
+library("Rmisc")
+library("tidyverse")
+```
+
+
+## Les données
+
+```{r message = FALSE, warning = FALSE}
+lip <- read_csv("data/oeuf.csv")
+lip <- lip %>% 
+  select(seance, regime, no_oeuf, lip_tot) %>% 
+  mutate(id = rep(1:30, 5), .before = 1) %>% 
+  convert_as_factor(id, seance, regime) %>% 
+  filter(seance == "seance 1")
+```
+
+
+```{r message = FALSE, warning = FALSE}
+glimpse(lip)
+```
+
+
+## Visualisation boxplots
+
+```{r lip-boxplot}
+bxp <- ggplot(lip, aes(x = regime, y = lip_tot, fill = regime)) +
+  geom_boxplot() +
+  facet_grid(seance ~ .) +
+  theme(axis.text.x = element_text(angle = 90, color = "blipk", vjust = 0.5, hjust = 1)) +
+  ylab("Teneur en lipides totaux de l'oeuf") +
+  theme_bw()
+bxp
+```
+
+=> Variations notables entre les traitements.
+
+
+## Détection des observations aberrantes extrêmes
+
+```{r}
+lip_out <- lip %>%
+  identify_outliers(lip_tot)
+lip_out
+```
+
+=> Pas d'observations aberrantes extrêmes.
+
+
+## Conditions de l'ANOVA
+
+### Normalité
+
+Si les données sont normalement distribuées, la p-value de Shapiro-Wilk doit être supérieure à 0,05 pour chaque régime.
+
+```{r}
+lip %>%
+  shapiro_test(lip_tot)
+```
+
+=> Normalité Okay. Mais on verra bien le comportement des résidus de l'ANOVA.
+
+Créer des QQ-plots pour chaque point par séance
+
+```{r lip-qqplot, message = FALSE, warning = FALSE}
+ggqqplot(lip, "lip_tot")#, facet.by = "seance")
+```
+
+
+### Homogénéité des variances
+
+```{r}
+lip %>%
+  levene_test(lip_tot ~ regime)
+```
+
+=> Valeur-p > 0.05 => variances homogènes.
+
+
+## ANOVA
+
+### Le modèle
+
+```{r}
+lm <- lm(lip_tot ~ regime, data = lip)
+Anova(lm)
+```
+
+La p-value > 0.05 => pas de différence significative entre les effets des régimes sur la teneur en protéines.
+
+```{r}
+shapiro_test(residuals(lm))
+```
+
+=> Normalité Okay.
+
+
+#### Comparaisons par paires
+
+```{r}
+cm <- (SNK.test(lm, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, lip_tot, groups) %>% 
+  as_tibble()
+cm
+```
+
+
+```{r lip-barplot, message = FALSE, warning = FALSE}
+ggplot(data = cm, mapping = aes(x = regime, y = lip_tot)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  #ylim(0, 80) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  xlab("Régimes") + ylab("Teneur en lipides totaux de l'oeuf") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+
+
+
+
+

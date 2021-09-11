@@ -1,0 +1,462 @@
+
+# Teneur en cholestérol des oeufs
+
+La démarche sera la même que celle des chapitres précédents. Il se peut qu'il y ait moins de commentaires.
+
+Même jeu de données `oeuf.csv` qui contient différentes mesures dont les **Teneurs en cholestérol des oeufs**, mesurées en 4 séances. Mêmes traitements (régimes).
+
+La question est de savoir si les différents régimes induisent des **teneurs en cholestérol des oeufs** significativement différentes avec le temps. 
+
+Mais chaque traitement n'ayant pas été appliqué sur tous les groupes d'oiseaux, l'ANOVA à mesures répétées ne pourrait pas être appliquée. Nous comparerons les effets des traitements séance par séance, puis à l'aide d'une figure on appréciera s'il y a une évolution de cet indice en fonction du temps.  
+
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+library("ggpubr")
+library("agricolae")
+library("car")
+library("rstatix")
+library("Rmisc")
+library("tidyverse")
+```
+
+
+## Les données
+
+```{r message = FALSE, warning = FALSE}
+cho <- read_csv("data/oeuf.csv")
+cho <- cho %>% 
+  select(seance, regime, no_oeuf, chol_tot) %>% 
+  mutate(id = rep(1:30, 5), .before = 1) %>% 
+  convert_as_factor(id, seance, regime) %>% 
+  filter(seance != "seance 5")
+```
+
+Le tableau a été préalablement structuré en format long en Excel. J'ai ajouté un identifiant (`id`) pour les échantillons des séances.
+
+```{r message = FALSE, warning = FALSE}
+glimpse(cho)
+```
+
+
+## Visualisation boxplots
+
+```{r cho-boxplot}
+bxp <- ggplot(cho, aes(x = regime, y = chol_tot, fill = regime)) +
+  geom_boxplot() +
+  facet_grid(seance ~ .) +
+  theme(axis.text.x = element_text(angle = 90, color = "bchok", vjust = 0.5, hjust = 1)) +
+  ylab("Teneur en cholestérol de l'oeuf") +
+  theme_bw()
+bxp
+```
+
+=> Variations notables entre les traitements pour certaines séances. 
+
+
+## Détection des observations aberrantes extrêmes
+
+```{r}
+cho_out <- cho %>%
+  group_by(seance, regime) %>%
+  identify_outliers(chol_tot)
+cho_out
+```
+
+=> Pas d'observations aberrantes extrêmes pour toutes les séances.
+
+
+## Conditions de l'ANOVA
+
+### Normalité
+
+Si les données sont normalement distribuées, la p-value de Shapiro-Wilk doit être supérieure à 0,05 pour chaque régime.
+
+```{r}
+cho %>%
+  group_by(seance) %>%
+  shapiro_test(chol_tot)
+```
+
+=> Cette hypothèse n'est pas respectée pour toutes les séances. Mais on verra bien le comportement des résidus de l'ANOVA.
+
+Créer des QQ-plots pour chaque point par séance
+
+```{r cho-qqplot, message = FALSE, warning = FALSE}
+ggqqplot(cho, "chol_tot", facet.by = "seance")
+```
+
+On explorera les données séance par séance pour palier au problème de normalité.
+
+
+### Homogénéité des variances
+
+```{r}
+cho %>%
+  select(seance, regime, chol_tot) %>% 
+  group_by(seance) %>%
+  levene_test(chol_tot ~ regime)
+```
+
+=> Toutes les valeurs p sont > 0.05 => toutes les variances sont homogènes.
+
+
+## ANOVA à 1 facteur séance par séance
+
+### Séance 1
+
+```{r}
+cho1 <- cho %>% filter(seance == "seance 1")
+
+(cho1_out <- cho1 %>% 
+  identify_outliers(chol_tot))
+```
+
+=> Les observations des régimes au YC et WC sont supposées extrêmes par rapport aux autres. Mais non exclues.
+
+```{r}
+#cho1 <- cho1 %>% filter(! id %in% c(..., ...))
+```
+
+
+#### Le modèle
+
+```{r}
+lm1 <- lm(chol_tot ~ regime, data = cho1)
+Anova(lm1)
+```
+
+La p-value < 0.01 => différence très significative entre les effets d'au moins 2 régimes sur la teneur en cholestérol des oeufs.
+
+```{r}
+shapiro_test(residuals(lm1))
+```
+
+=> Normalité Okay.
+
+#### Comparaisons par paires
+
+```{r}
+cm1 <- (SNK.test(lm1, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, chol_tot, groups) %>% 
+  as_tibble()
+cm1
+```
+
+
+```{r cho1-barplot, message = FALSE, warning = FALSE}
+ggplot(data = cm1, mapping = aes(x = regime, y = chol_tot)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  #ylim(0, 0.5) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  xlab("Régimes") + ylab("Teneur en cholestérol de l'oeuf") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+### Séance 2
+
+#### Le modèle
+
+```{r}
+cho2 <- cho %>% filter(seance == "seance 2")
+
+(cho2_out <- cho2 %>% 
+  identify_outliers(chol_tot))
+```
+
+=> Pas d'observations supossées extrêmes
+
+```{r}
+#cho2 <- cho2 %>% filter(id != ...)
+```
+
+
+```{r}
+lm2 <- lm(chol_tot ~ regime, data = cho2)
+Anova(lm2)
+```
+
+La p-value est < 0.01 => différence très significative entre les effetes d'au moins 2 régimes sur la teneur en protéines des oeufs.
+
+```{r}
+shapiro_test(residuals(lm2))
+```
+
+=> Normalité Okay.
+
+
+#### Comparaisons par paires
+
+```{r}
+cm2 <- (SNK.test(lm2, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, chol_tot, groups) %>% 
+  as_tibble()
+cm2
+```
+
+
+Visualisation des groupes
+
+```{r cho2-barplot, message = FALSE, warning = FALSE}
+ggplot(data = cm2, mapping = aes(x = regime, y = chol_tot)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  #ylim(0, 40) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  xlab("Régimes") + ylab("Teneur en cholestérol de l'oeuf") +
+  theme(axis.text.x = element_text(angle = 45, color = "bchok", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+
+### Séance 3
+
+```{r}
+cho3 <- cho %>% filter(seance == "seance 3")
+
+(cho3_out <- cho3 %>% 
+    identify_outliers(chol_tot))
+```
+
+=> Tout le maïs blanc ......, mais on ne peut exclure tout un traitement !
+
+```{r}
+#cho3 <- cho3 %>% filter(id != ...)
+```
+
+
+#### Le modèle
+
+```{r}
+lm3 <- lm(chol_tot ~ regime, data = cho3)
+Anova(lm3)
+```
+
+La p-value > 0.05 => Pas de différence significative entre les effetes des 2 régimes.
+
+```{r}
+shapiro_test(residuals(lm3))
+```
+
+=> Normalité pas respectée.
+
+```{r}
+lm3_log <- lm(log(chol_tot) ~ regime, data = cho3)
+Anova(lm3_log)
+```
+
+```{r}
+shapiro_test(residuals(lm3_log))
+```
+
+=> Normalité toujours pas respectée
+
+=> Kruskal-Wallis
+
+```{r}
+cho3 %>% 
+  kruskal_test(chol_tot ~ regime)
+```
+
+=> Valeur-p < 0.05, ce qui signifie qu'il existe des différences entre les effets d'au moins 2 régimes selon ce test.
+
+
+#### Comparaisons par paires
+
+Test de Dunn
+
+```{r}
+cho3 %>% 
+  dunn_test(chol_tot ~ regime, p.adjust.method = "bonferroni") %>% 
+  select(group1, group2, p, p.adj, p.adj.signif) %>% 
+  filter(p.adj.signif != "ns")
+```
+
+=> Mais cette méthode alternative ne distingue pas de groupes bien qu'elle annonce des probables différences.
+
+=> Continuons en supposant toutes les conditions de l'ANOVA remplies.
+
+```{r}
+cm3 <- (SNK.test(lm3, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, chol_tot, groups) %>% 
+  as_tibble()
+cm3
+```
+
+... Et la visualisation graphique :
+
+```{r cho3-barplot, message = FALSE, warning = FALSE}
+ggplot(data = cm3, mapping = aes(x = regime, y = chol_tot)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  #ylim(0, 40) +
+  xlab("Régimes") + ylab("Teneur en cholestérol de l'oeuf") +
+  theme(axis.text.x = element_text(angle = 45, color = "bchok", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+
+
+### Séance 4
+
+```{r}
+cho4 <- cho %>% filter(seance == "seance 4")
+
+(cho4_out <- cho4 %>% identify_outliers(chol_tot))
+```
+
+
+#### Le modèle
+
+```{r}
+lm4 <- lm(chol_tot ~ regime, data = cho4)
+Anova(lm4)
+```
+
+La p-value < 0.01 => différence très significative entre les effets d'au moins 2 régimes sur la teneur en cholestérol des oeufs.
+
+```{r}
+shapiro_test(residuals(lm4))
+```
+
+=> Normalité Okay.
+
+
+#### Comparaisons par paires
+
+```{r}
+cm4 <- (SNK.test(lm4, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, chol_tot, groups) %>% 
+  as_tibble()
+cm4
+```
+
+
+Visualisation des groupes
+
+```{r cho4-barplot, message = FALSE, warning = FALSE}
+ggplot(data = cm4, mapping = aes(x = regime, y = chol_tot)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  #ylim(0, 40) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  xlab("Régimes") + ylab("Teneur en cholestérol de l'oeuf") +
+  theme(axis.text.x = element_text(angle = 45, color = "bchok", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+
+
+## Évolution de la teneur en cholestérol des oeufs par régime au cours du temps
+
+### Sommaire
+
+```{r}
+cho_ic <- summarySE(cho, 
+                    measurevar = "chol_tot", 
+                    groupvars = c("seance", "regime"),
+                    na.rm = TRUE)
+
+cho_ic
+```
+
+
+### Visualisation
+
+```{r cho-temps-evo}
+ggplot(cho_ic, aes(x = seance, y = chol_tot, colour = regime, group = regime)) + 
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  ylab("Teneur en cholestérol de l'oeuf") +
+  theme_bw()
+```
+
+Tendance à la hausse d'une séance à l'autre. Vous jugerez. 
+
+Nous savons par les analyses pour chaque séance plus haut, que
+
+- séance 1 : il existe des différences d'effet entre les régimes 
+- séance 2 : il existe des différences d'effet entre les régimes
+- séance 3 : Pas de différences d'effet entre les régimes
+- séance 4 : il existe des différences d'effet entre les régimes
+
+Puisque les données ne répondent pas aux conditions pour évaluer les effets des régimes au cours du temps, on négligera l'effet des régimes pour évaluer globalement l'effet du temps sur cet indice.
+
+> **On pourrait se demander si les teneurs en cholestérol mesurées sur l'ensemble des sujets sont significativement différentes d'une séance à l'autre (c'est-à-dire avec le temps)**.
+
+### Effet du temps
+
+#### boxplots, facteur temps
+
+```{r cho-temps-boxplot}
+bxp <- ggplot(cho, aes(x = seance, y = chol_tot)) +
+  geom_boxplot()
+bxp
+```
+
+#### Valeurs aberrantes, facteur temps
+
+```{r}
+cho <- cho %>% mutate(id2 = 1:nrow(.), .before = 1)
+
+cho_out <- cho %>%
+  group_by(seance) %>%
+  identify_outliers(chol_tot)
+cho_out
+```
+
+=> Le Maïs blanc ....
+
+```{r}
+#cho <- cho %>% filter(id2 != c(...))
+```
+
+
+#### Homogénéité des variances et ANOVA, facteur temps
+
+Les autres conditions ont déjà été vérifiées. 
+
+```{r message = FALSE, warning = FALSE}
+lm <- anova_test(data = cho,
+                 dv = chol_tot,
+                 wid = id,
+                 within = seance)
+
+get_anova_table(lm)
+```
+
+=> C'est la p-value qui nous intéresse et elle est < 0.01 => Différence très significative entre certaines séances.
+
+#### Comparaisons par paires, facteur temps
+
+Le reste fonctionne pas !
+
+``{r}
+tph <- cho %>%
+  pairwise_t_test(chol_tot ~ seance, 
+                  paired = TRUE,
+                  p.adjust.method = "bonferroni")
+
+tph %>% 
+  select(group1, group2, p, p.adj, p.adj.signif)
+```
+
+
+#### Boxplots avec p-values
+
+``{r cho-temps-pwc, message = FALSE, warning = FALSE}
+tph <- tph %>% add_xy_position(x = "seance")
+
+ggboxplot(cho, x = "seance", y = "chol_tot") + 
+  #ylim(0, 100) +
+  stat_pvalue_manual(tph) +
+  labs(subtitle = get_test_label(lm, detailed = TRUE), 
+       caption = get_pwc_label(tph))
+```
+
+
+
+
+

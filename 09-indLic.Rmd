@@ -1,0 +1,532 @@
+
+# Indice `L` de l'intérieur de la coquille
+
+La démarche sera la même que celle des chapitres précédents. Il se peut qu'il y ait moins de commentaires.
+
+Même jeu de données `oeuf.csv` qui contient différentes mesures dont l' **évaluation de la couleur de l'intérieur de la coquille (Ligthness index) - indice L **, mesurée en 5 séances. Mêmes traitements (régimes).
+
+La question est de savoir si les différents régimes induisent des **indices de luminosité** à l'intérieur de la coquille d'oeuf significativement différents avec le temps. 
+
+Mais chaque traitement n'ayant pas été appliqué sur tous les groupes d'oiseaux, l'ANOVA à mesures répétées ne pourrait pas être appliquée. Nous comparerons les effets des traitements séance par séance, puis à l'aide d'une figure on appréciera s'il y a une évolution de cet indice en fonction du temps.  
+
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+library("ggpubr")
+library("agricolae")
+library("car")
+library("rstatix")
+library("Rmisc")
+library("tidyverse")
+```
+
+## Les données
+
+```{r message = FALSE, warning = FALSE}
+lic <- read_csv("data/oeuf.csv")
+lic <- lic %>% 
+  select(seance, regime, no_oeuf, indlic) %>% 
+  mutate(id = rep(1:30, 5), .before = 1) %>% 
+  convert_as_factor(id, seance, regime)
+```
+
+Le tableau a été préalablement structuré en format long en Excel. J'ai ajouté un identifiant (`id`) pour les échantillons des séances.
+
+```{r message = FALSE, warning = FALSE}
+glimpse(lic)
+```
+
+
+## Visualisation boxplots
+
+```{r lic-boxplot}
+bxp <- ggplot(lic, aes(x = regime, y = indlic, fill = regime)) +
+  geom_boxplot() +
+  facet_grid(seance ~ .) +
+  theme(axis.text.x = element_text(angle = 90, color = "black", vjust = 0.5, hjust = 1)) +
+  ylab("Shell lightness index") +
+  theme_bw()
+bxp
+```
+
+=> Variations notables entre les traitements pour certaines séances.
+
+## Détection des valeurs aberrantes extrêmes
+
+```{r}
+lic_out <- lic %>%
+  group_by(seance, regime) %>%
+  identify_outliers(indlic)
+lic_out
+```
+
+=> Pas de valeurs aberrantes extrêmes pour toutes les séances.
+
+
+## Conditions de l'ANOVA
+
+### Normalité
+
+Si les données sont normalement distribuées, la p-value de Shapiro-Wilk doit être supérieure à 0,05 pour chaque régime.
+
+```{r}
+lic %>%
+  group_by(seance) %>%
+  shapiro_test(indlic)
+```
+
+=> Normalité seulement pour la séance 4.
+
+Créer des QQ-plots pour chaque point par séance
+
+```{r lic-qqplot, message = FALSE, warning = FALSE}
+ggqqplot(lic, "indlic", facet.by = "seance")
+```
+
+On explorera les données séances par séance pour palier au problème de normalité.
+
+### Homogénéité des variances
+
+```{r}
+lic %>%
+  select(seance, regime, indlic) %>% 
+  group_by(seance) %>%
+  levene_test(indlic ~ regime)
+```
+
+=> Toutes les valeurs p sont > 0.05 => toutes les variances sont homogènes.
+
+
+## ANOVA à 1 facteur séance par séance
+
+### Séance 1
+
+```{r}
+lic1 <- lic %>% filter(seance == "seance 1")
+
+(lic1_out <- lic1 %>% 
+  identify_outliers(indlic))
+```
+
+=> 1 observation extrême.
+
+```{r}
+lic1 <- lic1 %>% filter(id != 9)
+```
+
+
+#### Le modèle
+
+```{r}
+lm1 <- lm(indlic ~ regime, data = lic1)
+Anova(lm1)
+```
+
+La p-value > 0.05 => Pas de différence significative entre les effets des régimes sur cet indice à la séance 1.
+
+```{r}
+shapiro_test(residuals(lm1))
+```
+
+=> Normalité Okay !
+
+
+#### Comparaisons par paires
+
+Comparaisons des moyennes par paires, Student - Newman - Keuls.
+
+```{r}
+cm1 <- (SNK.test(lm1, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, indlic, groups) %>% 
+  as_tibble()
+cm1
+```
+
+#### Visualisation des groupes, bareplots avec labels
+
+```{r lic1-barplot}
+ggplot(data = cm1, mapping = aes(x = regime, y = indlic)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  #ylim(0, 90) +
+  xlab("Régimes") + ylab("Egg shell lightness index") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+
+### Séance 2
+
+#### Le modèle
+
+```{r}
+lic2 <- lic %>% filter(seance == "seance 2")
+
+(lic2 %>% 
+  identify_outliers(indlic))
+```
+
+=> Pas d'observation supossée extrême
+
+```{r}
+#lic2 <- lic2 %>% filter(id != ...)
+```
+
+
+```{r}
+lm2 <- lm(indlic ~ regime, data = lic2)
+Anova(lm2)
+```
+
+La p-value est < 0.01 => Différence très significative entre les effets d'au moins 2 régimes.
+
+```{r}
+shapiro_test(residuals(lm2))
+```
+
+=> Alternative non paramétrique.
+
+```{r}
+lic2 %>% kruskal_test(indlic ~ regime)
+```
+
+=> Différence très significative entre les effets d'au moins 2 régimes.
+
+#### Comparaisons par paires
+
+Test de Dunn
+
+```{r}
+lic2 %>% 
+  dunn_test(indlic ~ regime, p.adjust.method = "bonferroni") %>% 
+  select(group1, group2, p, p.adj, p.adj.signif) %>% 
+  filter(p.adj.signif != "ns")
+```
+
+=> Différence au niveau des effets de ces deux régimes.
+
+Calcul des moyennes ci-dessous, pour le classement manuel (identifier les groupes). Le graphique automatique un peu complexe !
+
+```{r}
+cm2 <- lic2 %>% 
+  select(regime, indlic) %>% 
+  group_by(regime) %>% 
+  summarise_all(list(lic_moyen = mean, sd = sd)) %>% 
+  data.table::setorder(-lic_moyen)
+cm2
+```
+
+J'ajoute les lettres à la main :
+
+```{r}
+cm2 <- cm2 %>% 
+  mutate(groups = c("a", "ab", "ab", "ab", "ab", "ab", "ab", "ab", "ab", "b"))
+cm2
+```
+
+
+#### Visualisation des groupes
+
+```{r lic2-barplot, message = FALSE, warning = FALSE}
+ggplot(data = cm2, mapping = aes(x = regime, y = lic_moyen)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  ylim(0, 90) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  xlab("Régimes") + ylab("Egg shell lightness index") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+
+### Séance 3
+
+```{r}
+lic3 <- lic %>% filter(seance == "seance 3")
+
+(lic3_out <- lic3 %>% 
+    identify_outliers(indlic))
+```
+
+=> Le mais jaune (YC) et le mais blanc (WC) sont identifiés comme observations aberrantes mais pas extrême.
+
+```{r}
+#lic3 <- lic3 %>% filter(id != ...)
+```
+
+
+#### Le modèle
+
+```{r}
+lm3 <- lm(indlic ~ regime, data = lic3)
+Anova(lm3)
+```
+
+La p-value < 0.01 => Différence très significative entre les effets d'au moins 2 régimes.
+
+```{r}
+shapiro_test(residuals(lm3))
+```
+
+=> Normalité pas satisfaite. 
+
+Les transformations `log()` ou `Boxcox` ne résolvent également pas ce problàme.
+
+=> Alternative non paramétrique
+
+```{r}
+lic3 %>% 
+  kruskal_test(indlic ~ regime)
+```
+
+=> Différence significative entre les effetes d'au moins 2 régimes. En comparant 2 à 2 les régimes avec ce cette alternative :
+
+#### Comparaisons par paires
+
+Test de Dunn
+
+```{r}
+lic3 %>% 
+  dunn_test(indlic ~ regime, p.adjust.method = "bonferroni") %>% 
+  select(group1, group2, p, p.adj, p.adj.signif) %>% 
+  filter(p.adj.signif != "ns")
+```
+
+Test Wilcoxon
+
+```{r}
+lic3 %>% 
+  rstatix::wilcox_test(indlic ~ regime, p.adjust.method = "bonferroni", paired = TRUE) %>% 
+  select(group1, group2, p, p.adj, p.adj.signif) %>% 
+  filter(p.adj.signif != "ns")
+```
+
+=> Pas de paires différentes détectées... ni avec Dunn, ni avec Wilcoxon.
+
+Si on supposait que les conditions de l'ANOVA étaient respectées, la comparaison par paires donnerait ceci :
+
+```{r}
+cm3 <- (SNK.test(lm3, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, indlic, groups) %>% 
+  as_tibble()
+cm3
+```
+
+... Et la visualisation graphique :
+
+```{r lic3-barplot, message = FALSE, warning = FALSE}
+ggplot(data = cm3, mapping = aes(x = regime, y = indlic)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  ylim(0, 90) +
+  xlab("Régimes") + ylab("Egg shell lightness index") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+Les deux groupes sont presqu'évidents, mais les conditions de l'ANOVA ne nous permettent pas de valider cette interprétation. ...
+
+
+
+### Séance 4
+
+#### Le modèle
+
+```{r}
+lic4 <- lic %>% filter(seance == "seance 4")
+lm4 <- lm(indlic ~ regime, data = lic4)
+Anova(lm4)
+```
+
+La p-value > 0.05 => Pas de différence significative entre les effets des régimes.
+
+
+#### Comparaisons par paires
+
+```{r}
+cm4 <- (SNK.test(lm4, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, indlic, groups) %>% 
+  as_tibble()
+cm4
+```
+
+
+#### Visualisation des groupes
+
+```{r lic4-barplot, message = FALSE, warning = FALSE}
+ggplot(data = cm4, mapping = aes(x = regime, y = indlic)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  ylim(0, 90) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  xlab("Régimes") + ylab("Egg shell lightness index") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+
+### Séance 5
+
+```{r}
+lic5 <- lic %>% filter(seance == "seance 5")
+
+(lic5_out <- lic5 %>% 
+  identify_outliers(indlic))
+```
+
+```{r}
+lic5 <- lic5 %>% filter(id != 21)
+```
+
+
+#### Le modèle
+
+```{r}
+lm5 <- lm(indlic ~ regime, data = lic5)
+Anova(lm5)
+```
+
+La p-value est > 0.05 => Pas de différence significative entre les effetes des régimes.
+
+```{r}
+shapiro_test(residuals(lm5))
+```
+
+=> Normalité Okay après l'exclusion de l'observation extrême. On poursuivra avec ce modèle.
+
+
+#### Comparaisons par paires
+
+```{r}
+cm5 <- (SNK.test(lm5, "regime", group = TRUE))$groups %>% 
+  mutate(regime = rownames(.)) %>% 
+  select(regime, indlic, groups) %>% 
+  as_tibble()
+cm5
+```
+
+
+#### Visualisation
+
+```{r lic5-barplot, message = FALSE, warning = FALSE}
+ggplot(data = cm5, mapping = aes(x = regime, y = indlic)) +
+  geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
+  ylim(0, 90) +
+  geom_text(aes(label = groups), vjust = -0.5, size = 4) +
+  xlab("Régimes") + ylab("Egg shell lightness index") +
+  theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1)) +
+  theme_bw()
+```
+
+
+
+## Évolution de l'indice L par régime au cours du temps
+
+### Sommaire
+
+```{r}
+lic_ic <- summarySE(lic, 
+                   measurevar = "indlic", 
+                   groupvars = c("seance", "regime"),
+                   na.rm = TRUE)
+
+lic_ic
+```
+
+
+### Visualisation
+
+```{r lic-temps-evo}
+ggplot(lic_ic, aes(x = seance, y = indlic, colour = regime, group = regime)) + 
+  geom_line(size = 1) +
+  geom_point(size = 2) +
+  ylab("Egg shell lightness index") +
+  theme_bw()
+```
+
+Il ne semble pas se dégager une tendance concrète entre les différentes séances, ou difficile à exploiter. Vous jugerez. En séance 2 on voit bien que 2 groupes se distinguent, mais les conditions de l'ANOVA ne sont pas valides et les méthodes non paramétriques ne parviennent pas à distinguer des groupes.
+
+Nous savons par les analyses pour chaque séance plus haut, que
+
+- séance 1 : pas de différences signicatives d'effet entre les régimes 
+- séance 2 : il existe des différences d'effet entre les régimes
+- séance 3 : données difficiles à exploiter ... et exclure des observation exclue 2 régimes de l'analyse !
+- séance 4 : pas de différences signicatives d'effet entre les régimes 
+- séance 5 : pas de différences signicatives d'effet entre les régimes
+
+
+Puisque les données ne répondent pas aux conditions pour évaluer les effets des régimes au cours du temps, on négligera l'effet des régimes pour évaluer globalement l'effet du temps sur cet indice.
+
+> **On pourrait se demander si les indices L mesurés sur l'ensemble des sujets sont significativement différentes d'une séance à l'autre (c'est-à-dire avec le temps)**.
+
+### Effet du temps
+
+#### boxplots, facteur temps
+
+```{r lic-temps-boxplot}
+bxp <- ggplot(lic, aes(x = seance, y = indlic)) +
+  geom_boxplot()
+bxp
+```
+
+#### Valeurs aberrantes, facteur temps
+
+```{r}
+lic <- lic %>% mutate(id2 = 1:nrow(.), .before = 1)
+lic_out <- lic %>%
+  group_by(seance) %>%
+  identify_outliers(indlic)
+lic_out
+```
+
+=> 1 observation aberrante extrême pour la séance 1. On pourrait les exclure. Mais je les ai conservé pour la suite.
+
+```{r}
+#lic <- lic %>% filter(id2 != 9)
+```
+
+
+#### Homogénéité des variances et ANOVA, facteur temps
+
+Les autres conditions ont déjà été vérifiées. 
+
+```{r message = FALSE, warning = FALSE}
+lm <- anova_test(data = lic,
+                 dv = indlic,
+                 wid = id,
+                 within = seance)
+
+get_anova_table(lm)
+```
+
+=> C'est la p-value qui nous intéresse et elle est < 0.05 => Différence significative entre certaines séances.
+
+#### Comparaisons par paires, facteur temps
+
+```{r}
+tph <- lic %>%
+  pairwise_t_test(indlic ~ seance, 
+                  paired = TRUE,
+                  p.adjust.method = "bonferroni")
+
+tph %>% 
+  select(group1, group2, p, p.adj, p.adj.signif)
+```
+
+
+#### Boxplots avec p-values
+
+```{r lic-temps-pwc, message = FALSE, warning = FALSE}
+tph <- tph %>% add_xy_position(x = "seance")
+
+ggboxplot(lic, x = "seance", y = "indlic") + 
+  ylim(0, 100) +
+  stat_pvalue_manual(tph) +
+  labs(subtitle = get_test_label(lm, detailed = TRUE), 
+       caption = get_pwc_label(tph))
+```
+
+
+
+
+

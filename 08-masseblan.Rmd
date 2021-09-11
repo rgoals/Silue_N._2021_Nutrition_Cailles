@@ -306,7 +306,7 @@ ggplot(data = cm5, mapping = aes(x = regime, y = masse_blanc)) +
   geom_bar(stat = "identity", color = "blue", fill = "grey", width = 0.6) +
   ylim(0, 7) +
   geom_text(aes(label = groups), vjust = -0.5, size = 4) +
-  xlab("Régimes") + ylab("Masse du blanc d'oeufe (g)") +
+  xlab("Régimes") + ylab("Masse du blanc d'oeuf (g)") +
   theme(axis.text.x = element_text(angle = 45, color = "black", vjust = 1, hjust = 1)) +
   theme_bw()
 ```

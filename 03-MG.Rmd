@@ -1,20 +1,7 @@
 
 # Matières grasses {#mg}
 
-Nous utiliserons le jeu de données `mg` qui contient différentes mesures dont les taux de MG mesurés en 4 seances lors d'un essai de nutrition de cailles à base de différents regimes.
-
-Les 10 traitements (régimes) :
-
-1. BA 0.25
-1. BA 0.5
-1. BA 0.75
-1. BA 1
-1. BA 2.5
-1. BA 5
-1. BA 7.5
-1. BA 10
-1. WC
-1. YC
+Nous utiliserons le jeu de données `mg.csv` qui contient différentes mesures dont les taux de MG mesurés en 4 seances lors d'un essai de nutrition de cailles à base de différents regimes.
 
 Le taux de MG de l'oeuf a été analysé en 4 séances : séance 1 (mg1), séance 2 (mg2), séance 3 (mg3), séance 4 (mg4).
 

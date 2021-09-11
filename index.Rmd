@@ -12,6 +12,20 @@ description: "The output format for this example is bookdown::gitbook."
 
 # Travail à faire
 
+Les 10 traitements (régimes) :
+
+1. BA 0.25
+1. BA 0.5
+1. BA 0.75
+1. BA 1
+1. BA 2.5
+1. BA 5
+1. BA 7.5
+1. BA 10
+1. WC
+1. YC
+
+
 ## Gain moyen quotidien des cailles
 
 
